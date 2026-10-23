@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Submit your product — Discova</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap 5.3 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="css/styles.css">
+
+  <!-- Immediate Theme Initializer (prevents flash) -->
+  <script>
+    (function() {
+      var savedTheme = localStorage.getItem('discova_theme') || 'dark';
+      document.documentElement.setAttribute('data-bs-theme', savedTheme);
+      if (savedTheme === 'light') {
+        document.body && document.body.classList.add('light-mode');
+      }
+    })();
+  </script>
+</head>
+<body>
+
+  <!-- ========================================================================
+       1. Header / Navbar
+       ======================================================================== -->
+  <header class="site-navbar">
+    <div class="container-xl d-flex align-items-center justify-content-between">
+      
+      <!-- Brand Logo -->
+      <a href="index.html" class="brand-logo">
+        <span class="brand-logo-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 19L11 5H15L8 19H4Z" fill="#3B82F6"/>
+            <path d="M12 19L19 5H21L14 19H12Z" fill="#60A5FA"/>
+          </svg>
+        </span>
+        <span>discova</span>
+      </a>
+
+      <!-- Center Navigation -->
+      <nav class="d-none d-lg-flex align-items-center gap-1">
+        <a href="products.html" class="nav-link-custom">Products</a>
+        <a href="launches.html" class="nav-link-custom">Launches</a>
+        <a href="stories.html" class="nav-link-custom">Stories</a>
+        <a href="categories.html" class="nav-link-custom">Categories</a>
+        <a href="about.html" class="nav-link-custom">About</a>
+      </nav>
+
+      <!-- Right Action Controls -->
+      <div class="d-flex align-items-center gap-3">
+        <!-- Theme Toggle Pill -->
+        <button class="theme-toggle-pill" id="themeToggleBtn" onclick="toggleTheme()" title="Toggle light/dark mode" aria-label="Toggle theme">
+          <span class="theme-icon sun-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+          </span>
+          <span class="theme-icon moon-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+          </span>
+        </button>
+
+        <!-- User / Sign In -->
+        <a href="login.html" class="d-none d-sm-inline-block text-muted text-decoration-none fw-semibold" style="font-size: 0.875rem;">Sign in</a>
+
+        <!-- Submit CTA Button -->
+        <a href="submit.html" class="btn-pill-white text-decoration-none">
+          <span>Submit product</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </a>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ========================================================================
+       2. Hero Header & Progress Tracker
+       ======================================================================== -->
+  <section class="submit-hero-section">
+    <div class="container-xl">
+      
+      <!-- Top Pill Badge -->
+      <div class="submit-badge-capsule">
+        <span>Free to list • Reviewed in 3–5 days</span>
+      </div>
+
+      <!-- Main Headline -->
+      <h1 class="submit-hero-title">
+        Submit your <span class="font-serif-italic">product</span>
+      </h1>
+
+      <!-- Subtitle -->
+      <p class="submit-hero-subtitle">
+        Built something in Africa? Tell us about it. Every listing is reviewed by our editors before it goes live.
+      </p>
+
+      <!-- Steps Progress Indicator -->
+      <div class="step-progress-wrapper">
+        <div class="step-indicator-item active" id="stepIndicator1">
+          <span class="step-circle">1</span>
+          <span>Product</span>
+        </div>
+        <span class="step-line-sep"></span>
+        <div class="step-indicator-item" id="stepIndicator2">
+          <span class="step-circle">2</span>
+          <span>Details</span>
+        </div>
+        <span class="step-line-sep"></span>
+        <div class="step-indicator-item" id="stepIndicator3">
+          <span class="step-circle">3</span>
+          <span>Builder</span>
+        </div>
+        <span class="step-line-sep"></span>
+        <div class="step-indicator-item" id="stepIndicator4">
+          <span class="step-circle">4</span>
+          <span>Review</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       3. Main Form & Sidebar Section
+       ======================================================================== -->
+  <section class="pb-5">
+    <div class="container-xl">
+      <div class="row g-4 align-items-start">
+        
+        <!-- Left Column: Form Card (Col-lg-7) -->
+        <div class="col-lg-7">
+          <div class="form-card-main">
+            
+            <form id="productSubmissionForm">
+              
+              <!-- Step 2 Mini Product Header Bar (Shown only in Step 2) -->
+              <div class="product-step-header-card" id="step2TopBar" style="display: none;">
+                <div class="d-flex align-items-center gap-3">
+                  <div class="badge-icon">P</div>
+                  <div class="d-flex align-items-center gap-2">
+                    <span class="fw-bold text-white">Pxxl</span>
+                    <span class="text-muted small">pxxl.app</span>
+                  </div>
+                </div>
+                <button type="button" class="btn btn-link text-decoration-none text-success p-0 small fw-semibold" onclick="goToStep(1)">Edit</button>
+              </div>
+
+              <!-- Card Header -->
+              <div class="form-step-tag" id="currentStepTag">STEP 1 OF 4</div>
+              <h2 class="form-step-heading" id="currentStepTitle">Tell us what you built</h2>
+              <p class="form-step-desc" id="currentStepDesc">Takes about 5 minutes. Your progress saves automatically.</p>
+
+              <!-- STEP 1 CONTAINER -->
+              <div id="step1Fields">
+                
+                <!-- Field 1: Product Name -->
+                <div class="mb-4">
+                  <div class="form-group-label-row">
+                    <label class="form-input-label" for="productNameInput">
+                      Product name <span class="required-star">*</span>
+                    </label>
+                    <span class="char-counter" id="nameCharCount">4 / 40</span>
+                  </div>
+                  <input type="text" id="productNameInput" class="input-box-dark" value="Pxxl" maxlength="40" placeholder="e.g. Chowdeck, Pezid, Paystack" required>
+                </div>
+
+                <!-- Field 2: Website URL -->
+                <div class="mb-4">
+                  <label class="form-input-label d-block mb-2" for="websiteInput">
+                    Website <span class="required-star">*</span>
+                  </label>
+                  
+                  <div class="input-with-addons">
+                    <span class="input-prefix-icon">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="2" y1="12" x2="22" y2="12"></line>
+                        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                      </svg>
+                    </span>
+                    <input type="url" id="websiteInput" class="input-box-dark input-box-with-addons" value="https://pxxl.app" placeholder="https://yourproduct.com" required>
+                    <span class="input-suffix-icon" id="websiteSuccessIcon">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                      </svg>
+                    </span>
+                  </div>
+
+                  <!-- Scraped Metadata Notification Box -->
+                  <div class="scraped-meta-box" id="scrapedMetaBox">
+                    <div class="scraped-meta-icon" id="scrapedMetaIcon">P</div>
+                    <div>
+                      <div class="scraped-meta-title" id="scrapedMetaTitle">We found: Pxxl — Deploy faster in Africa</div>
+                      <div class="scraped-meta-desc">Logo and description imported from the site. You can change them in the next step.</div>
+                    </div>
+                  </div>
+
+                  <!-- Validation Alert Banner -->
+                  <div class="validation-alert-green" id="validationBanner">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    <span id="validationBannerText">No existing listing for pxxl.app — you're good to go.</span>
+                  </div>
+
+                </div>
+
+                <!-- Field 3: Your relationship to the product -->
+                <div class="mb-4">
+                  <label class="form-input-label d-block mb-1">
+                    Your relationship to the product <span class="required-star">*</span>
+                  </label>
+                  
+                  <div class="radio-cards-grid" id="relationshipOptions">
+                    <!-- Option 1: On the team -->
+                    <div class="radio-card-option selected" data-value="team">
+                      <div>
+                        <div class="radio-circle-outer">
+                          <div class="radio-circle-inner"></div>
+                        </div>
+                        <div class="radio-card-title">I'm on the team</div>
+                        <div class="radio-card-desc">Founder, co-founder or employee. You'll be able to manage the listing.</div>
+                      </div>
+                    </div>
+
+                    <!-- Option 2: Recommending it -->
+                    <div class="radio-card-option" data-value="recommending">
+                      <div>
+                        <div class="radio-circle-outer">
+                          <div class="radio-circle-inner"></div>
+                        </div>
+                        <div class="radio-card-title">I'm recommending it</div>
+                        <div class="radio-card-desc">You use it and love it. We'll reach out to the team.</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Field 4: Is the product live? -->
+                <div class="mb-4">
+                  <label class="form-input-label d-block mb-1">
+                    Is the product live? <span class="required-star">*</span>
+                  </label>
+                  
+                  <div class="radio-cards-grid" id="isLiveOptions">
+                    <!-- Option 1: Yes, people can use it -->
+                    <div class="radio-card-option selected" data-value="live">
+                      <div>
+                        <div class="radio-circle-outer">
+                          <div class="radio-circle-inner"></div>
+                        </div>
+                        <div class="radio-card-title">Yes, people can use it</div>
+                        <div class="radio-card-desc">Public product, open beta or paid.</div>
+                      </div>
+                    </div>
+
+                    <!-- Option 2: Not yet -->
+                    <div class="radio-card-option" data-value="not-live">
+                      <div>
+                        <div class="radio-circle-outer">
+                          <div class="radio-circle-inner"></div>
+                        </div>
+                        <div class="radio-card-title">Not yet</div>
+                        <div class="radio-card-desc">Waitlists and closed betas can't be listed yet.</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Free Notice Box -->
+                <div class="free-notice-box">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="flex-shrink-0">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="16" x2="12" y2="12"></line>
+                    <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                  </svg>
+                  <span>Listing is free. Discova never charges builders for a place in the catalog.</span>
+                </div>
+
+              </div>
+
+              <!-- STEP 2 CONTAINER: Details -->
+              <div id="step2Fields" style="display: none;">
+                
+                <!-- 01 The basics -->
+                <div class="mb-4">
+                  <div class="form-section-title mb-3"><span class="section-num">01</span> The basics</div>
+                  
+                  <!-- Tagline -->
+                  <div class="mb-3">
+                    <div class="form-group-label-row">
+                      <label class="form-input-label" for="taglineInput">
+                        Tagline <span class="required-star">*</span>
+                      </label>
+                      <span class="char-counter" id="taglineCharCount">45 / 60</span>
+                    </div>
+                    <input type="text" class="input-box-dark" id="taglineInput" maxlength="60" value="Africa-first cloud deployment for developers." placeholder="Africa-first cloud deployment for developers.">
+                  </div>
+
+                  <!-- Description -->
+                  <div class="mb-3">
+                    <div class="form-group-label-row">
+                      <label class="form-input-label" for="descriptionInput">
+                        Description <span class="required-star">*</span>
+                      </label>
+                      <span class="char-counter" id="descCharCount">312 / 1000</span>
+                    </div>
+                    <textarea class="input-box-dark" id="descriptionInput" rows="4" maxlength="1000" style="resize: vertical; font-size: 0.875rem; line-height: 1.6;" placeholder="Explain what it does and who it's for. Markdown supported.">Pxxl is a cloud deployment platform built for African developers. Push your code and Pxxl builds, deploys and serves it from edge regions on the continent...</textarea>
+                    <div class="text-muted mt-1" style="font-size: 0.72rem;">Explain what it does and who it's for. Markdown supported.</div>
+                  </div>
+
+                  <!-- Category & Country Grid -->
+                  <div class="row g-3 mb-3">
+                    <div class="col-md-6">
+                      <label class="form-input-label d-block mb-1" for="categorySelect">
+                        Category <span class="required-star">*</span>
+                      </label>
+                      <select class="input-box-dark" id="categorySelect">
+                        <option value="Hosting" selected>Hosting</option>
+                        <option value="FinTech">FinTech</option>
+                        <option value="AI">AI & Machine Learning</option>
+                        <option value="Developer Tools">Developer Tools</option>
+                        <option value="Logistics">Logistics & Supply Chain</option>
+                        <option value="Health">HealthTech</option>
+                      </select>
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-input-label d-block mb-1" for="countrySelect">
+                        Country <span class="required-star">*</span>
+                      </label>
+                      <select class="input-box-dark" id="countrySelect">
+                        <option value="Nigeria" selected>Nigeria</option>
+                        <option value="Kenya">Kenya</option>
+                        <option value="Rwanda">Rwanda</option>
+                        <option value="South Africa">South Africa</option>
+                        <option value="Ghana">Ghana</option>
+                        <option value="Egypt">Egypt</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <!-- Alternative to -->
+                  <div class="mb-3">
+                    <div class="form-group-label-row">
+                      <label class="form-input-label" for="compareInput">Alternative to</label>
+                      <span class="text-muted" style="font-size: 0.72rem;">Optional</span>
+                    </div>
+                    <input type="text" class="input-box-dark" id="compareInput" value="e.g. Vercel, Netlify" placeholder="e.g. Vercel, Netlify">
+                    <div class="text-muted mt-1" style="font-size: 0.72rem;">Helps people understand what you do — we never frame products as clones.</div>
+                  </div>
+
+                  <!-- Tags -->
+                  <div class="mb-3">
+                    <div class="form-group-label-row">
+                      <label class="form-input-label">Tags</label>
+                      <span class="text-muted" style="font-size: 0.72rem;">Up to 5</span>
+                    </div>
+                    <div class="tag-chips-wrap" id="tagChipsWrap">
+                      <button type="button" class="tag-chip active" data-tag="Open Source"><span class="chip-status">✓</span> Open Source</button>
+                      <button type="button" class="tag-chip active" data-tag="AI"><span class="chip-status">✓</span> AI</button>
+                      <button type="button" class="tag-chip" data-tag="Developer Tools"><span class="chip-status">+</span> Developer Tools</button>
+                      <button type="button" class="tag-chip" data-tag="Bootstrapped"><span class="chip-status">+</span> Bootstrapped</button>
+                      <button type="button" class="tag-chip" data-tag="B2B"><span class="chip-status">+</span> B2B</button>
+                      <button type="button" class="tag-chip" data-tag="API"><span class="chip-status">+</span> API</button>
+                    </div>
+                  </div>
+
+                  <!-- Pricing -->
+                  <div class="mb-4">
+                    <label class="form-input-label d-block mb-1">
+                      Pricing <span class="required-star">*</span>
+                    </label>
+                    <div class="radio-cards-grid radio-cards-grid-3" id="pricingOptions">
+                      <!-- Option 1: Free -->
+                      <div class="radio-card-option" data-value="free">
+                        <div>
+                          <div class="radio-circle-outer">
+                            <div class="radio-circle-inner"></div>
+                          </div>
+                          <div class="radio-card-title">Free</div>
+                          <div class="radio-card-desc">No paid plan</div>
+                        </div>
+                      </div>
+
+                      <!-- Option 2: Freemium (Selected) -->
+                      <div class="radio-card-option selected" data-value="freemium">
+                        <div>
+                          <div class="radio-circle-outer">
+                            <div class="radio-circle-inner"></div>
+                          </div>
+                          <div class="radio-card-title">Freemium</div>
+                          <div class="radio-card-desc">Free + paid tiers</div>
+                        </div>
+                      </div>
+
+                      <!-- Option 3: Paid -->
+                      <div class="radio-card-option" data-value="paid">
+                        <div>
+                          <div class="radio-circle-outer">
+                            <div class="radio-circle-inner"></div>
+                          </div>
+                          <div class="radio-card-title">Paid</div>
+                          <div class="radio-card-desc">Paid only</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+                <!-- 02 Media -->
+                <div class="mb-3">
+                  <div class="form-section-title mb-3"><span class="section-num">02</span> Media</div>
+                  
+                  <div class="media-dropzone-grid">
+                    <!-- Dropzone 1: Logo -->
+                    <div class="media-dropzone-box" onclick="document.getElementById('logoFileInput').click()">
+                      <input type="file" id="logoFileInput" class="d-none" accept="image/png, image/svg+xml, image/jpeg">
+                      <div class="media-dropzone-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                          <polyline points="17 8 12 3 7 8"></polyline>
+                          <line x1="12" y1="3" x2="12" y2="15"></line>
+                        </svg>
+                      </div>
+                      <div class="media-dropzone-title">Logo</div>
+                      <div class="media-dropzone-desc">PNG or SVG • 512×512</div>
+                    </div>
+
+                    <!-- Dropzone 2: Screenshots -->
+                    <div class="media-dropzone-box" onclick="document.getElementById('screenshotsFileInput').click()">
+                      <input type="file" id="screenshotsFileInput" class="d-none" multiple accept="image/*">
+                      <div class="media-dropzone-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                          <polyline points="17 8 12 3 7 8"></polyline>
+                          <line x1="12" y1="3" x2="12" y2="15"></line>
+                        </svg>
+                      </div>
+                      <div class="media-dropzone-title">Screenshots</div>
+                      <div class="media-dropzone-desc">Up to 4 images • 1600×900 recommended</div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+              <!-- STEP 3 CONTAINER: Who's building it? -->
+              <div id="step3Fields" style="display: none;">
+                
+                <!-- 01 Founders -->
+                <div class="mb-4">
+                  <div class="text-uppercase tracking-wider text-muted fw-bold small mb-2">01 Founders</div>
+                  
+                  <!-- Founder 1 (You) -->
+                  <div class="founder-item-box">
+                    <div class="d-flex align-items-center gap-2 mb-3">
+                      <img src="images/founder_robinson.jpg" alt="Founder avatar" style="width: 38px; height: 38px; border-radius: 50%; object-fit: cover;">
+                      <div>
+                        <div class="fw-bold text-white small">Founder 1 <span class="badge bg-primary text-white" style="font-size: 0.65rem;">You</span></div>
+                        <div class="text-muted" style="font-size: 0.7rem;">Shown on your listing and Builder Story.</div>
+                      </div>
+                    </div>
+
+                    <div class="row g-3 mb-3">
+                      <div class="col-md-6">
+                        <label class="form-input-label d-block mb-1">Full name <span class="required-star">*</span></label>
+                        <input type="text" class="input-box-dark" id="founder1Name" value="Robinson Honour">
+                      </div>
+                      <div class="col-md-6">
+                        <label class="form-input-label d-block mb-1">Role <span class="required-star">*</span></label>
+                        <input type="text" class="input-box-dark" id="founder1Role" value="Founder & CEO">
+                      </div>
+                    </div>
+
+                    <div class="row g-3 mb-3">
+                      <div class="col-md-6">
+                        <div class="d-flex justify-content-between">
+                          <label class="form-input-label mb-1">Email <span class="required-star">*</span></label>
+                          <span class="text-muted" style="font-size: 0.7rem;">Private</span>
+                        </div>
+                        <input type="email" class="input-box-dark" id="founder1Email" value="robinson@pxxl.app">
+                      </div>
+                      <div class="col-md-6">
+                        <label class="form-input-label d-block mb-1">Based in</label>
+                        <input type="text" class="input-box-dark" id="founder1Location" value="Lagos, Nigeria">
+                      </div>
+                    </div>
+
+                    <div class="row g-3">
+                      <div class="col-md-6">
+                        <label class="form-input-label d-block mb-1">X / Twitter</label>
+                        <div class="input-group-dark">
+                          <span class="input-prefix-icon text-muted">@</span>
+                          <input type="text" class="input-box-dark ps-4" value="robinsonhonour">
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <label class="form-input-label d-block mb-1">LinkedIn</label>
+                        <input type="text" class="input-box-dark" value="linkedin.com/in/robinsonhonour">
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Founder 2: Ada Okafor (Invite pending) -->
+                  <div class="founder-item-box d-flex align-items-center justify-content-between">
+                    <div class="d-flex align-items-center gap-2">
+                      <img src="images/avatar2.jpg" alt="Ada Okafor" style="width: 36px; height: 36px; border-radius: 50%; object-fit: cover;">
+                      <div>
+                        <div class="fw-bold text-white small">Ada Okafor</div>
+                        <div class="text-muted" style="font-size: 0.7rem;">Co-founder & CTO • invite sent to ada@pxxl.app</div>
+                      </div>
+                    </div>
+                    <span class="invite-pending-pill">Invite pending ✕</span>
+                  </div>
+
+                  <button type="button" class="btn btn-link text-primary text-decoration-none small p-0 mt-1" onclick="alert('Invitation link copied! Share this with your co-founder.')">
+                    + Add a co-founder or team member
+                  </button>
+                </div>
+
+                <!-- 02 Company -->
+                <div class="mb-4">
+                  <div class="text-uppercase tracking-wider text-muted fw-bold small mb-2">02 Company</div>
+                  <div class="row g-3">
+                    <div class="col-md-4">
+                      <label class="form-input-label d-block mb-1">Year founded <span class="required-star">*</span></label>
+                      <select class="input-box-dark">
+                        <option>2024</option>
+                        <option selected>2023</option>
+                        <option>2022</option>
+                        <option>2021</option>
+                      </select>
+                    </div>
+                    <div class="col-md-4">
+                      <label class="form-input-label d-block mb-1">Team size <span class="required-star">*</span></label>
+                      <select class="input-box-dark">
+                        <option>1 (Solo)</option>
+                        <option selected>2–10</option>
+                        <option>11–50</option>
+                        <option>50+</option>
+                      </select>
+                    </div>
+                    <div class="col-md-4">
+                      <label class="form-input-label d-block mb-1">Funding</label>
+                      <select class="input-box-dark">
+                        <option selected>Bootstrapped</option>
+                        <option>Pre-seed</option>
+                        <option>Seed</option>
+                        <option>Series A+</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- 03 Builder Stories -->
+                <div class="mb-4">
+                  <div class="text-uppercase tracking-wider text-muted fw-bold small mb-2">03 Builder Stories</div>
+                  <div class="founder-item-box">
+                    <div class="d-flex align-items-center justify-content-between mb-2">
+                      <span class="fw-bold text-white small">Be considered for a Builder Story</span>
+                      <div class="form-check form-switch m-0">
+                        <input class="form-check-input" type="checkbox" id="storyConsiderToggle" checked>
+                      </div>
+                    </div>
+                    <p class="text-muted" style="font-size: 0.75rem; line-height: 1.5;">
+                      Our editors may reach out for an in-depth video or written interview about how you architected this product.
+                    </p>
+
+                    <label class="form-input-label d-block mb-1">Existing interview or demo on YouTube <span class="text-muted fw-normal">(Optional)</span></label>
+                    <input type="url" class="input-box-dark" placeholder="https://youtube.com/watch?v=...">
+                    <span class="text-muted" style="font-size: 0.7rem;">Podcast, conference talk or product demo — we can feature it on your story page.</span>
+                  </div>
+                </div>
+
+              </div>
+
+              <!-- STEP 4 CONTAINER: Review and submit -->
+              <div id="step4Fields" style="display: none;">
+                
+                <!-- Product Preview Banner Top -->
+                <div class="review-summary-box mb-4">
+                  <div class="d-flex align-items-center justify-content-between flex-wrap gap-2">
+                    <div class="d-flex align-items-center gap-3">
+                      <div class="launch-avatar-sq" style="background: linear-gradient(135deg, #7C3AED, #A855F7);">P</div>
+                      <div>
+                        <h3 class="h5 fw-bold text-white mb-1">Pxxl</h3>
+                        <p class="text-muted small mb-2">Africa-first cloud deployment for developers.</p>
+                        <div class="d-flex align-items-center gap-2 flex-wrap">
+                          <span class="badge bg-primary text-white" style="font-size: 0.65rem;">Hosting</span>
+                          <span class="badge bg-secondary text-white" style="font-size: 0.65rem;">Open Source</span>
+                          <span class="badge bg-dark text-white border border-secondary" style="font-size: 0.65rem;">AI</span>
+                          <span class="text-muted small">Nigeria</span>
+                        </div>
+                      </div>
+                    </div>
+                    <a href="product-details.html" class="btn btn-outline-light btn-sm rounded-pill px-3" style="font-size: 0.75rem;">
+                      Preview full page →
+                    </a>
+                  </div>
+                </div>
+
+                <!-- 01 Product Review Accordion Box -->
+                <div class="review-summary-box">
+                  <div class="review-summary-header">
+                    <div class="d-flex align-items-center gap-2">
+                      <span class="text-success fw-bold">✓</span>
+                      <span class="fw-bold text-white small">01 Product</span>
+                    </div>
+                    <button type="button" class="btn btn-link text-primary text-decoration-none small p-0" onclick="goToStep(1)">Edit</button>
+                  </div>
+
+                  <div class="review-summary-row">
+                    <span class="label-col">Website</span>
+                    <span class="val-col">pxxl.app</span>
+                  </div>
+                  <div class="review-summary-row">
+                    <span class="label-col">Your role</span>
+                    <span class="val-col">On the team (Founder & CEO)</span>
+                  </div>
+                  <div class="review-summary-row mb-0">
+                    <span class="label-col">Status</span>
+                    <span class="val-col">Live</span>
+                  </div>
+                </div>
+
+                <!-- 02 Details Review Accordion Box -->
+                <div class="review-summary-box">
+                  <div class="review-summary-header">
+                    <div class="d-flex align-items-center gap-2">
+                      <span class="text-success fw-bold">✓</span>
+                      <span class="fw-bold text-white small">02 Details</span>
+                    </div>
+                    <button type="button" class="btn btn-link text-primary text-decoration-none small p-0" onclick="goToStep(2)">Edit</button>
+                  </div>
+
+                  <div class="review-summary-row">
+                    <span class="label-col">Tagline</span>
+                    <span class="val-col">Africa-first cloud deployment for developers.</span>
+                  </div>
+                  <div class="review-summary-row">
+                    <span class="label-col">Category • Country</span>
+                    <span class="val-col">Hosting • Nigeria</span>
+                  </div>
+                  <div class="review-summary-row">
+                    <span class="label-col">Pricing</span>
+                    <span class="val-col">Freemium</span>
+                  </div>
+                  <div class="review-summary-row">
+                    <span class="label-col">Alternative to</span>
+                    <span class="val-col">Vercel, Netlify</span>
+                  </div>
+                  <div class="review-summary-row mb-0 align-items-center">
+                    <span class="label-col">Media</span>
+                    <div class="val-col d-flex gap-2 justify-content-end">
+                      <div class="mini-preview-thumb" title="Dashboard">
+                        <svg width="100%" height="100%" viewBox="0 0 52 34" fill="none">
+                          <rect width="52" height="34" fill="#0B0F19"/>
+                          <line x1="6" y1="8" x2="26" y2="8" stroke="#38BDF8" stroke-width="2"/>
+                          <rect x="6" y="14" width="8" height="12" fill="#3B82F6" rx="1"/>
+                          <rect x="18" y="18" width="8" height="8" fill="#6366F1" rx="1"/>
+                          <rect x="30" y="11" width="8" height="15" fill="#10B981" rx="1"/>
+                          <rect x="42" y="16" width="6" height="10" fill="#F59E0B" rx="1"/>
+                        </svg>
+                      </div>
+                      <div class="mini-preview-thumb" title="Code Editor">
+                        <svg width="100%" height="100%" viewBox="0 0 52 34" fill="none">
+                          <rect width="52" height="34" fill="#05070D"/>
+                          <circle cx="8" cy="8" r="2" fill="#EF4444"/>
+                          <circle cx="14" cy="8" r="2" fill="#F59E0B"/>
+                          <circle cx="20" cy="8" r="2" fill="#10B981"/>
+                          <line x1="6" y1="15" x2="32" y2="15" stroke="#A855F7" stroke-width="1.5"/>
+                          <line x1="12" y1="20" x2="44" y2="20" stroke="#38BDF8" stroke-width="1.5"/>
+                          <line x1="12" y1="25" x2="36" y2="25" stroke="#34D399" stroke-width="1.5"/>
+                        </svg>
+                      </div>
+                      <div class="mini-preview-thumb" style="background: linear-gradient(135deg, #7C3AED, #A855F7);" title="Pxxl Edge">
+                        <div style="font-size: 7px; font-weight: 800; color: #fff; text-align: center; line-height: 1.1;">
+                          <div>28ms</div>
+                          <div style="opacity: 0.8; font-size: 6px;">99.98%</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- 03 Builder Review Accordion Box -->
+                <div class="review-summary-box">
+                  <div class="review-summary-header">
+                    <div class="d-flex align-items-center gap-2">
+                      <span class="text-success fw-bold">✓</span>
+                      <span class="fw-bold text-white small">03 Builder</span>
+                    </div>
+                    <button type="button" class="btn btn-link text-primary text-decoration-none small p-0" onclick="goToStep(3)">Edit</button>
+                  </div>
+
+                  <div class="review-summary-row align-items-start">
+                    <span class="label-col">Founders</span>
+                    <div class="val-col d-flex flex-column gap-1 text-end">
+                      <div class="d-flex align-items-center gap-2 justify-content-end">
+                        <img src="images/founder_robinson.jpg" alt="Robinson Honour" style="width: 20px; height: 20px; border-radius: 50%; object-fit: cover;">
+                        <span class="text-white">Robinson Honour</span>
+                        <span class="text-muted small">Founder & CEO</span>
+                      </div>
+                      <div class="d-flex align-items-center gap-2 justify-content-end">
+                        <img src="images/avatar2.jpg" alt="Ada Okafor" style="width: 20px; height: 20px; border-radius: 50%; object-fit: cover;">
+                        <span class="text-white">Ada Okafor</span>
+                        <span class="text-muted small">Co-founder & CTO • invite pending</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="review-summary-row">
+                    <span class="label-col">Company</span>
+                    <span class="val-col">Founded 2023 • 2–10 people • Bootstrapped</span>
+                  </div>
+                  <div class="review-summary-row mb-0">
+                    <span class="label-col">Builder Story</span>
+                    <span class="val-col">Yes, open to an interview</span>
+                  </div>
+                </div>
+
+                <!-- Required Checkboxes -->
+                <div class="mb-4 pt-2">
+                  <div class="form-check mb-2">
+                    <input class="form-check-input" type="checkbox" id="authCheck" checked>
+                    <label class="form-check-label text-muted small" for="authCheck">
+                      I'm authorised to submit this product, and the information is accurate.
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="guidelinesCheck" checked>
+                    <label class="form-check-label text-muted small" for="guidelinesCheck">
+                      I agree to the Discova listing guidelines and editorial policy.
+                    </label>
+                  </div>
+                </div>
+
+              </div>
+
+              <!-- Card Action Footer (Universal Navigation Bar) -->
+              <div class="form-action-footer d-flex align-items-center justify-content-between pt-3">
+                <div class="d-flex align-items-center">
+                  <a href="submit-success.html" id="trackSubmissionLink" class="text-muted text-decoration-none small">
+                    Already submitted? <span class="text-white text-decoration-underline">Track your submission</span>
+                  </a>
+                  <button type="button" id="prevStepBtn" class="btn btn-outline-secondary btn-sm rounded-pill px-3" style="display: none;">
+                    ← Back
+                  </button>
+                </div>
+                <div class="text-muted small" id="draftStatusText"></div>
+                <button type="button" id="nextStepBtn" class="btn-action-primary">
+                  <span>Continue to Details</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                  </svg>
+                </button>
+              </div>
+
+            </form>
+
+          </div>
+        </div>
+
+        <!-- Right Column: Sidebar (Col-lg-5) -->
+        <div class="col-lg-5">
+          
+          <!-- Card 1: Interactive Live Preview -->
+          <div class="preview-sidebar-card">
+            <div class="preview-header-row">
+              <span class="fw-bold text-white fs-6">Live preview</span>
+              <span class="preview-badge-live">
+                <span class="pulse-dot"></span>
+                <span>Updating as you type</span>
+              </span>
+            </div>
+
+            <!-- Preview Product Box -->
+            <div class="preview-product-container">
+              <div class="preview-banner-violet">
+                <span class="preview-upvote-tag">▲ 12</span>
+                <div class="preview-brand-title" id="previewBrandTitle">Pxxl</div>
+              </div>
+
+              <div class="preview-body-content">
+                <div class="d-flex align-items-center gap-2 mb-2">
+                  <div class="scraped-meta-icon" style="width: 24px; height: 24px; font-size: 0.75rem;" id="previewMiniLogo">P</div>
+                  <span class="fw-bold text-white fs-6" id="previewSubName">Pxxl</span>
+                </div>
+
+                <p class="preview-desc-text" id="previewDescText">
+                  Africa-first cloud deployment for developers.
+                </p>
+
+                <div class="preview-meta-footer">
+                  <span id="previewMetaLocation">Nigeria • Hosting</span>
+                  <span class="text-white-50" id="previewMetaCompare">vs Netlify</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2: Listing Guidelines -->
+          <div class="preview-sidebar-card">
+            <h4 class="sidebar-card-title">Listing guidelines</h4>
+            <ul class="guidelines-list">
+              <li>
+                <span class="guidelines-check">✔</span>
+                <span>Built by a team based in Africa or with African founders</span>
+              </li>
+              <li>
+                <span class="guidelines-check">✔</span>
+                <span>Live and usable — no waitlists or "coming soon" pages</span>
+              </li>
+              <li>
+                <span class="guidelines-check">✔</span>
+                <span>Clear tagline, real screenshots and a working website</span>
+              </li>
+              <li>
+                <span class="guidelines-check">✔</span>
+                <span>One listing per product; updates go through the same listing</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Card 3: What happens next (Vertical Timeline) -->
+          <div class="preview-sidebar-card">
+            <h4 class="sidebar-card-title">What happens next</h4>
+            <div class="timeline-vertical-list">
+              
+              <!-- Item 1: Submitted -->
+              <div class="timeline-v-item active">
+                <div class="timeline-v-num">1</div>
+                <div>
+                  <div class="timeline-v-title">Submitted</div>
+                  <div class="timeline-v-sub">We confirm by email right away.</div>
+                </div>
+              </div>
+
+              <!-- Item 2: Editorial Review -->
+              <div class="timeline-v-item">
+                <div class="timeline-v-num">2</div>
+                <div>
+                  <div class="timeline-v-title">Editorial review</div>
+                  <div class="timeline-v-sub">An editor checks your listing in 3–5 days.</div>
+                </div>
+              </div>
+
+              <!-- Item 3: Goes Live -->
+              <div class="timeline-v-item">
+                <div class="timeline-v-num">3</div>
+                <div>
+                  <div class="timeline-v-title">Goes live</div>
+                  <div class="timeline-v-sub">Your page is published and shared in the newsletter.</div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Card 4: Need Help? -->
+          <div class="preview-sidebar-card">
+            <h4 class="sidebar-card-title">Need help?</h4>
+            <p class="text-muted mb-0" style="font-size: 0.8125rem; line-height: 1.5;">
+              Email <a href="mailto:hello@discova.app" class="info-kv-link">hello@discova.app</a> — we usually reply within a day.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       4. Footer
+       ======================================================================== -->
+  <footer class="site-footer">
+    <div class="container-xl">
+      
+      <div class="row g-5">
+        <!-- Brand Info -->
+        <div class="col-lg-4">
+          <a href="index.html" class="brand-logo mb-2">
+            <span class="brand-logo-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4 19L11 5H15L8 19H4Z" fill="#3B82F6"/>
+                <path d="M12 19L19 5H21L14 19H12Z" fill="#60A5FA"/>
+              </svg>
+            </span>
+            <span>discova</span>
+          </a>
+          <p class="footer-brand-desc">
+            Editorial discovery for software built in Africa — and the builders behind it.
+          </p>
+        </div>
+
+        <!-- Col 2: Explore -->
+        <div class="col-6 col-md-3 col-lg-2 offset-lg-2">
+          <div class="footer-col-title">Explore</div>
+          <ul class="footer-links-list">
+            <li><a href="products.html">All Products</a></li>
+            <li><a href="index.html#trending">Top Launches</a></li>
+            <li><a href="categories.html">Categories</a></li>
+            <li><a href="about.html#stats">Ecosystem Stats</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Stories -->
+        <div class="col-6 col-md-3 col-lg-2">
+          <div class="footer-col-title">Stories</div>
+          <ul class="footer-links-list">
+            <li><a href="stories.html">Builder Stories</a></li>
+            <li><a href="stories.html#interviews">Video Interviews</a></li>
+            <li><a href="stories.html#podcasts">Podcasts</a></li>
+            <li><a href="launches.html">Launch Archive</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Company -->
+        <div class="col-6 col-md-3 col-lg-2">
+          <div class="footer-col-title">Company</div>
+          <ul class="footer-links-list">
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="about.html#beliefs">Our Beliefs</a></li>
+            <li><a href="about.html#team">The Team</a></li>
+            <li><a href="submit.html">Submit Product</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Bottom Row -->
+      <div class="footer-bottom-row">
+        <div>© 2026 Discova • Home of solutions built in Africa</div>
+        <div class="d-flex align-items-center gap-3">
+          <a href="https://x.com" target="_blank" rel="noopener noreferrer">X</a>
+          <span>•</span>
+          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <span>•</span>
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a>
+          <span>•</span>
+          <a href="https://youtube.com" target="_blank" rel="noopener noreferrer">YouTube</a>
+        </div>
+      </div>
+
+      <!-- Huge Watermarked Wordmark -->
+      <div class="footer-watermark">
+        discova
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- Toast Notification -->
+  <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 2000;">
+    <div id="generalToast" class="toast align-items-center text-bg-primary border-0" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="d-flex">
+        <div class="toast-body fw-semibold" id="toastMessage">
+          Action completed!
+        </div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap 5.3 Bundle JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <!-- Custom JS -->
+  <script src="js/api.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

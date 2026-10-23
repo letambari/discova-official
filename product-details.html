@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pxxl — Africa-first cloud deployment for developers | Discova</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap 5.3 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="css/styles.css">
+
+  <!-- Pre-initialization theme check to prevent flash -->
+  <script>
+    (function() {
+      var saved = localStorage.getItem('discova_theme') || 'dark';
+      document.documentElement.setAttribute('data-bs-theme', saved);
+    })();
+  </script>
+</head>
+<body>
+
+  <!-- ========================================================================
+       1. Header / Navbar
+       ======================================================================== -->
+  <header class="site-navbar">
+    <div class="container-xl d-flex align-items-center justify-content-between">
+      
+      <!-- Brand Logo -->
+      <a href="index.html" class="brand-logo">
+        <span class="brand-logo-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 19L11 5H15L8 19H4Z" fill="#3B82F6"/>
+            <path d="M12 19L19 5H21L14 19H12Z" fill="#60A5FA"/>
+          </svg>
+        </span>
+        <span>discova</span>
+      </a>
+
+      <!-- Center Navigation -->
+      <nav class="d-none d-lg-flex align-items-center gap-1">
+        <a href="products.html" class="nav-link-custom">Products</a>
+        <a href="launches.html" class="nav-link-custom">Launches</a>
+        <a href="stories.html" class="nav-link-custom">Stories</a>
+        <a href="categories.html" class="nav-link-custom">Categories</a>
+      </nav>
+
+      <!-- Right Action Controls -->
+      <div class="d-flex align-items-center gap-3">
+        <!-- Theme Toggle Pill -->
+        <button class="theme-toggle-pill" id="themeToggleBtn" onclick="toggleTheme()" title="Toggle light/dark mode" aria-label="Toggle theme">
+          <span class="theme-icon sun-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+          </span>
+          <span class="theme-icon moon-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+          </span>
+        </button>
+
+        <!-- Search Trigger Icon -->
+        <button class="navbar-action-btn" onclick="window.location.href='products.html'" title="Search catalog">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+        </button>
+
+        <!-- User / Sign In -->
+        <a href="login.html" class="d-none d-sm-inline-block text-muted text-decoration-none fw-semibold" style="font-size: 0.875rem;">Sign in</a>
+
+        <!-- Submit CTA Button -->
+        <a href="submit.html" class="btn-pill-white text-decoration-none">
+          <span>Submit product</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+          </svg>
+        </a>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ========================================================================
+       2. Product Hero Header
+       ======================================================================== -->
+  <section class="product-hero-section">
+    <div class="container-xl">
+      
+      <!-- Breadcrumbs -->
+      <nav class="breadcrumb-custom">
+        <a href="index.html">Products</a>
+        <span>/</span>
+        <a href="index.html#categories">Hosting</a>
+        <span>/</span>
+        <span class="text-white">Pxxl</span>
+      </nav>
+
+      <!-- Main Header Row -->
+      <div class="row align-items-center g-4 justify-content-between">
+        
+        <!-- Left: Icon + Info + Tags -->
+        <div class="col-lg-8">
+          <div class="d-flex align-items-start gap-4">
+            
+            <!-- Big Purple Logo "P" -->
+            <div class="product-logo-box">
+              P
+            </div>
+
+            <!-- Title & Metadata -->
+            <div>
+              <div class="product-header-title">
+                <span id="productDetailTitle">Pxxl</span>
+                <span class="verified-pill">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                  <span>Verified</span>
+                </span>
+              </div>
+
+              <div class="product-tagline" id="productDetailTagline">
+                Africa-first cloud deployment for developers.
+              </div>
+
+              <!-- Tags / Badges Row -->
+              <div class="product-badges-row">
+                <span class="tag-pill-indigo">Hosting</span>
+                <span class="tag-pill-emerald">Open Source</span>
+                <span class="tag-pill-amber">AI</span>
+                <span class="tag-pill-dark">Nigeria</span>
+                <span class="tag-pill-dark">Alternative to Vercel</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Right: Action Buttons -->
+        <div class="col-lg-4 text-lg-end">
+          <div class="d-flex align-items-center justify-content-lg-end gap-2 flex-wrap">
+            
+            <!-- Save Button -->
+            <button class="btn-action-glass" id="saveBtn" title="Save to bookmarks">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+              </svg>
+              <span>Save</span>
+            </button>
+
+            <!-- Share Button -->
+            <button class="btn-action-glass" id="shareBtn" title="Share product">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="18" cy="5" r="3"></circle>
+                <circle cx="6" cy="12" r="3"></circle>
+                <circle cx="18" cy="19" r="3"></circle>
+                <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+              </svg>
+              <span>Share</span>
+            </button>
+
+            <!-- Upvote Button -->
+            <button class="btn-action-glass upvote-badge-btn" id="heroUpvoteBtn" title="Upvote Pxxl">
+              <span>▲</span>
+              <span class="upvote-count">128</span>
+            </button>
+
+            <!-- Visit Website CTA -->
+            <a href="https://pxxl.app" target="_blank" rel="noopener" class="btn-action-primary" id="productDetailWebsiteLink">
+              <span>Visit website</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                <polyline points="15 3 21 3 21 9"></polyline>
+                <line x1="10" y1="14" x2="21" y2="3"></line>
+              </svg>
+            </a>
+
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ====================================================================
+           3. Metrics Strip
+           ==================================================================== -->
+      <div class="metrics-strip">
+        <div class="row text-center text-sm-start g-3">
+          <div class="col-6 col-md">
+            <div class="metric-strip-col">
+              <span class="metric-strip-label">Launched</span>
+              <span class="metric-strip-val">May 2024</span>
+            </div>
+          </div>
+          <div class="col-6 col-md">
+            <div class="metric-strip-col">
+              <span class="metric-strip-label">Pricing</span>
+              <span class="metric-strip-val">Free + Paid</span>
+            </div>
+          </div>
+          <div class="col-6 col-md">
+            <div class="metric-strip-col">
+              <span class="metric-strip-label">Team size</span>
+              <span class="metric-strip-val">2–10</span>
+            </div>
+          </div>
+          <div class="col-6 col-md">
+            <div class="metric-strip-col">
+              <span class="metric-strip-label">Rank in category</span>
+              <span class="metric-strip-val">#3 in Hosting</span>
+            </div>
+          </div>
+          <div class="col-6 col-md">
+            <div class="metric-strip-col">
+              <span class="metric-strip-label">Total upvotes</span>
+              <span class="metric-strip-val">1,240</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ====================================================================
+           4. Interactive Preview Showcases (Dashboard + Terminal + Latency)
+           ==================================================================== -->
+      <div class="row g-4 align-items-stretch">
+        
+        <!-- Left: Live Deployments Dashboard Window (Col-lg-8) -->
+        <div class="col-lg-8">
+          <div class="window-card">
+            
+            <!-- Window Title Bar -->
+            <div class="window-titlebar">
+              <div class="window-dots">
+                <span class="dot-red"></span>
+                <span class="dot-yellow"></span>
+                <span class="dot-green"></span>
+              </div>
+              <span>pxxl.app/dashboard/deployments</span>
+            </div>
+
+            <!-- Inner Dashboard -->
+            <div class="dashboard-inner">
+              <div class="dash-header-row">
+                <div>
+                  <h3 class="dash-title mb-0">Deployments</h3>
+                  <span class="dash-subtitle">5 projects • 3 regions</span>
+                </div>
+                <button class="btn-pill-dark" style="background: rgba(124, 58, 237, 0.25); border-color: rgba(124, 58, 237, 0.5); font-size: 0.75rem; padding: 0.35rem 0.85rem;">
+                  <span>+ New project</span>
+                </button>
+              </div>
+
+              <!-- List of Deployments -->
+              <div class="deployments-table">
+                
+                <!-- Row 1: api-gateway -->
+                <div class="deployment-item">
+                  <div class="d-flex align-items-center gap-3">
+                    <div class="dep-app-icon">API</div>
+                    <div>
+                      <div class="dep-name">api-gateway</div>
+                      <div class="dep-commit">main • d2f3521</div>
+                    </div>
+                  </div>
+                  <div class="dep-region">Lagos</div>
+                  <div>
+                    <span class="status-badge status-ready">Ready</span>
+                  </div>
+                  <div class="dep-time">2m ago</div>
+                </div>
+
+                <!-- Row 2: web-dashboard -->
+                <div class="deployment-item">
+                  <div class="d-flex align-items-center gap-3">
+                    <div class="dep-app-icon">UI</div>
+                    <div>
+                      <div class="dep-name">web-dashboard</div>
+                      <div class="dep-commit">main • 95e2634</div>
+                    </div>
+                  </div>
+                  <div class="dep-region">Lagos</div>
+                  <div>
+                    <span class="status-badge status-building">Building</span>
+                  </div>
+                  <div class="dep-time">just now</div>
+                </div>
+
+                <!-- Row 3: payments-worker -->
+                <div class="deployment-item">
+                  <div class="d-flex align-items-center gap-3">
+                    <div class="dep-app-icon">PW</div>
+                    <div>
+                      <div class="dep-name">payments-worker</div>
+                      <div class="dep-commit">feat/retry • 38fa12e</div>
+                    </div>
+                  </div>
+                  <div class="dep-region">Johannesburg</div>
+                  <div>
+                    <span class="status-badge status-ready">Ready</span>
+                  </div>
+                  <div class="dep-time">1h ago</div>
+                </div>
+
+                <!-- Row 4: landing-site -->
+                <div class="deployment-item">
+                  <div class="d-flex align-items-center gap-3">
+                    <div class="dep-app-icon">LS</div>
+                    <div>
+                      <div class="dep-name">landing-site</div>
+                      <div class="dep-commit">main • cb120f2</div>
+                    </div>
+                  </div>
+                  <div class="dep-region">Nairobi</div>
+                  <div>
+                    <span class="status-badge status-failed">Failed</span>
+                  </div>
+                  <div class="dep-time">3h ago</div>
+                </div>
+
+                <!-- Row 5: docs -->
+                <div class="deployment-item">
+                  <div class="d-flex align-items-center gap-3">
+                    <div class="dep-app-icon">DOC</div>
+                    <div>
+                      <div class="dep-name">docs</div>
+                      <div class="dep-commit">main • 54c3b7ea</div>
+                    </div>
+                  </div>
+                  <div class="dep-region">Lagos</div>
+                  <div>
+                    <span class="status-badge status-ready">Ready</span>
+                  </div>
+                  <div class="dep-time">yesterday</div>
+                </div>
+
+              </div>
+
+              <!-- Carousel Indicators -->
+              <div class="carousel-dots">
+                <span class="c-dot active"></span>
+                <span class="c-dot"></span>
+                <span class="c-dot"></span>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Right: Terminal Snippet + Latency Card (Col-lg-4) -->
+        <div class="col-lg-4 d-flex flex-column justify-content-between gap-3">
+          
+          <!-- Terminal Snippet Card -->
+          <div class="terminal-window">
+            <div class="window-titlebar justify-content-between">
+              <div class="d-flex align-items-center">
+                <div class="window-dots">
+                  <span class="dot-red"></span>
+                  <span class="dot-yellow"></span>
+                  <span class="dot-green"></span>
+                </div>
+                <span>terminal</span>
+              </div>
+              <button class="btn-action-glass p-0 px-2 py-0" id="copyCliBtn" style="font-size: 0.7rem; border-radius: 4px;" title="Copy command">
+                Copy
+              </button>
+            </div>
+            <div class="terminal-body">
+              <div class="terminal-line"><span class="term-cmd">$ npx pxxl deploy</span></div>
+              <div class="terminal-line"><span class="term-success">✔</span> Detected Next.js 15</div>
+              <div class="terminal-line"><span class="term-success">✔</span> Building in Lagos (af-west-1)...</div>
+              <div class="terminal-line"><span class="term-success">✔</span> Deployed in 4.1s</div>
+              <div class="terminal-line mt-2"><span class="term-link">https://my-app.pxxl.app</span></div>
+            </div>
+          </div>
+
+          <!-- Built for African Latency Violet Card -->
+          <div class="card-latency-violet">
+            <div class="fw-bold fs-6">Built for African latency</div>
+            
+            <div class="latency-stats-row">
+              <div>
+                <div class="latency-num">38ms</div>
+                <div class="latency-sub">avg. TTFB in Lagos</div>
+              </div>
+              <div>
+                <div class="latency-num">3</div>
+                <div class="latency-sub">African edge tiers</div>
+              </div>
+              <div>
+                <div class="latency-num">99.95%</div>
+                <div class="latency-sub">uptime</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       5. Main Content & Sidebar
+       ======================================================================== -->
+  <section class="details-content-section">
+    <div class="container-xl">
+      <div class="row g-5">
+        
+        <!-- Left Column: About, Features, Comparison (Col-lg-8) -->
+        <div class="col-lg-8">
+          
+          <!-- About Pxxl -->
+          <div>
+            <h3 class="section-h3">About Pxxl</h3>
+            <p class="about-p">
+              Pxxl is a cloud deployment platform built for African developers. Push your code and Pxxl builds, deploys, and serves it from edge regions on the continent — so your users in Lagos, Nairobi and Johannesburg get fast responses without routing traffic through Europe.
+            </p>
+            <p class="about-p">
+              It supports Next.js, React, Python, Go and static sites out of the box, with managed databases, environment variables, preview deployments and local billing in Naira.
+            </p>
+          </div>
+
+          <!-- "Why We Featured It" Callout Box -->
+          <div class="callout-featured-box">
+            <div class="callout-tag">WHY WE FEATURED IT</div>
+            <div class="callout-quote">
+              "Pxxl solves a real, local problem — latency and payments — that global platforms ignore, and does it with a polished developer experience."
+            </div>
+          </div>
+
+          <!-- Key Features (2x3 Grid) -->
+          <div>
+            <h3 class="section-h3">Key features</h3>
+            
+            <div class="row g-4 mt-1">
+              
+              <!-- Feature 1: Git push to deploy -->
+              <div class="col-md-6">
+                <div class="feature-spec-card">
+                  <div class="feature-spec-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <line x1="6" y1="3" x2="6" y2="15"></line>
+                      <circle cx="18" cy="6" r="3"></circle>
+                      <circle cx="6" cy="18" r="3"></circle>
+                      <path d="M18 9a9 9 0 0 1-9 9"></path>
+                    </svg>
+                  </div>
+                  <h4 class="feature-spec-title">Git push to deploy</h4>
+                  <p class="feature-spec-desc mb-0">
+                    Connect GitHub and ship every commit with preview URLs.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Feature 2: African edge regions -->
+              <div class="col-md-6">
+                <div class="feature-spec-card">
+                  <div class="feature-spec-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <circle cx="12" cy="12" r="10"></circle>
+                      <line x1="2" y1="12" x2="22" y2="12"></line>
+                      <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                    </svg>
+                  </div>
+                  <h4 class="feature-spec-title">African edge regions</h4>
+                  <p class="feature-spec-desc mb-0">
+                    Lagos, Johannesburg and Nairobi for &lt;40ms latency.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Feature 3: Naira & local billing -->
+              <div class="col-md-6">
+                <div class="feature-spec-card">
+                  <div class="feature-spec-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <rect x="2" y="5" width="20" height="14" rx="2"></rect>
+                      <line x1="2" y1="10" x2="22" y2="10"></line>
+                    </svg>
+                  </div>
+                  <h4 class="feature-spec-title">Naira & local billing</h4>
+                  <p class="feature-spec-desc mb-0">
+                    Pay with local cards, bank transfer or USSD.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Feature 4: Managed databases -->
+              <div class="col-md-6">
+                <div class="feature-spec-card">
+                  <div class="feature-spec-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+                      <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
+                      <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+                    </svg>
+                  </div>
+                  <h4 class="feature-spec-title">Managed databases</h4>
+                  <p class="feature-spec-desc mb-0">
+                    Postgres and Redis in one click, backed up daily.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Feature 5: Logs & metrics -->
+              <div class="col-md-6">
+                <div class="feature-spec-card">
+                  <div class="feature-spec-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                    </svg>
+                  </div>
+                  <h4 class="feature-spec-title">Logs & metrics</h4>
+                  <p class="feature-spec-desc mb-0">
+                    Real-time build logs, request metrics and alerts.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Feature 6: Free SSL & domains -->
+              <div class="col-md-6">
+                <div class="feature-spec-card">
+                  <div class="feature-spec-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                      <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                    </svg>
+                  </div>
+                  <h4 class="feature-spec-title">Free SSL & domains</h4>
+                  <p class="feature-spec-desc mb-0">
+                    Automatic HTTPS for every custom domain.
+                  </p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Comparison Table: Pxxl vs Vercel -->
+          <div class="mt-5">
+            <h3 class="section-h3 mb-1">Pxxl vs Vercel</h3>
+            <p class="text-muted" style="font-size: 0.875rem;">How people compare it with global software — judge it on its own merits.</p>
+
+            <div class="comparison-table-wrapper">
+              <table class="comparison-table">
+                <thead>
+                  <tr>
+                    <th>Feature</th>
+                    <th>Pxxl</th>
+                    <th>Vercel</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>3 African edge regions</td>
+                    <td><span class="check-green">✓</span> 3 regions</td>
+                    <td>—</td>
+                  </tr>
+                  <tr>
+                    <td>Pay in Naira</td>
+                    <td><span class="check-green">✓</span></td>
+                    <td>—</td>
+                  </tr>
+                  <tr>
+                    <td>Free tier</td>
+                    <td><span class="check-green">✓</span></td>
+                    <td><span class="check-green">✓</span></td>
+                  </tr>
+                  <tr>
+                    <td>Managed Postgres</td>
+                    <td><span class="check-green">✓</span></td>
+                    <td><span class="check-green">✓</span></td>
+                  </tr>
+                  <tr>
+                    <td>Open source</td>
+                    <td><span class="check-green">✓</span></td>
+                    <td>—</td>
+                  </tr>
+                  <tr>
+                    <td>Starting price</td>
+                    <td class="text-white fw-bold">₦2,500/mo</td>
+                    <td>$20/mo</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right Column: Sidebar (Col-lg-4) -->
+        <div class="col-lg-4">
+          
+          <!-- Card 1: Product info -->
+          <div class="sidebar-card">
+            <h4 class="sidebar-card-title">Product info</h4>
+            <div class="info-kv-list">
+              <div class="info-kv-row">
+                <span class="info-kv-key">Website</span>
+                <a href="https://pxxl.app" target="_blank" class="info-kv-link">pxxl.app</a>
+              </div>
+              <div class="info-kv-row">
+                <span class="info-kv-key">Country</span>
+                <span class="info-kv-val">Nigeria</span>
+              </div>
+              <div class="info-kv-row">
+                <span class="info-kv-key">Category</span>
+                <span class="info-kv-val" style="color: #A5B4FC;">Hosting</span>
+              </div>
+              <div class="info-kv-row">
+                <span class="info-kv-key">Founded</span>
+                <span class="info-kv-val">2023</span>
+              </div>
+              <div class="info-kv-row">
+                <span class="info-kv-key">Pricing</span>
+                <span class="info-kv-val">Free + Paid</span>
+              </div>
+              <div class="info-kv-row">
+                <span class="info-kv-key">Source code</span>
+                <a href="https://github.com" target="_blank" class="info-kv-link">GitHub ↗</a>
+              </div>
+              <div class="info-kv-row">
+                <span class="info-kv-key">Listed on Discova</span>
+                <span class="info-kv-val">Oct 2024</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2: Behind the product -->
+          <div class="sidebar-card">
+            <h4 class="sidebar-card-title">Behind the product</h4>
+            <div class="founder-profile-box">
+              <img src="images/founder_robinson.jpg" alt="Robinson Honour">
+              <div>
+                <div class="fw-bold text-white fs-6">Robinson Honour</div>
+                <div class="founder-title-verified">Founder & CEO • Verified</div>
+              </div>
+            </div>
+            <p class="founder-bio-text">
+              Robinson started Pxxl after watching African apps lose users to slow, expensive hosting.
+            </p>
+            <a href="index.html#stories" class="founder-story-link">Read the full story →</a>
+          </div>
+
+          <!-- Card 3: Is this your product? -->
+          <div class="sidebar-card">
+            <h4 class="sidebar-card-title">Is this your product?</h4>
+            <p class="text-muted mb-3" style="font-size: 0.8125rem; line-height: 1.5;">
+              Claim the listing to update details and reply to users.
+            </p>
+            <button class="btn-pill-white w-100 justify-content-center" data-bs-toggle="modal" data-bs-target="#claimListingModal">
+              Claim listing
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       5.5 Community Reviews & Ratings Module (Dynamic SQLite Data)
+       ======================================================================== -->
+  <section class="py-5 border-top border-secondary border-opacity-15" id="reviewsSection">
+    <div class="container-xl">
+      <div class="row g-5">
+        <div class="col-lg-7">
+          <div class="d-flex align-items-center justify-content-between mb-4 flex-wrap gap-2">
+            <div>
+              <div class="ticker-label text-start mb-1" style="letter-spacing: 0.1em;">COMMUNITY VERIFICATION</div>
+              <h2 class="h3 fw-bold text-white mb-0">Verified Reviews & Benchmarks</h2>
+            </div>
+            <span class="badge bg-primary rounded-pill px-3 py-1 text-white" id="reviewsCountBadge">Community Tested</span>
+          </div>
+
+          <div id="productReviewsList" class="reviews-list-wrapper">
+            <!-- Dynamically populated from SQLite API -->
+          </div>
+        </div>
+
+        <div class="col-lg-5">
+          <div class="window-card p-4">
+            <h3 class="h5 fw-bold text-white mb-2">Leave a review</h3>
+            <p class="text-muted small mb-3">Share your real-world performance or deployment experience with fellow African engineers.</p>
+            
+            <form id="submitReviewForm">
+              <div class="mb-3">
+                <label class="form-input-label">Your Name & Role</label>
+                <input type="text" id="reviewAuthorName" class="form-control-dark" placeholder="e.g. Dapo Adeleke (CTO)" required>
+              </div>
+              <div class="mb-3">
+                <label class="form-input-label">Rating</label>
+                <select class="form-control-dark" id="reviewRating">
+                  <option value="5">★★★★★ (5/5 Outstanding)</option>
+                  <option value="4">★★★★☆ (4/5 Great)</option>
+                  <option value="3">★★★☆☆ (3/5 Average)</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label class="form-input-label">Your Experience / Feedback</label>
+                <textarea id="reviewContent" class="form-control-dark" rows="3" placeholder="How did this product perform in production?" required></textarea>
+              </div>
+              <button type="submit" class="btn-pill-white w-100">Publish verified review →</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       6. Similar Products Section
+       ======================================================================== -->
+  <section class="similar-section">
+    <div class="container-xl">
+      
+      <!-- Section Header -->
+      <div class="d-flex align-items-end justify-content-between mb-4 flex-wrap gap-2">
+        <div>
+          <div class="ticker-label text-start mb-1" style="letter-spacing: 0.1em;">KEEP EXPLORING</div>
+          <h2 class="trending-title mb-0">Similar products</h2>
+        </div>
+        <div>
+          <a href="index.html#categories" class="text-muted text-decoration-none fw-semibold" style="font-size: 0.875rem;">
+            More in Hosting & Dev Tools →
+          </a>
+        </div>
+      </div>
+
+      <!-- 4 Similar Product Cards -->
+      <div class="row g-4">
+        
+        <!-- CARD 1: Brimble -->
+        <div class="col-md-6 col-lg-3">
+          <div class="product-card">
+            <div class="product-card-banner banner-brimble">
+              <div class="top-badges">
+                <span class="pulse-dot" style="background: #FFFFFF;"></span>
+                <button class="upvote-badge-btn" title="Upvote">
+                  <span>▲</span>
+                  <span class="upvote-count">7</span>
+                </button>
+              </div>
+              <div class="card-product-name">Brimble</div>
+            </div>
+
+            <div class="product-card-body">
+              <div>
+                <div class="category-tag-row mb-2">
+                  <div class="cat-mini-icon" style="background: #1D4ED8;">B</div>
+                  <span class="cat-mini-name">Brimble</span>
+                </div>
+                <p class="product-desc">
+                  Deploy apps, databases, and sandboxes in one place.
+                </p>
+              </div>
+
+              <div class="product-card-footer">
+                <span>Nigeria • Hosting</span>
+                <span class="badge bg-secondary-subtle text-light rounded-pill px-2 py-1" style="font-size: 0.65rem;">v1 Ready</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 2: Byteship -->
+        <div class="col-md-6 col-lg-3">
+          <div class="product-card">
+            <div class="product-card-banner banner-byteship">
+              <div class="top-badges">
+                <span class="pulse-dot" style="background: #FFFFFF;"></span>
+                <button class="upvote-badge-btn" title="Upvote">
+                  <span>▲</span>
+                  <span class="upvote-count">4</span>
+                </button>
+              </div>
+              <div class="card-product-name">Byteship</div>
+            </div>
+
+            <div class="product-card-body">
+              <div>
+                <div class="category-tag-row mb-2">
+                  <div class="cat-mini-icon" style="background: #475569;">B</div>
+                  <span class="cat-mini-name">Byteship</span>
+                </div>
+                <p class="product-desc">
+                  Upload, storage and delivery from one API.
+                </p>
+              </div>
+
+              <div class="product-card-footer">
+                <span>Nigeria • Developer Tools</span>
+                <span class="badge bg-secondary-subtle text-light rounded-pill px-2 py-1" style="font-size: 0.65rem;">v4.9555</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 3: OutRay -->
+        <div class="col-md-6 col-lg-3">
+          <div class="product-card">
+            <div class="product-card-banner banner-outray">
+              <div class="top-badges">
+                <span class="badge bg-black bg-opacity-25 text-white rounded-pill px-2 py-1" style="font-size: 0.65rem;">Open Source</span>
+                <button class="upvote-badge-btn" title="Upvote">
+                  <span>▲</span>
+                  <span class="upvote-count">6</span>
+                </button>
+              </div>
+              <div class="card-product-name">OutRay</div>
+            </div>
+
+            <div class="product-card-body">
+              <div>
+                <div class="category-tag-row mb-2">
+                  <div class="cat-mini-icon" style="background: #047857;">O</div>
+                  <span class="cat-mini-name">OutRay</span>
+                </div>
+                <p class="product-desc">
+                  Open source tunnels from localhost to the internet.
+                </p>
+              </div>
+
+              <div class="product-card-footer">
+                <span>Nigeria • Developer Tools</span>
+                <span class="badge bg-secondary-subtle text-light rounded-pill px-2 py-1" style="font-size: 0.65rem;">v0.7.0b-04-Format</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 4: Cencori -->
+        <div class="col-md-6 col-lg-3">
+          <div class="product-card">
+            <div class="product-card-banner banner-cencori">
+              <div class="top-badges">
+                <span class="badge bg-black bg-opacity-25 text-white rounded-pill px-2 py-1" style="font-size: 0.65rem;">AI</span>
+                <button class="upvote-badge-btn" title="Upvote">
+                  <span>▲</span>
+                  <span class="upvote-count">5</span>
+                </button>
+              </div>
+              <div class="card-product-name">Cencori</div>
+            </div>
+
+            <div class="product-card-body">
+              <div>
+                <div class="category-tag-row mb-2">
+                  <div class="cat-mini-icon" style="background: #C2410C;">C</div>
+                  <span class="cat-mini-name">Cencori</span>
+                </div>
+                <p class="product-desc">
+                  AI cloud infrastructure for production apps.
+                </p>
+              </div>
+
+              <div class="product-card-footer">
+                <span>Nigeria • AI</span>
+                <span class="badge bg-secondary-subtle text-light rounded-pill px-2 py-1" style="font-size: 0.65rem;">v0.06.134</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       7. Footer
+       ======================================================================== -->
+  <footer class="site-footer">
+    <div class="container-xl">
+      
+      <div class="row g-5">
+        <!-- Brand Info -->
+        <div class="col-lg-4">
+          <a href="index.html" class="brand-logo mb-2">
+            <span class="brand-logo-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4 19L11 5H15L8 19H4Z" fill="#3B82F6"/>
+                <path d="M12 19L19 5H21L14 19H12Z" fill="#60A5FA"/>
+              </svg>
+            </span>
+            <span>discova</span>
+          </a>
+          <p class="footer-brand-desc">
+            Editorial discovery for software built in Africa — and the builders behind it.
+          </p>
+        </div>
+
+        <!-- Col 2: Explore -->
+        <div class="col-6 col-md-3 col-lg-2 offset-lg-2">
+          <div class="footer-col-title">Explore</div>
+          <ul class="footer-links-list">
+            <li><a href="products.html">All Products</a></li>
+            <li><a href="index.html#trending">Top Launches</a></li>
+            <li><a href="categories.html">Categories</a></li>
+            <li><a href="about.html#stats">Ecosystem Stats</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Stories -->
+        <div class="col-6 col-md-3 col-lg-2">
+          <div class="footer-col-title">Stories</div>
+          <ul class="footer-links-list">
+            <li><a href="stories.html">Builder Stories</a></li>
+            <li><a href="stories.html#interviews">Video Interviews</a></li>
+            <li><a href="stories.html#podcasts">Podcasts</a></li>
+            <li><a href="launches.html">Launch Archive</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Company -->
+        <div class="col-6 col-md-3 col-lg-2">
+          <div class="footer-col-title">Company</div>
+          <ul class="footer-links-list">
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="about.html#beliefs">Our Beliefs</a></li>
+            <li><a href="about.html#team">The Team</a></li>
+            <li><a href="submit.html">Submit Product</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Bottom Row -->
+      <div class="footer-bottom-row">
+        <div>© 2026 Discova • Home of software built in Africa</div>
+        <div class="d-flex align-items-center gap-3">
+          <a href="https://x.com" target="_blank" rel="noopener noreferrer">X</a>
+          <span>•</span>
+          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <span>•</span>
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a>
+          <span>•</span>
+          <a href="https://youtube.com" target="_blank" rel="noopener noreferrer">YouTube</a>
+        </div>
+      </div>
+
+      <!-- Huge Watermarked Wordmark -->
+      <div class="footer-watermark">
+        discova
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ========================================================================
+       MODALS: Claim Listing & Submit Product
+       ======================================================================== -->
+  <!-- Claim Listing Modal -->
+  <div class="modal fade" id="claimListingModal" tabindex="-1" aria-labelledby="claimModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content modal-content-dark">
+        <div class="modal-header modal-header-dark">
+          <h5 class="modal-title fw-bold text-white fs-5" id="claimModalTitle">Claim Pxxl listing</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form id="claimListingForm">
+          <div class="modal-body p-4">
+            <p class="text-muted mb-3" style="font-size: 0.85rem;">
+              Are you the founder or authorized team member of <strong>Pxxl</strong>? Enter your official company email to request verified ownership.
+            </p>
+            <div class="mb-3">
+              <label class="form-label text-white-50" style="font-size: 0.85rem;">Official Work Email</label>
+              <input type="email" class="form-control form-control-dark" placeholder="robinson@pxxl.app" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label text-white-50" style="font-size: 0.85rem;">Your Role at Pxxl</label>
+              <input type="text" class="form-control form-control-dark" placeholder="e.g. Founder, CTO, Marketing Lead" required>
+            </div>
+          </div>
+          <div class="modal-footer modal-footer-dark">
+            <button type="button" class="btn-pill-dark" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn-pill-white">Send verification link →</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Submit Product Modal -->
+  <div class="modal fade" id="submitProductModal" tabindex="-1" aria-labelledby="submitModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content modal-content-dark">
+        <div class="modal-header modal-header-dark">
+          <h5 class="modal-title fw-bold text-white fs-5" id="submitModalTitle">Submit your product</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form id="submitProductForm">
+          <div class="modal-body p-4">
+            <div class="mb-3">
+              <label class="form-label text-white-50" style="font-size: 0.85rem;">Product Name</label>
+              <input type="text" class="form-control form-control-dark" placeholder="e.g. Chowdeck, Pezid" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label text-white-50" style="font-size: 0.85rem;">One-line Tagline</label>
+              <input type="text" class="form-control form-control-dark" placeholder="e.g. Deploy in Lagos, not London" required>
+            </div>
+            <div class="row g-3 mb-3">
+              <div class="col-md-6">
+                <label class="form-label text-white-50" style="font-size: 0.85rem;">Category</label>
+                <select class="form-control form-control-dark" required>
+                  <option value="" disabled selected>Select category</option>
+                  <option value="fintech">FinTech</option>
+                  <option value="devtools">Developer Tools</option>
+                  <option value="ai">AI & ML</option>
+                  <option value="health">HealthTech</option>
+                  <option value="logistics">Logistics</option>
+                  <option value="cleanenergy">Clean Energy</option>
+                  <option value="ecommerce">E-commerce</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label text-white-50" style="font-size: 0.85rem;">Country Headquarters</label>
+                <input type="text" class="form-control form-control-dark" placeholder="e.g. Nigeria, Kenya, Rwanda" required>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label class="form-label text-white-50" style="font-size: 0.85rem;">Website / App Store URL</label>
+              <input type="url" class="form-control form-control-dark" placeholder="https://yourproduct.com" required>
+            </div>
+          </div>
+          <div class="modal-footer modal-footer-dark">
+            <button type="button" class="btn-pill-dark" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn-pill-white">Submit for review →</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 2000;">
+    <div id="generalToast" class="toast align-items-center text-bg-primary border-0" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="d-flex">
+        <div class="toast-body fw-semibold" id="toastMessage">
+          Action completed!
+        </div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap 5.3 Bundle JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <!-- Custom JS -->
+  <script src="js/api.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

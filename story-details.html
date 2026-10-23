@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>One builder, three products: Akinkunmi — Discova Builder Stories</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap 5.3 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="css/styles.css">
+
+  <!-- Pre-initialization theme check to prevent flash -->
+  <script>
+    (function() {
+      var saved = localStorage.getItem('discova_theme') || 'dark';
+      document.documentElement.setAttribute('data-bs-theme', saved);
+    })();
+  </script>
+</head>
+<body>
+
+  <!-- ========================================================================
+       1. Header / Navbar
+       ======================================================================== -->
+  <header class="site-navbar">
+    <div class="container-xl d-flex align-items-center justify-content-between">
+      
+      <!-- Brand Logo -->
+      <a href="index.html" class="brand-logo">
+        <span class="brand-logo-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 19L11 5H15L8 19H4Z" fill="#3B82F6"/>
+            <path d="M12 19L19 5H21L14 19H12Z" fill="#60A5FA"/>
+          </svg>
+        </span>
+        <span>discova</span>
+      </a>
+
+      <!-- Center Navigation -->
+      <nav class="d-none d-lg-flex align-items-center gap-1">
+        <a href="products.html" class="nav-link-custom">Products</a>
+        <a href="launches.html" class="nav-link-custom">Launches</a>
+        <a href="stories.html" class="nav-link-custom active">Stories</a>
+        <a href="categories.html" class="nav-link-custom">Categories</a>
+      </nav>
+
+      <!-- Right Action Controls -->
+      <div class="d-flex align-items-center gap-3">
+        <!-- Theme Toggle Pill -->
+        <button class="theme-toggle-pill" id="themeToggleBtn" onclick="toggleTheme()" title="Toggle light/dark mode" aria-label="Toggle theme">
+          <span class="theme-icon sun-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+          </span>
+          <span class="theme-icon moon-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+          </span>
+        </button>
+
+        <!-- Search Trigger Icon -->
+        <button class="navbar-action-btn" onclick="window.location.href='products.html'" title="Search catalog">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+        </button>
+
+        <!-- User / Sign In -->
+        <a href="login.html" class="d-none d-sm-inline-block text-muted text-decoration-none fw-semibold" style="font-size: 0.875rem;">Sign in</a>
+
+        <!-- Submit CTA Button -->
+        <a href="submit.html" class="btn-pill-white text-decoration-none">
+          <span>Submit product</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+          </svg>
+        </a>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ========================================================================
+       2. Breadcrumbs & Story Header
+       ======================================================================== -->
+  <section class="position-relative pt-5 pb-4 overflow-hidden">
+    <div class="hero-glow-bg"></div>
+    <div class="container-xl position-relative">
+      
+      <!-- Breadcrumb -->
+      <nav class="mb-3" aria-label="breadcrumb">
+        <ol class="breadcrumb mb-0" style="font-size: 0.8125rem;">
+          <li class="breadcrumb-item"><a href="stories.html" class="text-muted text-decoration-none">Builder Stories</a></li>
+          <li class="breadcrumb-item active text-white" aria-current="page">Akinkunmi</li>
+        </ol>
+      </nav>
+
+      <div class="text-center max-w-800 mx-auto mb-4">
+        <h1 class="display-4 fw-black tracking-tight text-white mb-3">
+          One builder, <span class="font-serif-italic">three products.</span>
+        </h1>
+        
+        <div class="d-flex align-items-center justify-content-center gap-2 text-muted" style="font-size: 0.85rem;">
+          <img src="images/story_akinkunmi.jpg" alt="Akinkunmi" style="width: 28px; height: 28px; border-radius: 50%; object-fit: cover;">
+          <span class="text-white fw-bold">Akinkunmi</span>
+          <span>•</span>
+          <span>Creator of Byteship, OutRay & Avnac</span>
+          <span>•</span>
+          <span>Oct 14, 2026</span>
+          <span>•</span>
+          <span>6 min read</span>
+        </div>
+      </div>
+
+      <!-- Big 16:9 Video Player Container -->
+      <div class="story-hero-video-box mx-auto" style="max-width: 1000px;" onclick="openStoryVideo('Akinkunmi on building Byteship, Outray & Avnac', 'Discova Builder Stories • Episode 42', 'https://www.youtube.com/embed/dQw4w9WgXcQ')">
+        <img src="images/story_akinkunmi.jpg" alt="Akinkunmi Builder Story Video">
+        
+        <!-- Video Header Overlay -->
+        <div class="video-header-overlay">
+          <div class="video-channel-info">
+            <div class="channel-avatar">D</div>
+            <div class="video-title-text">Akinkunmi on building Byteship, Outray & Avnac | Discova Builder Stories</div>
+          </div>
+          <div class="d-flex align-items-center gap-3">
+            <span class="text-white-50 small cursor-pointer">Watch later</span>
+            <span class="text-white-50 small cursor-pointer">Share</span>
+          </div>
+        </div>
+
+        <!-- Big Red Play Button -->
+        <div class="main-play-btn">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+          </svg>
+        </div>
+
+        <!-- Video Footer Overlay -->
+        <div class="video-footer-overlay">
+          <span class="badge bg-dark text-white px-2 py-1 rounded" style="background: rgba(0,0,0,0.8) !important; font-size: 0.75rem;">18:42</span>
+          <span class="badge bg-danger text-white px-2 py-1 rounded small">Watch on YouTube</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       3. Main Editorial Content & Chapters Sidebar
+       ======================================================================== -->
+  <main class="pb-5">
+    <div class="container-xl" style="max-width: 1060px;">
+      <div class="row g-5">
+        
+        <!-- Left Column: Chapters, Quick facts, Share -->
+        <aside class="col-lg-4">
+          
+          <!-- Chapters Widget -->
+          <div class="chapters-sidebar-widget">
+            <div class="d-flex align-items-center justify-content-between mb-3 pb-2 border-bottom border-secondary border-opacity-25">
+              <span class="fw-bold text-white small">Chapters</span>
+              <span class="text-muted small">5 • 18:42</span>
+            </div>
+
+            <div class="d-flex flex-column gap-1">
+              <div class="chapter-nav-item" onclick="openStoryVideo('Akinkunmi - Intro', '', 'https://www.youtube.com/embed/dQw4w9WgXcQ')">
+                <span class="chapter-stamp">00:00</span>
+                <span>Intro</span>
+              </div>
+              <div class="chapter-nav-item active" onclick="openStoryVideo('Akinkunmi - Starting with the problem', '', 'https://www.youtube.com/embed/dQw4w9WgXcQ')">
+                <span class="chapter-stamp">03:21</span>
+                <span class="fw-bold text-white">Starting with the problem</span>
+              </div>
+              <div class="chapter-nav-item" onclick="openStoryVideo('Akinkunmi - Open source by default', '', 'https://www.youtube.com/embed/dQw4w9WgXcQ')">
+                <span class="chapter-stamp">07:40</span>
+                <span>Open source by default</span>
+              </div>
+              <div class="chapter-nav-item" onclick="openStoryVideo('Akinkunmi - Building from Lagos', '', 'https://www.youtube.com/embed/dQw4w9WgXcQ')">
+                <span class="chapter-stamp">11:52</span>
+                <span>Building from Lagos</span>
+              </div>
+              <div class="chapter-nav-item" onclick="openStoryVideo('Akinkunmi - What\'s next', '', 'https://www.youtube.com/embed/dQw4w9WgXcQ')">
+                <span class="chapter-stamp">15:18</span>
+                <span>What's next</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick facts box -->
+          <div class="side-panel-card">
+            <h3 class="h6 fw-bold text-white mb-3">Quick facts</h3>
+            
+            <div class="review-summary-row">
+              <span class="text-muted small">Based in</span>
+              <span class="text-white small fw-semibold">Lagos, Nigeria</span>
+            </div>
+            <div class="review-summary-row">
+              <span class="text-muted small">Building since</span>
+              <span class="text-white small fw-semibold">2019</span>
+            </div>
+            <div class="review-summary-row">
+              <span class="text-muted small">Products</span>
+              <span class="text-white small fw-semibold">3</span>
+            </div>
+            <div class="review-summary-row">
+              <span class="text-muted small">Focus</span>
+              <span class="text-white small fw-semibold">Dev tools, design</span>
+            </div>
+            <div class="review-summary-row mb-0">
+              <span class="text-muted small">Open source</span>
+              <span class="text-white small fw-semibold">Yes, all three</span>
+            </div>
+          </div>
+
+          <!-- Share this story -->
+          <div class="side-panel-card">
+            <h3 class="h6 fw-bold text-white mb-3">Share this story</h3>
+            <div class="d-flex align-items-center gap-2">
+              <button class="btn-pill-dark px-3 py-1 small" onclick="alert('Shared to X/Twitter!')">X</button>
+              <button class="btn-pill-dark px-3 py-1 small" onclick="alert('Shared to LinkedIn!')">LinkedIn</button>
+              <button class="btn-pill-dark px-3 py-1 small" onclick="navigator.clipboard.writeText(window.location.href); alert('Link copied to clipboard!');">Copy link</button>
+            </div>
+          </div>
+
+        </aside>
+
+        <!-- Right Column: Full Narrative Article & Transcript -->
+        <article class="col-lg-8 ps-lg-4">
+          
+          <!-- Top Tab Switches -->
+          <div class="d-flex align-items-center justify-content-between mb-4 pb-3 border-bottom border-secondary border-opacity-25">
+            <div class="d-flex align-items-center gap-2">
+              <button class="tab-btn-pill active" id="readStoryTabBtn">Read the story</button>
+              <button class="tab-btn-pill" id="fullTranscriptTabBtn" onclick="document.getElementById('fullTranscript')?.scrollIntoView({behavior: 'smooth'})">Full transcript</button>
+            </div>
+            <a href="https://youtube.com" target="_blank" class="text-danger fw-bold small text-decoration-none">
+              ▶ Open on YouTube
+            </a>
+          </div>
+
+          <!-- Story Text Content -->
+          <div class="story-article-body">
+            
+            <p class="fs-6 text-white-50" style="line-height: 1.8;">
+              Akinkunmi doesn't describe himself as a founder first. He's a builder — someone who notices friction in his own workflow and quietly ships a fix. Over the last two years, that habit has produced three products used by thousands of developers and designers across the continent.
+            </p>
+
+            <h2 class="h4 fw-bold text-white mt-4 mb-3">Starting with the problem in front of you</h2>
+            
+            <p class="text-muted" style="line-height: 1.8;">
+              Byteship began as an internal script for handling uploads on a side project. Outray followed when he got tired of paying for tunnels to show clients work running on localhost. Avnac, an open design editor in the browser, came from wanting a tool that worked well on the laptops and connections most of his friends actually had.
+            </p>
+
+            <!-- Playfair Italic Pullquote -->
+            <blockquote class="my-4 ps-4 border-start border-primary border-4" style="background: rgba(37, 99, 235, 0.05); padding: 1.25rem 1.5rem; border-radius: 0 16px 16px 0;">
+              <p class="font-serif-italic fs-4 text-white mb-0" style="line-height: 1.4;">
+                “If a tool is slow on a Lagos connection, it's broken for most of my users. That's my benchmark.”
+              </p>
+            </blockquote>
+
+            <h2 class="h4 fw-bold text-white mt-5 mb-3">Open source by default</h2>
+            
+            <p class="text-muted" style="line-height: 1.8;">
+              All three products are open source. For Akinkunmi, it's less a business model than a way of paying it forward: every repo is a chance for another developer to learn how production software is actually built.
+            </p>
+
+            <h2 class="h4 fw-bold text-white mt-5 mb-3">What's next</h2>
+            
+            <p class="text-muted" style="line-height: 1.8;">
+              He's focused on making the three products work better together — A single account, shared billing, and a CLI that ties storage, tunnels and design exports into one workflow.
+            </p>
+
+            <!-- From the interview dialogue box -->
+            <div class="dialogue-transcript-box" id="fullTranscript">
+              <div class="d-flex align-items-center justify-content-between mb-3 pb-2 border-bottom border-secondary border-opacity-25">
+                <span class="fw-bold text-white small">From the interview</span>
+                <a href="#fullTranscript" class="text-primary small text-decoration-none fw-bold" onclick="window.showToastMessage ? window.showToastMessage('Full verified audio transcript loaded.') : null">Open full transcript →</a>
+              </div>
+
+              <div class="dialogue-turn-row">
+                <span class="chapter-stamp me-2">03:21</span>
+                <span class="dialogue-speaker">Discova</span>
+                <span class="dialogue-text">Where did Byteship actually start?</span>
+              </div>
+
+              <div class="dialogue-turn-row">
+                <span class="chapter-stamp me-2">03:35</span>
+                <span class="dialogue-speaker">Akinkunmi</span>
+                <span class="dialogue-text">Honestly, as a script. I had a side project and kept rewriting the same upload logic. So I put it into its own container on a server. Other people started asking for it.</span>
+              </div>
+
+              <div class="dialogue-turn-row">
+                <span class="chapter-stamp me-2">04:12</span>
+                <span class="dialogue-speaker">Akinkunmi</span>
+                <span class="dialogue-text">If a tool is slow on a Lagos connection, it's broken for most of my users. That's my benchmark.</span>
+              </div>
+            </div>
+
+            <!-- Products by Akinkunmi -->
+            <div class="mt-5 pt-3">
+              <h3 class="h5 fw-bold text-white mb-3">Products by Akinkunmi</h3>
+
+              <div class="row g-3">
+                
+                <!-- Product 1: Byteship -->
+                <div class="col-md-4">
+                  <div class="product-card h-100">
+                    <div class="product-banner banner-byteship position-relative d-flex align-items-center justify-content-center p-3">
+                      <span class="text-white fw-bold fs-5">Byteship</span>
+                      <span class="badge position-absolute top-2 end-2 bg-dark text-white" style="font-size: 0.65rem;">▲ 8</span>
+                    </div>
+                    <div class="product-card-body p-3">
+                      <div class="d-flex align-items-center gap-2 mb-2">
+                        <div class="product-avatar bg-secondary text-white fw-bold" style="width: 28px; height: 28px; font-size: 0.75rem;">B</div>
+                        <span class="fw-bold text-white small">Byteship</span>
+                      </div>
+                      <p class="text-muted small mb-2" style="font-size: 0.75rem;">Uploads, storage, and delivery from one API.</p>
+                      <div class="text-muted" style="font-size: 0.6875rem;">Nigeria • Developer Tools</div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Product 2: OutRay -->
+                <div class="col-md-4">
+                  <div class="product-card h-100">
+                    <div class="product-banner banner-outray position-relative d-flex align-items-center justify-content-center p-3">
+                      <span class="badge position-absolute top-2 start-2 bg-light text-dark fw-bold" style="font-size: 0.65rem;">Open Source</span>
+                      <span class="text-white fw-bold fs-5">OutRay</span>
+                      <span class="badge position-absolute top-2 end-2 bg-dark text-white" style="font-size: 0.65rem;">▲ 4</span>
+                    </div>
+                    <div class="product-card-body p-3">
+                      <div class="d-flex align-items-center gap-2 mb-2">
+                        <div class="product-avatar bg-success text-white fw-bold" style="width: 28px; height: 28px; font-size: 0.75rem;">O</div>
+                        <span class="fw-bold text-white small">OutRay</span>
+                      </div>
+                      <p class="text-muted small mb-2" style="font-size: 0.75rem;">Open-source tunnels from localhost to the Internet.</p>
+                      <div class="text-muted" style="font-size: 0.6875rem;">Nigeria • Developer Tools</div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Product 3: Avnac -->
+                <div class="col-md-4">
+                  <div class="product-card h-100">
+                    <div class="product-banner banner-avnac position-relative d-flex align-items-center justify-content-center p-3">
+                      <span class="badge position-absolute top-2 start-2 bg-light text-dark fw-bold" style="font-size: 0.65rem;">Open Source</span>
+                      <span class="text-white fw-bold fs-5">Avnac</span>
+                      <span class="badge position-absolute top-2 end-2 bg-dark text-white" style="font-size: 0.65rem;">▲ 5</span>
+                    </div>
+                    <div class="product-card-body p-3">
+                      <div class="d-flex align-items-center gap-2 mb-2">
+                        <div class="product-avatar bg-danger text-white fw-bold" style="width: 28px; height: 28px; font-size: 0.75rem;">A</div>
+                        <span class="fw-bold text-white small">Avnac</span>
+                      </div>
+                      <p class="text-muted small mb-2" style="font-size: 0.75rem;">Open design in the browser.</p>
+                      <div class="text-muted" style="font-size: 0.6875rem;">Nigeria • Design</div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+
+        </article>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- ========================================================================
+       MODAL: Video Player Lightbox
+       ======================================================================== -->
+  <div class="modal fade" id="videoPlayerModal" tabindex="-1" aria-labelledby="videoModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content modal-content-dark">
+        <div class="modal-header modal-header-dark">
+          <div>
+            <h5 class="modal-title fw-bold text-white fs-6" id="videoModalTitle">Founder Interview</h5>
+            <div class="text-muted" id="videoModalDesc" style="font-size: 0.8125rem;"></div>
+          </div>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body p-0">
+          <div class="ratio ratio-16x9">
+            <iframe id="videoPlayerIframe" src="" title="Video Player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       4. Site Footer
+       ======================================================================== -->
+  <footer class="site-footer">
+    <div class="container-xl">
+      
+      <div class="row g-5">
+        <!-- Brand Info -->
+        <div class="col-lg-4">
+          <a href="index.html" class="brand-logo mb-2">
+            <span class="brand-logo-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4 19L11 5H15L8 19H4Z" fill="#3B82F6"/>
+                <path d="M12 19L19 5H21L14 19H12Z" fill="#60A5FA"/>
+              </svg>
+            </span>
+            <span>discova</span>
+          </a>
+          <p class="footer-brand-desc">
+            Editorial discovery for software built in Africa — and the builders behind it.
+          </p>
+        </div>
+
+        <!-- Col 2: Explore -->
+        <div class="col-6 col-md-3 col-lg-2 offset-lg-2">
+          <div class="footer-col-title">Explore</div>
+          <ul class="footer-links-list">
+            <li><a href="products.html">All products</a></li>
+            <li><a href="launches.html">Launches</a></li>
+            <li><a href="categories.html">Categories</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Stories -->
+        <div class="col-6 col-md-3 col-lg-2">
+          <div class="footer-col-title">Stories</div>
+          <ul class="footer-links-list">
+            <li><a href="stories.html">Builder Stories</a></li>
+            <li><a href="stories.html#interviews">Video interviews</a></li>
+            <li><a href="https://youtube.com">YouTube channel</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Company -->
+        <div class="col-6 col-md-3 col-lg-2">
+          <div class="footer-col-title">Company</div>
+          <ul class="footer-links-list">
+            <li><a href="about.html">About</a></li>
+            <li><a href="submit.html">Submit a product</a></li>
+            <li><a href="index.html#newsletter">Newsletter</a></li>
+            <li><a href="about.html#contact">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Bottom Row -->
+      <div class="footer-bottom-row">
+        <div>© 2026 Discova • Home of solutions built in Africa</div>
+        <div class="d-flex align-items-center gap-3">
+          <a href="https://x.com" target="_blank" rel="noopener noreferrer">X</a>
+          <span>•</span>
+          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <span>•</span>
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a>
+          <span>•</span>
+          <a href="https://youtube.com" target="_blank" rel="noopener noreferrer">YouTube</a>
+        </div>
+      </div>
+
+      <!-- Huge Watermarked Wordmark -->
+      <div class="footer-watermark">
+        discova
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- Bootstrap 5.3 Bundle JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <!-- Custom JS -->
+  <script src="js/api.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

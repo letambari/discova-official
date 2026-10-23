@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Categories — Discova Africa Tech Directory</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap 5.3 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="css/styles.css">
+
+  <!-- Pre-initialization theme check to prevent flash -->
+  <script>
+    (function() {
+      var saved = localStorage.getItem('discova_theme') || 'dark';
+      document.documentElement.setAttribute('data-bs-theme', saved);
+    })();
+  </script>
+</head>
+<body>
+
+  <!-- ========================================================================
+       1. Header / Navbar
+       ======================================================================== -->
+  <header class="site-navbar">
+    <div class="container-xl d-flex align-items-center justify-content-between">
+      
+      <!-- Brand Logo -->
+      <a href="index.html" class="brand-logo">
+        <span class="brand-logo-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 19L11 5H15L8 19H4Z" fill="#3B82F6"/>
+            <path d="M12 19L19 5H21L14 19H12Z" fill="#60A5FA"/>
+          </svg>
+        </span>
+        <span>discova</span>
+      </a>
+
+      <!-- Center Navigation -->
+      <nav class="d-none d-lg-flex align-items-center gap-1">
+        <a href="products.html" class="nav-link-custom">Products</a>
+        <a href="launches.html" class="nav-link-custom">Launches</a>
+        <a href="stories.html" class="nav-link-custom">Stories</a>
+        <a href="categories.html" class="nav-link-custom active">Categories</a>
+      </nav>
+
+      <!-- Right Action Controls -->
+      <div class="d-flex align-items-center gap-3">
+        <!-- Theme Toggle Pill -->
+        <button class="theme-toggle-pill" id="themeToggleBtn" onclick="toggleTheme()" title="Toggle light/dark mode" aria-label="Toggle theme">
+          <span class="theme-icon sun-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+          </span>
+          <span class="theme-icon moon-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+          </span>
+        </button>
+
+        <!-- Search Trigger Icon -->
+        <a href="products.html" class="navbar-action-btn" title="Search catalog">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+        </a>
+
+        <!-- User / Sign In -->
+        <a href="login.html" class="d-none d-sm-inline-block text-muted text-decoration-none fw-semibold" style="font-size: 0.875rem;">Sign in</a>
+
+        <!-- Submit CTA Button -->
+        <a href="submit.html" class="btn-pill-white text-decoration-none">
+          <span>Submit your product</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+          </svg>
+        </a>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ========================================================================
+       2. Hero Section
+       ======================================================================== -->
+  <section class="position-relative pt-5 pb-5 overflow-hidden">
+    <div class="hero-glow-bg"></div>
+    <div class="container-xl position-relative">
+      
+      <div class="text-center max-w-700 mx-auto mb-4">
+        <div class="hero-badge-pill mb-3">
+          <span class="pulse-dot"></span>
+          <span>DISCOVA DIRECTORY • 12 CATEGORIES • 424 PRODUCTS</span>
+        </div>
+        <h1 class="display-5 fw-black tracking-tight text-white mb-3">
+          Browse by what you <span class="font-serif-italic">need</span>
+        </h1>
+        <p class="text-muted fs-6">
+          Find vetted tools, infrastructure, and consumer applications mapped across key technological and financial verticals in Africa.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       3. 12 Category Bento Cards Grid
+       ======================================================================== -->
+  <main class="pb-5">
+    <div class="container-xl">
+      <div class="row g-4" id="categoriesGrid">
+        
+        <!-- Bento 1: FinTech -->
+        <div class="col-md-6 col-lg-4">
+          <div class="category-card-bento">
+            <div>
+              <div class="d-flex align-items-center justify-content-between mb-3">
+                <div class="cat-bento-icon-box text-primary">💳</div>
+                <div class="cat-bento-indicator">
+                  <span class="cat-dot-pill" style="background: #3B82F6;"></span>
+                  <span class="text-white-50 small">Vertical #01</span>
+                </div>
+              </div>
+              <h3 class="cat-bento-title">FinTech & Banking</h3>
+              <div class="cat-bento-count">114 curated products</div>
+              <p class="text-muted small mb-4">
+                Payments gateways, micro-loans, treasury management, neo-banking, stablecoin savings, and cross-border remittances.
+              </p>
+            </div>
+            <a href="products.html?category=fintech" class="cat-bento-link text-decoration-none">
+              <span>Explore FinTech products</span>
+              <span>→</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Bento 2: Artificial Intelligence -->
+        <div class="col-md-6 col-lg-4">
+          <div class="category-card-bento">
+            <div>
+              <div class="d-flex align-items-center justify-content-between mb-3">
+                <div class="cat-bento-icon-box text-danger">🤖</div>
+                <div class="cat-bento-indicator">
+                  <span class="cat-dot-pill" style="background: #E11D48;"></span>
+                  <span class="text-white-50 small">Vertical #02</span>
+                </div>
+              </div>
+              <h3 class="cat-bento-title">Artificial Intelligence</h3>
+              <div class="cat-bento-count">56 curated products</div>
+              <p class="text-muted small mb-4">
+                LLMs trained on African dialects, voice synthesis, computer vision for agriculture, and conversational commerce bots.
+              </p>
+            </div>
+            <a href="products.html?category=ai" class="cat-bento-link text-decoration-none" style="color: #F43F5E;">
+              <span>Explore AI & ML products</span>
+              <span>→</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Bento 3: Developer Tools -->
+        <div class="col-md-6 col-lg-4">
+          <div class="category-card-bento">
+            <div>
+              <div class="d-flex align-items-center justify-content-between mb-3">
+                <div class="cat-bento-icon-box text-warning">⚡</div>
+                <div class="cat-bento-indicator">
+                  <span class="cat-dot-pill" style="background: #F59E0B;"></span>
+                  <span class="text-white-50 small">Vertical #03</span>
+                </div>
+              </div>
+              <h3 class="cat-bento-title">Developer Tools</h3>
+              <div class="cat-bento-count">68 curated products</div>
+              <p class="text-muted small mb-4">
+                APIs, SDKs, CI/CD deployment pipelines, mobile money mock sandboxes, and real-time observability telemetry.
+              </p>
+            </div>
+            <a href="products.html?category=devtools" class="cat-bento-link text-decoration-none" style="color: #FBBF24;">
+              <span>Explore Developer Tools</span>
+              <span>→</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Bento 4: Hosting & Cloud -->
+        <div class="col-md-6 col-lg-4">
+          <div class="category-card-bento">
+            <div>
+              <div class="d-flex align-items-center justify-content-between mb-3">
+                <div class="cat-bento-icon-box text-info">☁️</div>
+                <div class="cat-bento-indicator">
+                  <span class="cat-dot-pill" style="background: #06B6D4;"></span>
+                  <span class="text-white-50 small">Vertical #04</span>
+                </div>
+              </div>
+              <h3 class="cat-bento-title">Hosting & Cloud Edge</h3>
+              <div class="cat-bento-count">32 curated products</div>
+              <p class="text-muted small mb-4">
+                Localized edge servers, container registries, data residency compliance, and low-latency frontend static deployments.
+              </p>
+            </div>
+            <a href="products.html?category=hosting" class="cat-bento-link text-decoration-none" style="color: #38BDF8;">
+              <span>Explore Hosting & Cloud</span>
+              <span>→</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Bento 5: Design & Creative -->
+        <div class="col-md-6 col-lg-4">
+          <div class="category-card-bento">
+            <div>
+              <div class="d-flex align-items-center justify-content-between mb-3">
+                <div class="cat-bento-icon-box text-purple" style="color: #A855F7;">🎨</div>
+                <div class="cat-bento-indicator">
+                  <span class="cat-dot-pill" style="background: #7C3AED;"></span>
+                  <span class="text-white-50 small">Vertical #05</span>
+                </div>
+              </div>
+              <h3 class="cat-bento-title">Design & Creative</h3>
+              <div class="cat-bento-count">28 curated products</div>
+              <p class="text-muted small mb-4">
+                Design collaboration canvases, African typography foundries, 3D asset libraries, illustration systems, and UI kits.
+              </p>
+            </div>
+            <a href="products.html?category=design" class="cat-bento-link text-decoration-none" style="color: #C084FC;">
+              <span>Explore Design products</span>
+              <span>→</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Bento 6: Analytics & Data -->
+        <div class="col-md-6 col-lg-4">
+          <div class="category-card-bento">
+            <div>
+              <div class="d-flex align-items-center justify-content-between mb-3">
+                <div class="cat-bento-icon-box text-success">📊</div>
+                <div class="cat-bento-indicator">
+                  <span class="cat-dot-pill" style="background: #10B981;"></span>
+                  <span class="text-white-50 small">Vertical #06</span>
+                </div>
+              </div>
+              <h3 class="cat-bento-title">Analytics & Intelligence</h3>
+              <div class="cat-bento-count">24 curated products</div>
+              <p class="text-muted small mb-4">
+                User engagement tracking, consumer spending insights, price scraping engines, and macroeconomic intelligence.
+              </p>
+            </div>
+            <a href="products.html?category=analytics" class="cat-bento-link text-decoration-none" style="color: #34D399;">
+              <span>Explore Analytics & Data</span>
+              <span>→</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Bento 7: HealthTech -->
+        <div class="col-md-6 col-lg-4">
+          <div class="category-card-bento">
+            <div>
+              <div class="d-flex align-items-center justify-content-between mb-3">
+                <div class="cat-bento-icon-box text-emerald" style="color: #059669;">🩺</div>
+                <div class="cat-bento-indicator">
+                  <span class="cat-dot-pill" style="background: #059669;"></span>
+                  <span class="text-white-50 small">Vertical #07</span>
+                </div>
+              </div>
+              <h3 class="cat-bento-title">Health & BioTech</h3>
+              <div class="cat-bento-count">26 curated products</div>
+              <p class="text-muted small mb-4">
+                Telemedicine apps, digitized pharmaceutical inventories, rural diagnostic lab dispatch, and hospital records ERP.
+              </p>
+            </div>
+            <a href="products.html?category=health" class="cat-bento-link text-decoration-none" style="color: #6EE7B7;">
+              <span>Explore HealthTech</span>
+              <span>→</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Bento 8: Education & EdTech -->
+        <div class="col-md-6 col-lg-4">
+          <div class="category-card-bento">
+            <div>
+              <div class="d-flex align-items-center justify-content-between mb-3">
+                <div class="cat-bento-icon-box text-warning" style="color: #D97706;">🎓</div>
+                <div class="cat-bento-indicator">
+                  <span class="cat-dot-pill" style="background: #D97706;"></span>
+                  <span class="text-white-50 small">Vertical #08</span>
+                </div>
+              </div>
+              <h3 class="cat-bento-title">Education & EdTech</h3>
+              <div class="cat-bento-count">22 curated products</div>
+              <p class="text-muted small mb-4">
+                Interactive coding bootcamps, localized K-12 offline learning tablets, university tuition financing, and test prep.
+              </p>
+            </div>
+            <a href="products.html?category=education" class="cat-bento-link text-decoration-none" style="color: #FCD34D;">
+              <span>Explore Education</span>
+              <span>→</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Bento 9: Logistics & Mobility -->
+        <div class="col-md-6 col-lg-4">
+          <div class="category-card-bento">
+            <div>
+              <div class="d-flex align-items-center justify-content-between mb-3">
+                <div class="cat-bento-icon-box text-amber" style="color: #F59E0B;">🛵</div>
+                <div class="cat-bento-indicator">
+                  <span class="cat-dot-pill" style="background: #F59E0B;"></span>
+                  <span class="text-white-50 small">Vertical #09</span>
+                </div>
+              </div>
+              <h3 class="cat-bento-title">Logistics & Mobility</h3>
+              <div class="cat-bento-count">35 curated products</div>
+              <p class="text-muted small mb-4">
+                Last-mile motorcycle couriers, interstate heavy cargo tracking, cold-chain medication dispatch, and route planning.
+              </p>
+            </div>
+            <a href="products.html?category=logistics" class="cat-bento-link text-decoration-none" style="color: #FDE047;">
+              <span>Explore Logistics</span>
+              <span>→</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Bento 10: E-commerce & Retail -->
+        <div class="col-md-6 col-lg-4">
+          <div class="category-card-bento">
+            <div>
+              <div class="d-flex align-items-center justify-content-between mb-3">
+                <div class="cat-bento-icon-box text-pink" style="color: #EC4899;">🛍️</div>
+                <div class="cat-bento-indicator">
+                  <span class="cat-dot-pill" style="background: #EC4899;"></span>
+                  <span class="text-white-50 small">Vertical #10</span>
+                </div>
+              </div>
+              <h3 class="cat-bento-title">E-commerce & Retail</h3>
+              <div class="cat-bento-count">42 curated products</div>
+              <p class="text-muted small mb-4">
+                WhatsApp social commerce checkout, inventory sync for open-air retail merchants, and B2B informal restocking.
+              </p>
+            </div>
+            <a href="products.html?category=ecommerce" class="cat-bento-link text-decoration-none" style="color: #F472B6;">
+              <span>Explore E-commerce</span>
+              <span>→</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Bento 11: AgriTech & Climate -->
+        <div class="col-md-6 col-lg-4">
+          <div class="category-card-bento">
+            <div>
+              <div class="d-flex align-items-center justify-content-between mb-3">
+                <div class="cat-bento-icon-box text-lime" style="color: #84CC16;">🌱</div>
+                <div class="cat-bento-indicator">
+                  <span class="cat-dot-pill" style="background: #84CC16;"></span>
+                  <span class="text-white-50 small">Vertical #11</span>
+                </div>
+              </div>
+              <h3 class="cat-bento-title">AgriTech & Climate</h3>
+              <div class="cat-bento-count">19 curated products</div>
+              <p class="text-muted small mb-4">
+                Smallholder farmer credit scoring, satellite crop pest detection, direct farm-to-supermarket markets, and solar cold rooms.
+              </p>
+            </div>
+            <a href="products.html?category=agritech" class="cat-bento-link text-decoration-none" style="color: #A3E635;">
+              <span>Explore AgriTech</span>
+              <span>→</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Bento 12: Infrastructure & Telecoms -->
+        <div class="col-md-6 col-lg-4">
+          <div class="category-card-bento">
+            <div>
+              <div class="d-flex align-items-center justify-content-between mb-3">
+                <div class="cat-bento-icon-box text-sky" style="color: #0284C7;">🛰️</div>
+                <div class="cat-bento-indicator">
+                  <span class="cat-dot-pill" style="background: #0284C7;"></span>
+                  <span class="text-white-50 small">Vertical #12</span>
+                </div>
+              </div>
+              <h3 class="cat-bento-title">Infrastructure & Telecoms</h3>
+              <div class="cat-bento-count">18 curated products</div>
+              <p class="text-muted small mb-4">
+                Satellite mesh networking, clean micro-grids, USSD gateway routing, offline SMS transacting, and fiber backhaul.
+              </p>
+            </div>
+            <a href="products.html?category=infra" class="cat-bento-link text-decoration-none" style="color: #38BDF8;">
+              <span>Explore Infrastructure</span>
+              <span>→</span>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ======================================================================
+           Country Breakdown Section: "Built across the continent"
+           ====================================================================== -->
+      <div class="country-section-box">
+        <div class="row align-items-center">
+          <div class="col-lg-5 mb-4 mb-lg-0">
+            <span class="badge bg-primary text-white mb-2 px-3 py-1 rounded-pill" style="font-size: 0.75rem;">GEOGRAPHIC ECOSYSTEM</span>
+            <h2 class="display-6 fw-bold text-white mb-2">Built across the continent</h2>
+            <p class="text-muted small mb-0">
+              Africa's tech ecosystem stretches across 54 nations. Filter vetted products by their primary founding headquarters:
+            </p>
+          </div>
+          <div class="col-lg-7">
+            <div class="country-pills-wrap" id="categoriesCountryPillsWrap">
+              <a href="products.html?country=nigeria" class="country-pill-item text-decoration-none">
+                <span>🇳🇬 Nigeria</span>
+                <span class="country-badge-num">214</span>
+              </a>
+              <a href="products.html?country=kenya" class="country-pill-item text-decoration-none">
+                <span>🇰🇪 Kenya</span>
+                <span class="country-badge-num">86</span>
+              </a>
+              <a href="products.html?country=southafrica" class="country-pill-item text-decoration-none">
+                <span>🇿🇦 South Africa</span>
+                <span class="country-badge-num">74</span>
+              </a>
+              <a href="products.html?country=ghana" class="country-pill-item text-decoration-none">
+                <span>🇬🇭 Ghana</span>
+                <span class="country-badge-num">42</span>
+              </a>
+              <a href="products.html?country=egypt" class="country-pill-item text-decoration-none">
+                <span>🇪🇬 Egypt</span>
+                <span class="country-badge-num">38</span>
+              </a>
+              <a href="products.html?country=rwanda" class="country-pill-item text-decoration-none">
+                <span>🇷🇼 Rwanda</span>
+                <span class="country-badge-num">24</span>
+              </a>
+              <a href="products.html?country=morocco" class="country-pill-item text-decoration-none">
+                <span>🇲🇦 Morocco</span>
+                <span class="country-badge-num">16</span>
+              </a>
+              <a href="products.html?country=senegal" class="country-pill-item text-decoration-none">
+                <span>🇸🇳 Senegal</span>
+                <span class="country-badge-num">14</span>
+              </a>
+              <a href="products.html?country=uganda" class="country-pill-item text-decoration-none">
+                <span>🇺🇬 Uganda</span>
+                <span class="country-badge-num">12</span>
+              </a>
+              <a href="products.html?country=cameroon" class="country-pill-item text-decoration-none">
+                <span>🇨🇲 Cameroon</span>
+                <span class="country-badge-num">9</span>
+              </a>
+              <a href="products.html?country=tanzania" class="country-pill-item text-decoration-none">
+                <span>🇹🇿 Tanzania</span>
+                <span class="country-badge-num">8</span>
+              </a>
+              <a href="products.html?country=cotedivoire" class="country-pill-item text-decoration-none">
+                <span>🇨🇮 Côte d'Ivoire</span>
+                <span class="country-badge-num">7</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ========================================================================
+       4. Site Footer
+       ======================================================================== -->
+  <footer class="site-footer">
+    <div class="container-xl">
+      
+      <div class="row g-5">
+        <!-- Brand Info -->
+        <div class="col-lg-4">
+          <a href="index.html" class="brand-logo mb-2">
+            <span class="brand-logo-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4 19L11 5H15L8 19H4Z" fill="#3B82F6"/>
+                <path d="M12 19L19 5H21L14 19H12Z" fill="#60A5FA"/>
+              </svg>
+            </span>
+            <span>discova</span>
+          </a>
+          <p class="footer-brand-desc">
+            Built to celebrate every founder, engineer, and creator across the African continent. Showcasing global excellence.
+          </p>
+        </div>
+
+        <!-- Col 2: Explore -->
+        <div class="col-6 col-md-3 col-lg-2 offset-lg-2">
+          <div class="footer-col-title">Explore</div>
+          <ul class="footer-links-list">
+            <li><a href="products.html">All Products</a></li>
+            <li><a href="index.html#trending">Top Launches</a></li>
+            <li><a href="categories.html">Categories</a></li>
+            <li><a href="about.html#stats">Ecosystem Stats</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Stories -->
+        <div class="col-6 col-md-3 col-lg-2">
+          <div class="footer-col-title">Stories</div>
+          <ul class="footer-links-list">
+            <li><a href="stories.html">Builder Stories</a></li>
+            <li><a href="stories.html#interviews">Video Interviews</a></li>
+            <li><a href="stories.html#podcasts">Podcasts</a></li>
+            <li><a href="launches.html">Launch Archive</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Company -->
+        <div class="col-6 col-md-3 col-lg-2">
+          <div class="footer-col-title">Company</div>
+          <ul class="footer-links-list">
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="about.html#beliefs">Our Beliefs</a></li>
+            <li><a href="about.html#team">The Team</a></li>
+            <li><a href="submit.html">Submit Product</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Bottom Row -->
+      <div class="footer-bottom-row">
+        <div>© 2026 Discova Inc. All rights reserved.</div>
+        <div>Curated with ❤️ across 54 African nations</div>
+      </div>
+
+      <!-- Huge Watermarked Wordmark -->
+      <div class="footer-watermark">
+        discova
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- Bootstrap 5.3 Bundle JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <!-- Custom JS -->
+  <script src="js/api.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

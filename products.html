@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>All Products — Discova Africa Tech Catalog</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap 5.3 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="css/styles.css">
+
+  <!-- Pre-initialization theme check to prevent flash -->
+  <script>
+    (function() {
+      var saved = localStorage.getItem('discova_theme') || 'dark';
+      document.documentElement.setAttribute('data-bs-theme', saved);
+    })();
+  </script>
+</head>
+<body>
+
+  <!-- ========================================================================
+       1. Header / Navbar
+       ======================================================================== -->
+  <header class="site-navbar">
+    <div class="container-xl d-flex align-items-center justify-content-between">
+      
+      <!-- Brand Logo -->
+      <a href="index.html" class="brand-logo">
+        <span class="brand-logo-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 19L11 5H15L8 19H4Z" fill="#3B82F6"/>
+            <path d="M12 19L19 5H21L14 19H12Z" fill="#60A5FA"/>
+          </svg>
+        </span>
+        <span>discova</span>
+      </a>
+
+      <!-- Center Navigation -->
+      <nav class="d-none d-lg-flex align-items-center gap-1">
+        <a href="products.html" class="nav-link-custom active">Products</a>
+        <a href="launches.html" class="nav-link-custom">Launches</a>
+        <a href="stories.html" class="nav-link-custom">Stories</a>
+        <a href="categories.html" class="nav-link-custom">Categories</a>
+      </nav>
+
+      <!-- Right Action Controls -->
+      <div class="d-flex align-items-center gap-3">
+        <!-- Theme Toggle Pill -->
+        <button class="theme-toggle-pill" id="themeToggleBtn" onclick="toggleTheme()" title="Toggle light/dark mode" aria-label="Toggle theme">
+          <span class="theme-icon sun-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+          </span>
+          <span class="theme-icon moon-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+          </span>
+        </button>
+
+        <!-- Search Trigger Icon -->
+        <button class="navbar-action-btn" onclick="document.getElementById('catalogSearchInput')?.focus()" title="Search catalog">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+        </button>
+
+        <!-- User / Sign In -->
+        <a href="login.html" class="d-none d-sm-inline-block text-muted text-decoration-none fw-semibold" style="font-size: 0.875rem;">Sign in</a>
+
+        <!-- Submit CTA Button -->
+        <a href="submit.html" class="btn-pill-white text-decoration-none">
+          <span>Submit your product</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+          </svg>
+        </a>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ========================================================================
+       2. Catalog Hero Header
+       ======================================================================== -->
+  <section class="position-relative pt-5 pb-4 overflow-hidden" style="border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
+    <div class="hero-glow-bg"></div>
+    <div class="container-xl position-relative">
+      
+      <div class="text-center max-w-700 mx-auto mb-4">
+        <div class="hero-badge-pill mb-3">
+          <span class="pulse-dot"></span>
+          <span id="catalogHeroBadgeText">DISCOVA DIRECTORY • VERIFIED PRODUCTS</span>
+        </div>
+        <h1 class="display-5 fw-black tracking-tight text-white mb-3">
+          All products from <span class="font-serif-italic">Africa</span>
+        </h1>
+        <p class="text-muted fs-6 mb-4" id="catalogHeroDesc">
+          Discover, upvote, and explore the fastest-growing software, AI models, and financial infrastructure built across Africa.
+        </p>
+
+        <!-- Search input box with ⌘K -->
+        <div class="catalog-search-bar mx-auto" style="max-width: 640px;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="2">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input type="text" id="catalogSearchInput" class="catalog-search-input" placeholder="Search products by name, tag, or country...">
+          <span class="kbd-badge">⌘K</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       3. Catalog Main Layout (Sidebar Filters + Products Grid)
+       ======================================================================== -->
+  <main class="py-5">
+    <div class="container-xl">
+      <div class="row g-4">
+        
+        <!-- Left Sidebar Filters -->
+        <aside class="col-lg-3">
+          <div class="filter-sidebar" style="position: sticky; top: 90px;">
+            
+            <div class="filter-header-row">
+              <span class="filter-sidebar-title">Filters</span>
+              <button class="clear-all-btn" id="clearAllFiltersBtn">Clear all</button>
+            </div>
+
+            <!-- Filter Group: Categories -->
+            <div>
+              <div class="filter-group-title">Category</div>
+              <div class="filter-checkbox-list">
+                <label class="filter-checkbox-label checked" data-filter-type="category" data-value="all">
+                  <div class="filter-checkbox-left">
+                    <span class="custom-checkbox"></span>
+                    <span>All categories</span>
+                  </div>
+                  <span class="filter-count-badge">160</span>
+                </label>
+
+                <label class="filter-checkbox-label" data-filter-type="category" data-value="fintech">
+                  <div class="filter-checkbox-left">
+                    <span class="custom-checkbox"></span>
+                    <span>FinTech</span>
+                  </div>
+                  <span class="filter-count-badge">48</span>
+                </label>
+
+                <label class="filter-checkbox-label" data-filter-type="category" data-value="devtools">
+                  <div class="filter-checkbox-left">
+                    <span class="custom-checkbox"></span>
+                    <span>Developer Tools</span>
+                  </div>
+                  <span class="filter-count-badge">34</span>
+                </label>
+
+                <label class="filter-checkbox-label" data-filter-type="category" data-value="ai">
+                  <div class="filter-checkbox-left">
+                    <span class="custom-checkbox"></span>
+                    <span>Artificial Intelligence</span>
+                  </div>
+                  <span class="filter-count-badge">29</span>
+                </label>
+
+                <label class="filter-checkbox-label" data-filter-type="category" data-value="design">
+                  <div class="filter-checkbox-left">
+                    <span class="custom-checkbox"></span>
+                    <span>Design & Creative</span>
+                  </div>
+                  <span class="filter-count-badge">19</span>
+                </label>
+
+                <label class="filter-checkbox-label" data-filter-type="category" data-value="health">
+                  <div class="filter-checkbox-left">
+                    <span class="custom-checkbox"></span>
+                    <span>HealthTech</span>
+                  </div>
+                  <span class="filter-count-badge">14</span>
+                </label>
+
+                <label class="filter-checkbox-label" data-filter-type="category" data-value="logistics">
+                  <div class="filter-checkbox-left">
+                    <span class="custom-checkbox"></span>
+                    <span>Logistics & Delivery</span>
+                  </div>
+                  <span class="filter-count-badge">16</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Filter Group: Country -->
+            <div>
+              <div class="filter-group-title">Country</div>
+              <div class="filter-checkbox-list" id="sidebarCountryList">
+                <label class="filter-checkbox-label" data-filter-type="country" data-value="nigeria">
+                  <div class="filter-checkbox-left">
+                    <span class="custom-checkbox"></span>
+                    <span>Nigeria 🇳🇬</span>
+                  </div>
+                  <span class="filter-count-badge">78</span>
+                </label>
+
+                <label class="filter-checkbox-label" data-filter-type="country" data-value="kenya">
+                  <div class="filter-checkbox-left">
+                    <span class="custom-checkbox"></span>
+                    <span>Kenya 🇰🇪</span>
+                  </div>
+                  <span class="filter-count-badge">32</span>
+                </label>
+
+                <label class="filter-checkbox-label" data-filter-type="country" data-value="southafrica">
+                  <div class="filter-checkbox-left">
+                    <span class="custom-checkbox"></span>
+                    <span>South Africa 🇿🇦</span>
+                  </div>
+                  <span class="filter-count-badge">28</span>
+                </label>
+
+                <label class="filter-checkbox-label" data-filter-type="country" data-value="ghana">
+                  <div class="filter-checkbox-left">
+                    <span class="custom-checkbox"></span>
+                    <span>Ghana 🇬🇭</span>
+                  </div>
+                  <span class="filter-count-badge">12</span>
+                </label>
+
+                <label class="filter-checkbox-label" data-filter-type="country" data-value="egypt">
+                  <div class="filter-checkbox-left">
+                    <span class="custom-checkbox"></span>
+                    <span>Egypt 🇪🇬</span>
+                  </div>
+                  <span class="filter-count-badge">10</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Filter Group: Badges -->
+            <div>
+              <div class="filter-group-title">Badges</div>
+              <div class="filter-checkbox-list">
+                <label class="filter-checkbox-label" data-filter-type="badge" data-value="pod">
+                  <div class="filter-checkbox-left">
+                    <span class="custom-checkbox"></span>
+                    <span>Product of the Day</span>
+                  </div>
+                  <span class="filter-count-badge">24</span>
+                </label>
+
+                <label class="filter-checkbox-label" data-filter-type="badge" data-value="trending">
+                  <div class="filter-checkbox-left">
+                    <span class="custom-checkbox"></span>
+                    <span>Trending this week</span>
+                  </div>
+                  <span class="filter-count-badge">18</span>
+                </label>
+
+                <label class="filter-checkbox-label" data-filter-type="badge" data-value="featured">
+                  <div class="filter-checkbox-left">
+                    <span class="custom-checkbox"></span>
+                    <span>Featured Founder</span>
+                  </div>
+                  <span class="filter-count-badge">12</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Filter Group: Pricing -->
+            <div>
+              <div class="filter-group-title">Pricing</div>
+              <div class="filter-checkbox-list">
+                <label class="filter-checkbox-label" data-filter-type="pricing" data-value="free">
+                  <div class="filter-checkbox-left">
+                    <span class="custom-checkbox"></span>
+                    <span>Free</span>
+                  </div>
+                  <span class="filter-count-badge">62</span>
+                </label>
+
+                <label class="filter-checkbox-label" data-filter-type="pricing" data-value="freemium">
+                  <div class="filter-checkbox-left">
+                    <span class="custom-checkbox"></span>
+                    <span>Freemium</span>
+                  </div>
+                  <span class="filter-count-badge">54</span>
+                </label>
+
+                <label class="filter-checkbox-label" data-filter-type="pricing" data-value="paid">
+                  <div class="filter-checkbox-left">
+                    <span class="custom-checkbox"></span>
+                    <span>Paid</span>
+                  </div>
+                  <span class="filter-count-badge">44</span>
+                </label>
+              </div>
+            </div>
+
+          </div>
+        </aside>
+
+        <!-- Right Catalog Content -->
+        <section class="col-lg-9">
+          
+          <!-- Top Action Bar -->
+          <div class="catalog-top-bar">
+            <div class="d-flex align-items-center gap-3 flex-wrap">
+              <span class="fw-bold text-white fs-6" id="catalogCountText">Showing 160 products</span>
+              
+              <div class="active-filter-chips" id="activeFilterChips">
+                <span class="filter-chip-pill" data-tag="fintech">
+                  Fintech <span class="close-chip">&times;</span>
+                </span>
+                <span class="filter-chip-pill" data-tag="ai">
+                  AI <span class="close-chip">&times;</span>
+                </span>
+              </div>
+            </div>
+
+            <div class="d-flex align-items-center gap-2">
+              <select class="sort-select-dark" id="catalogSortSelect">
+                <option value="trending">Trending today</option>
+                <option value="upvotes">Most upvoted</option>
+                <option value="newest">Newest</option>
+                <option value="alpha">Alphabetical</option>
+              </select>
+
+              <div class="d-flex align-items-center gap-1">
+                <button class="view-toggle-btn active" title="Grid view" id="gridViewBtn">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="3" width="7" height="7"></rect>
+                    <rect x="14" y="3" width="7" height="7"></rect>
+                    <rect x="14" y="14" width="7" height="7"></rect>
+                    <rect x="3" y="14" width="7" height="7"></rect>
+                  </svg>
+                </button>
+                <button class="view-toggle-btn" title="List view" id="listViewBtn">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="8" y1="6" x2="21" y2="6"></line>
+                    <line x1="8" y1="12" x2="21" y2="12"></line>
+                    <line x1="8" y1="18" x2="21" y2="18"></line>
+                    <line x1="3" y1="6" x2="3.01" y2="6"></line>
+                    <line x1="3" y1="12" x2="3.01" y2="12"></line>
+                    <line x1="3" y1="18" x2="3.01" y2="18"></line>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Products 12-Card Grid -->
+          <div class="row g-4" id="catalogGrid">
+            
+            <!-- Card 1: Xara -->
+            <div class="col-md-6 col-xl-4 product-item-col" data-category="fintech" data-country="nigeria" data-pricing="freemium" data-upvotes="482" data-name="Xara">
+              <div class="product-card">
+                <div class="product-banner banner-xara position-relative">
+                  <span class="badge bg-dark text-white position-absolute top-2 end-2" style="font-size: 0.6875rem; background: rgba(0,0,0,0.5) !important;">#1 FinTech</span>
+                </div>
+                <div class="product-card-body">
+                  <div class="product-header-row">
+                    <div class="product-info-left">
+                      <div class="product-avatar bg-emerald text-white fw-bold">X</div>
+                      <div>
+                        <h3 class="product-name">
+                          <a href="product-details.html" class="text-decoration-none">Xara</a>
+                        </h3>
+                        <div class="product-tagline">Financial rails for modern African commerce</div>
+                      </div>
+                    </div>
+                    <button class="upvote-btn" onclick="handleUpvote(this, 482)">
+                      <span class="upvote-arrow">▲</span>
+                      <span class="upvote-count">482</span>
+                    </button>
+                  </div>
+                  
+                  <div class="product-desc">
+                    Accept omnichannel payments, issue virtual cards, and automate multi-currency treasury management seamlessly.
+                  </div>
+
+                  <div class="product-card-footer">
+                    <span class="cat-pill">🇳🇬 Nigeria • FinTech</span>
+                    <span>💬 42 comments</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 2: Bachs -->
+            <div class="col-md-6 col-xl-4 product-item-col" data-category="ai" data-country="kenya" data-pricing="freemium" data-upvotes="391" data-name="Bachs">
+              <div class="product-card">
+                <div class="product-banner banner-bachs position-relative d-flex align-items-center justify-content-center">
+                  <span class="text-white-50 small">🎙️ Multilingual Speech Engine</span>
+                </div>
+                <div class="product-card-body">
+                  <div class="product-header-row">
+                    <div class="product-info-left">
+                      <div class="product-avatar bg-dark border border-secondary text-white fw-bold">B</div>
+                      <div>
+                        <h3 class="product-name">
+                          <a href="product-details.html" class="text-decoration-none">Bachs</a>
+                        </h3>
+                        <div class="product-tagline">African accents voice synthesis & transcription</div>
+                      </div>
+                    </div>
+                    <button class="upvote-btn" onclick="handleUpvote(this, 391)">
+                      <span class="upvote-arrow">▲</span>
+                      <span class="upvote-count">391</span>
+                    </button>
+                  </div>
+                  
+                  <div class="product-desc">
+                    Voice cloning, live translation, and audio transcription trained on 30+ native regional African dialects and accents.
+                  </div>
+
+                  <div class="product-card-footer">
+                    <span class="cat-pill">🇰🇪 Kenya • AI & ML</span>
+                    <span>💬 31 comments</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 3: Pxxl (Links to product-details.html) -->
+            <div class="col-md-6 col-xl-4 product-item-col" data-category="design" data-country="southafrica" data-pricing="freemium" data-upvotes="512" data-name="Pxxl">
+              <div class="product-card" style="border-color: rgba(124, 58, 237, 0.4);">
+                <div class="product-banner banner-pxxl position-relative">
+                  <span class="badge position-absolute top-2 end-2" style="background: rgba(0,0,0,0.6); font-size: 0.6875rem;">⭐ Featured Product</span>
+                </div>
+                <div class="product-card-body">
+                  <div class="product-header-row">
+                    <div class="product-info-left">
+                      <div class="product-avatar" style="background: linear-gradient(135deg, #7C3AED, #A855F7); color: #fff; font-weight: 800;">P</div>
+                      <div>
+                        <h3 class="product-name">
+                          <a href="product-details.html" class="text-decoration-none">Pxxl</a>
+                        </h3>
+                        <div class="product-tagline">Design collaboration for hyper-growth teams</div>
+                      </div>
+                    </div>
+                    <button class="upvote-btn upvoted" onclick="handleUpvote(this, 512)">
+                      <span class="upvote-arrow">▲</span>
+                      <span class="upvote-count">512</span>
+                    </button>
+                  </div>
+                  
+                  <div class="product-desc">
+                    Figma-style real-time infinite canvas with built-in asset handoff, interactive prototypes, and design system syncing.
+                  </div>
+
+                  <div class="product-card-footer">
+                    <span class="cat-pill" style="color: #C084FC;">🇿🇦 South Africa • Design</span>
+                    <span>💬 56 comments</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 4: Cencori -->
+            <div class="col-md-6 col-xl-4 product-item-col" data-category="fintech" data-country="nigeria" data-pricing="paid" data-upvotes="318" data-name="Cencori">
+              <div class="product-card">
+                <div class="product-banner banner-cencori position-relative"></div>
+                <div class="product-card-body">
+                  <div class="product-header-row">
+                    <div class="product-info-left">
+                      <div class="product-avatar bg-warning text-dark fw-bold">C</div>
+                      <div>
+                        <h3 class="product-name">
+                          <a href="product-details.html" class="text-decoration-none">Cencori</a>
+                        </h3>
+                        <div class="product-tagline">Tax compliance for global African contractors</div>
+                      </div>
+                    </div>
+                    <button class="upvote-btn" onclick="handleUpvote(this, 318)">
+                      <span class="upvote-arrow">▲</span>
+                      <span class="upvote-count">318</span>
+                    </button>
+                  </div>
+                  
+                  <div class="product-desc">
+                    Auto-generated invoices, W8-BEN filings, and localized tax withholding for freelancers earning across borders.
+                  </div>
+
+                  <div class="product-card-footer">
+                    <span class="cat-pill">🇳🇬 Nigeria • FinTech</span>
+                    <span>💬 19 comments</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 5: Doux -->
+            <div class="col-md-6 col-xl-4 product-item-col" data-category="fintech" data-country="ghana" data-pricing="free" data-upvotes="284" data-name="Doux">
+              <div class="product-card">
+                <div class="product-banner banner-doux position-relative"></div>
+                <div class="product-card-body">
+                  <div class="product-header-row">
+                    <div class="product-info-left">
+                      <div class="product-avatar bg-info text-white fw-bold">D</div>
+                      <div>
+                        <h3 class="product-name">
+                          <a href="product-details.html" class="text-decoration-none">Doux</a>
+                        </h3>
+                        <div class="product-tagline">Zero-fee micro savings in audited stablecoins</div>
+                      </div>
+                    </div>
+                    <button class="upvote-btn" onclick="handleUpvote(this, 284)">
+                      <span class="upvote-arrow">▲</span>
+                      <span class="upvote-count">284</span>
+                    </button>
+                  </div>
+                  
+                  <div class="product-desc">
+                    Protect your savings against local currency inflation with audited dollar stablecoin vaults offering 8.5% annual yield.
+                  </div>
+
+                  <div class="product-card-footer">
+                    <span class="cat-pill">🇬🇭 Ghana • FinTech</span>
+                    <span>💬 23 comments</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 6: YarnGPT -->
+            <div class="col-md-6 col-xl-4 product-item-col" data-category="ai" data-country="nigeria" data-pricing="freemium" data-upvotes="440" data-name="YarnGPT">
+              <div class="product-card">
+                <div class="product-banner banner-yarngpt position-relative"></div>
+                <div class="product-card-body">
+                  <div class="product-header-row">
+                    <div class="product-info-left">
+                      <div class="product-avatar bg-danger text-white fw-bold">Y</div>
+                      <div>
+                        <h3 class="product-name">
+                          <a href="product-details.html" class="text-decoration-none">YarnGPT</a>
+                        </h3>
+                        <div class="product-tagline">Conversational AI fluent in African idioms</div>
+                      </div>
+                    </div>
+                    <button class="upvote-btn" onclick="handleUpvote(this, 440)">
+                      <span class="upvote-arrow">▲</span>
+                      <span class="upvote-count">440</span>
+                    </button>
+                  </div>
+                  
+                  <div class="product-desc">
+                    Generative LLM fine-tuned on Pidgin, Yoruba, Swahili, and Amharic contexts for conversational commerce and customer bots.
+                  </div>
+
+                  <div class="product-card-footer">
+                    <span class="cat-pill">🇳🇬 Nigeria • AI & ML</span>
+                    <span>💬 38 comments</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 7: Pewbeam -->
+            <div class="col-md-6 col-xl-4 product-item-col" data-category="devtools" data-country="kenya" data-pricing="paid" data-upvotes="215" data-name="Pewbeam">
+              <div class="product-card">
+                <div class="product-banner banner-pewbeam position-relative"></div>
+                <div class="product-card-body">
+                  <div class="product-header-row">
+                    <div class="product-info-left">
+                      <div class="product-avatar bg-warning text-dark fw-bold">P</div>
+                      <div>
+                        <h3 class="product-name">
+                          <a href="product-details.html" class="text-decoration-none">Pewbeam</a>
+                        </h3>
+                        <div class="product-tagline">Mesh satellite routing for rural broadband</div>
+                      </div>
+                    </div>
+                    <button class="upvote-btn" onclick="handleUpvote(this, 215)">
+                      <span class="upvote-arrow">▲</span>
+                      <span class="upvote-count">215</span>
+                    </button>
+                  </div>
+                  
+                  <div class="product-desc">
+                    Intelligent dynamic bandwidth shaping and solar-powered edge mesh nodes connecting off-grid health clinics.
+                  </div>
+
+                  <div class="product-card-footer">
+                    <span class="cat-pill">🇰🇪 Kenya • Infra</span>
+                    <span>💬 14 comments</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 8: Brimble -->
+            <div class="col-md-6 col-xl-4 product-item-col" data-category="devtools" data-country="nigeria" data-pricing="freemium" data-upvotes="377" data-name="Brimble">
+              <div class="product-card">
+                <div class="product-banner banner-brimble position-relative"></div>
+                <div class="product-card-body">
+                  <div class="product-header-row">
+                    <div class="product-info-left">
+                      <div class="product-avatar bg-primary text-white fw-bold">B</div>
+                      <div>
+                        <h3 class="product-name">
+                          <a href="product-details.html" class="text-decoration-none">Brimble</a>
+                        </h3>
+                        <div class="product-tagline">Lightning-fast edge hosting for developers</div>
+                      </div>
+                    </div>
+                    <button class="upvote-btn" onclick="handleUpvote(this, 377)">
+                      <span class="upvote-arrow">▲</span>
+                      <span class="upvote-count">377</span>
+                    </button>
+                  </div>
+                  
+                  <div class="product-desc">
+                    Deploy web applications to points-of-presence in Lagos, Nairobi, and Cape Town with zero server configuration.
+                  </div>
+
+                  <div class="product-card-footer">
+                    <span class="cat-pill">🇳🇬 Nigeria • Dev Tools</span>
+                    <span>💬 27 comments</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 9: OutRay -->
+            <div class="col-md-6 col-xl-4 product-item-col" data-category="devtools" data-country="nigeria" data-pricing="freemium" data-upvotes="329" data-name="OutRay">
+              <div class="product-card">
+                <div class="product-banner banner-outray position-relative"></div>
+                <div class="product-card-body">
+                  <div class="product-header-row">
+                    <div class="product-info-left">
+                      <div class="product-avatar bg-success text-white fw-bold">O</div>
+                      <div>
+                        <h3 class="product-name">
+                          <a href="product-details.html" class="text-decoration-none">OutRay</a>
+                        </h3>
+                        <div class="product-tagline">Real-time error tracking for mobile money</div>
+                      </div>
+                    </div>
+                    <button class="upvote-btn" onclick="handleUpvote(this, 329)">
+                      <span class="upvote-arrow">▲</span>
+                      <span class="upvote-count">329</span>
+                    </button>
+                  </div>
+                  
+                  <div class="product-desc">
+                    Catch dropped webhook callbacks, timeout errors, and payment reconciliation failures before your users notice.
+                  </div>
+
+                  <div class="product-card-footer">
+                    <span class="cat-pill">🇳🇬 Nigeria • Dev Tools</span>
+                    <span>💬 22 comments</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 10: Byteship -->
+            <div class="col-md-6 col-xl-4 product-item-col" data-category="logistics" data-country="nigeria" data-pricing="paid" data-upvotes="265" data-name="Byteship">
+              <div class="product-card">
+                <div class="product-banner banner-byteship position-relative"></div>
+                <div class="product-card-body">
+                  <div class="product-header-row">
+                    <div class="product-info-left">
+                      <div class="product-avatar bg-secondary text-white fw-bold">B</div>
+                      <div>
+                        <h3 class="product-name">
+                          <a href="product-details.html" class="text-decoration-none">Byteship</a>
+                        </h3>
+                        <div class="product-tagline">Unified logistics API across 40+ fleets</div>
+                      </div>
+                    </div>
+                    <button class="upvote-btn" onclick="handleUpvote(this, 265)">
+                      <span class="upvote-arrow">▲</span>
+                      <span class="upvote-count">265</span>
+                    </button>
+                  </div>
+                  
+                  <div class="product-desc">
+                    One simple endpoint to book, track, and insure same-day courier deliveries across major African metropolitan zones.
+                  </div>
+
+                  <div class="product-card-footer">
+                    <span class="cat-pill">🇳🇬 Nigeria • Logistics</span>
+                    <span>💬 18 comments</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 11: Avnac -->
+            <div class="col-md-6 col-xl-4 product-item-col" data-category="design" data-country="southafrica" data-pricing="free" data-upvotes="298" data-name="Avnac">
+              <div class="product-card">
+                <div class="product-banner banner-avnac position-relative"></div>
+                <div class="product-card-body">
+                  <div class="product-header-row">
+                    <div class="product-info-left">
+                      <div class="product-avatar bg-danger text-white fw-bold">A</div>
+                      <div>
+                        <h3 class="product-name">
+                          <a href="product-details.html" class="text-decoration-none">Avnac</a>
+                        </h3>
+                        <div class="product-tagline">Open-source African localized design system</div>
+                      </div>
+                    </div>
+                    <button class="upvote-btn" onclick="handleUpvote(this, 298)">
+                      <span class="upvote-arrow">▲</span>
+                      <span class="upvote-count">298</span>
+                    </button>
+                  </div>
+                  
+                  <div class="product-desc">
+                    Accessible Figma UI library, React primitives, and icons designed specifically for low-bandwidth mobile apps.
+                  </div>
+
+                  <div class="product-card-footer">
+                    <span class="cat-pill">🇿🇦 South Africa • Design</span>
+                    <span>💬 25 comments</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 12: SendByte -->
+            <div class="col-md-6 col-xl-4 product-item-col" data-category="fintech" data-country="kenya" data-pricing="free" data-upvotes="412" data-name="SendByte">
+              <div class="product-card">
+                <div class="product-banner banner-sendbyte position-relative"></div>
+                <div class="product-card-body">
+                  <div class="product-header-row">
+                    <div class="product-info-left">
+                      <div class="product-avatar bg-teal text-white fw-bold" style="background: #0D9488;">S</div>
+                      <div>
+                        <h3 class="product-name">
+                          <a href="product-details.html" class="text-decoration-none">SendByte</a>
+                        </h3>
+                        <div class="product-tagline">Instant remittances across East & West Africa</div>
+                      </div>
+                    </div>
+                    <button class="upvote-btn" onclick="handleUpvote(this, 412)">
+                      <span class="upvote-arrow">▲</span>
+                      <span class="upvote-count">412</span>
+                    </button>
+                  </div>
+                  
+                  <div class="product-desc">
+                    Send payments across mobile wallets (M-Pesa, Orange Money, MoMo) and commercial bank accounts in under 3 seconds.
+                  </div>
+
+                  <div class="product-card-footer">
+                    <span class="cat-pill">🇰🇪 Kenya • FinTech</span>
+                    <span>💬 34 comments</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Pagination -->
+          <div class="pagination-container">
+            <button class="page-btn" aria-label="Previous page">‹</button>
+            <button class="page-btn active">1</button>
+            <button class="page-btn">2</button>
+            <button class="page-btn">3</button>
+            <span class="text-muted px-2">…</span>
+            <button class="page-btn">14</button>
+            <button class="page-btn" aria-label="Next page">›</button>
+          </div>
+
+        </section>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- ========================================================================
+       4. Site Footer
+       ======================================================================== -->
+  <footer class="site-footer">
+    <div class="container-xl">
+      
+      <div class="row g-5">
+        <!-- Brand Info -->
+        <div class="col-lg-4">
+          <a href="index.html" class="brand-logo mb-2">
+            <span class="brand-logo-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4 19L11 5H15L8 19H4Z" fill="#3B82F6"/>
+                <path d="M12 19L19 5H21L14 19H12Z" fill="#60A5FA"/>
+              </svg>
+            </span>
+            <span>discova</span>
+          </a>
+          <p class="footer-brand-desc">
+            Built to celebrate every founder, engineer, and creator across the African continent. Showcasing global excellence.
+          </p>
+        </div>
+
+        <!-- Col 2: Explore -->
+        <div class="col-6 col-md-3 col-lg-2 offset-lg-2">
+          <div class="footer-col-title">Explore</div>
+          <ul class="footer-links-list">
+            <li><a href="products.html">All Products</a></li>
+            <li><a href="index.html#trending">Top Launches</a></li>
+            <li><a href="categories.html">Categories</a></li>
+            <li><a href="about.html#stats">Ecosystem Stats</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Stories -->
+        <div class="col-6 col-md-3 col-lg-2">
+          <div class="footer-col-title">Stories</div>
+          <ul class="footer-links-list">
+            <li><a href="stories.html">Builder Stories</a></li>
+            <li><a href="stories.html#interviews">Video Interviews</a></li>
+            <li><a href="stories.html#podcasts">Podcasts</a></li>
+            <li><a href="launches.html">Launch Archive</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Company -->
+        <div class="col-6 col-md-3 col-lg-2">
+          <div class="footer-col-title">Company</div>
+          <ul class="footer-links-list">
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="about.html#beliefs">Our Beliefs</a></li>
+            <li><a href="about.html#team">The Team</a></li>
+            <li><a href="submit.html">Submit Product</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Bottom Row -->
+      <div class="footer-bottom-row">
+        <div>© 2026 Discova Inc. All rights reserved.</div>
+        <div>Curated with ❤️ across 54 African nations</div>
+      </div>
+
+      <!-- Huge Watermarked Wordmark -->
+      <div class="footer-watermark">
+        discova
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- Bootstrap 5.3 Bundle JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <!-- Custom JS -->
+  <script src="js/api.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

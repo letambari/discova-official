@@ -1,0 +1,48 @@
+# ==========================================
+# Discova Africa Tech - Git Ignore Rules
+# ==========================================
+
+# 1. Database (CRITICAL: Never commit SQLite databases to Git)
+discova.db
+discova.db-wal
+discova.db-shm
+*.db
+*.db-wal
+*.db-shm
+*.sqlite
+*.sqlite3
+
+# 2. Node Dependencies
+node_modules/
+package-lock.json
+
+# 3. Environment Variables & Credentials
+.env
+.env.local
+.env.production
+.env.*
+!.env.example
+
+# 4. Logs & Runtime Storage
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# 5. Phusion Passenger / cPanel Reload Triggers
+tmp/restart.txt
+tmp/
+
+# 6. Operating System & Editor Artifacts
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# 7. Local Scratch / Temp Testing
+scratch/
+.tempmediaStorage/
+.chrome-temp/

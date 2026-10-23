@@ -1,0 +1,1754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Portal — Discova Africa Tech</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap 5.3 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="css/styles.css">
+
+  <!-- Immediate Theme Initializer -->
+  <script>
+    (function() {
+      var savedTheme = localStorage.getItem('discova_theme') || 'dark';
+      document.documentElement.setAttribute('data-bs-theme', savedTheme);
+      if (savedTheme === 'light') {
+        document.body && document.body.classList.add('light-mode');
+      }
+    })();
+  </script>
+
+  <style>
+    body {
+      background-color: var(--bg-body, #06070B);
+      color: var(--text-main, #FFFFFF);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .admin-navbar {
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      position: sticky;
+      top: 0;
+      z-index: 1020;
+    }
+
+    .admin-page-container {
+      flex-grow: 1;
+      padding: 2.5rem 1.5rem 4rem;
+      max-width: 1320px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .admin-tab-nav {
+      display: flex;
+      gap: 0.5rem;
+      background: rgba(255, 255, 255, 0.04);
+      padding: 6px;
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      margin-bottom: 2rem;
+      overflow-x: auto;
+    }
+
+    .admin-tab-btn {
+      padding: 10px 20px;
+      border-radius: 12px;
+      border: none;
+      background: transparent;
+      color: #94A3B8;
+      font-weight: 700;
+      font-size: 0.875rem;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+      cursor: pointer;
+    }
+
+    .admin-tab-btn.active {
+      background: #4F46E5;
+      color: #FFFFFF;
+      box-shadow: 0 4px 15px rgba(79, 70, 229, 0.4);
+    }
+
+    .stat-metric-card {
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+      padding: 1.5rem;
+      transition: transform 0.2s ease;
+    }
+
+    .stat-metric-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(255, 255, 255, 0.15);
+    }
+
+    .admin-card {
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+      padding: 1.75rem;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+    }
+
+    .table-dark-custom {
+      --bs-table-bg: transparent;
+      --bs-table-color: #E2E8F0;
+      border-color: rgba(255, 255, 255, 0.08);
+    }
+
+    .table-dark-custom th {
+      color: #94A3B8;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-weight: 700;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 12px 16px;
+    }
+
+    .table-dark-custom td {
+      padding: 14px 16px;
+      vertical-align: middle;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .form-switch .form-check-input {
+      width: 3rem;
+      height: 1.5rem;
+      cursor: pointer;
+    }
+
+    /* Light Mode Overrides for Admin Portal */
+    [data-bs-theme="light"] .admin-navbar,
+    body.light-mode .admin-navbar {
+      background: rgba(255, 255, 255, 0.9) !important;
+      border-bottom-color: #E2E8F0 !important;
+    }
+
+    [data-bs-theme="light"] .admin-tab-nav,
+    body.light-mode .admin-tab-nav {
+      background: #F1F5F9 !important;
+      border-color: #E2E8F0 !important;
+    }
+
+    [data-bs-theme="light"] .admin-tab-btn,
+    body.light-mode .admin-tab-btn {
+      color: #475569 !important;
+    }
+
+    [data-bs-theme="light"] .admin-tab-btn.active,
+    body.light-mode .admin-tab-btn.active {
+      background: #FFFFFF !important;
+      color: #0F172A !important;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important;
+    }
+
+    [data-bs-theme="light"] .stat-metric-card,
+    [data-bs-theme="light"] .admin-card,
+    body.light-mode .stat-metric-card,
+    body.light-mode .admin-card {
+      background: #FFFFFF !important;
+      border-color: #E2E8F0 !important;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06) !important;
+    }
+
+    [data-bs-theme="light"] .table-dark-custom,
+    body.light-mode .table-dark-custom {
+      --bs-table-color: #0F172A !important;
+      border-color: #E2E8F0 !important;
+    }
+
+    [data-bs-theme="light"] .table-dark-custom th,
+    body.light-mode .table-dark-custom th {
+      color: #64748B !important;
+      border-bottom-color: #CBD5E1 !important;
+    }
+
+    [data-bs-theme="light"] .table-dark-custom td,
+    body.light-mode .table-dark-custom td {
+      border-bottom-color: #F1F5F9 !important;
+    }
+
+    [data-bs-theme="light"] .modal-content,
+    body.light-mode .modal-content {
+      background: #FFFFFF !important;
+      color: #0F172A !important;
+      border-color: #CBD5E1 !important;
+    }
+
+    [data-bs-theme="light"] .modal-header,
+    [data-bs-theme="light"] .modal-footer,
+    body.light-mode .modal-header,
+    body.light-mode .modal-footer {
+      border-color: #E2E8F0 !important;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Admin Navbar -->
+  <header class="admin-navbar py-3 px-4 d-flex align-items-center justify-content-between">
+    <div class="d-flex align-items-center gap-3">
+      <a href="index.html" class="brand-logo text-decoration-none">
+        <span class="brand-logo-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+            <path d="M4 19L11 5H15L8 19H4Z" fill="#3B82F6"/>
+            <path d="M12 19L19 5H21L14 19H12Z" fill="#60A5FA"/>
+          </svg>
+        </span>
+        <span>discova</span>
+      </a>
+      <span class="badge rounded-pill bg-danger bg-opacity-15 text-danger border border-danger border-opacity-25 px-2 py-1 fw-bold" style="font-size: 0.7rem; letter-spacing: 0.5px;">
+        🛡️ PLATFORM ADMIN
+      </span>
+    </div>
+
+    <div class="d-flex align-items-center gap-3">
+      <a href="index.html" class="btn btn-sm btn-outline-secondary rounded-pill px-3 d-none d-sm-inline-block">
+        ← Back to Leaderboard
+      </a>
+
+      <!-- Theme Switcher Pill -->
+      <button class="theme-toggle-pill" id="themeToggleBtn" onclick="toggleTheme()" title="Toggle light/dark mode" aria-label="Toggle theme">
+        <span class="theme-icon sun-icon">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+        </span>
+        <span class="theme-icon moon-icon">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </span>
+      </button>
+
+      <!-- Admin User Pill & Sign Out -->
+      <div id="adminUserPill" class="d-flex align-items-center gap-2">
+        <span class="small fw-bold d-none d-md-inline" id="adminNameDisplay">Administrator</span>
+        <button class="btn btn-sm btn-outline-danger rounded-pill px-3 py-1" onclick="handleAdminSignOut()">
+          Sign Out
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Login Gate Barrier Modal (Displayed when not signed in as admin) -->
+  <div id="adminAuthBarrier" class="admin-page-container d-none">
+    <div class="row justify-content-center pt-5">
+      <div class="col-md-6 col-lg-5">
+        <div class="admin-card text-center p-4 p-md-5">
+          <div class="rounded-circle d-inline-flex align-items-center justify-content-center p-3 mb-3" style="background: rgba(239, 68, 68, 0.15); color: #EF4444; width: 68px; height: 68px;">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+          </div>
+          <h1 class="h4 fw-bold mb-2">Platform Administration</h1>
+          <p class="text-muted small mb-4">
+            Sign in with administrative credentials to access platform controls, SMTP configurations, and user management.
+          </p>
+          <div id="adminLoginAlert" class="alert d-none mb-3 text-start" role="alert" style="border-radius: 12px; font-size: 0.85rem;"></div>
+          <form onsubmit="handleAdminLogin(event)" class="text-start">
+            <div class="mb-3">
+              <label class="form-input-label d-block mb-1">Admin Email</label>
+              <input type="email" id="adminEmailInput" class="input-box-dark" value="admin@discova.africa" required>
+            </div>
+            <div class="mb-4">
+              <label class="form-input-label d-block mb-1">Admin Password</label>
+              <input type="password" id="adminPasswordInput" class="input-box-dark" value="Admin12345!" required>
+            </div>
+            <button type="submit" class="btn btn-primary w-100 py-2 rounded-3 fw-bold" id="adminLoginBtn">
+              Unlock Admin Portal
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Authenticated Admin Portal Area -->
+  <main class="admin-page-container" id="adminMainPortal">
+    
+    <!-- Title and Subtitle -->
+    <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-4">
+      <div>
+        <h1 class="display-6 fw-black tracking-tight mb-1">System Administration</h1>
+        <p class="text-muted small mb-0">Configure authentication, SMTP mail delivery, email verification, and audit logs.</p>
+      </div>
+      <div class="d-flex gap-2">
+        <button class="btn btn-sm btn-outline-primary rounded-pill px-3" onclick="refreshAdminData()">
+          🔄 Refresh Data
+        </button>
+      </div>
+    </div>
+
+    <!-- Navigation Tabs -->
+    <nav class="admin-tab-nav" role="tablist">
+      <button class="admin-tab-btn active" id="tabOverviewBtn" onclick="switchAdminTab('overview')">
+        📊 Overview & Metrics
+      </button>
+      <button class="admin-tab-btn" id="tabProductsBtn" onclick="switchAdminTab('products')">
+        🛍️ Products Catalog <span class="badge rounded-pill bg-primary ms-1" id="badgeProductsCount">0</span>
+      </button>
+      <button class="admin-tab-btn" id="tabSubmissionsBtn" onclick="switchAdminTab('submissions')">
+        📥 Maker Submissions <span class="badge rounded-pill bg-warning text-dark ms-1 d-none" id="badgePendingSubmissions">0</span>
+      </button>
+      <button class="admin-tab-btn" id="tabUsersBtn" onclick="switchAdminTab('users')">
+        👥 User Directory
+      </button>
+      <button class="admin-tab-btn" id="tabSettingsBtn" onclick="switchAdminTab('settings')">
+        ⚙️ Email & SMTP Settings
+      </button>
+      <button class="admin-tab-btn" id="tabEmailsBtn" onclick="switchAdminTab('emails')">
+        📬 In-App Outbox & Logs
+      </button>
+    </nav>
+
+    <!-- SECTION 1: OVERVIEW & METRICS -->
+    <div id="sectionOverview">
+      <!-- Bento Metrics Grid - Row 1: Core Platform Entities -->
+      <div class="row g-3 mb-3">
+        <div class="col-sm-6 col-lg-4">
+          <div class="stat-metric-card h-100 cursor-pointer" onclick="switchAdminTab('products')" title="Click to manage products">
+            <div class="d-flex align-items-center justify-content-between mb-1">
+              <span class="text-muted small fw-semibold">Live Products in Catalog</span>
+              <span class="badge bg-primary bg-opacity-10 text-primary border border-primary border-opacity-25 rounded-pill px-2 py-0.5" style="font-size: 0.7rem;">Manage ↗</span>
+            </div>
+            <div class="display-6 fw-black text-primary mb-1" id="statTotalProducts">—</div>
+            <div class="small text-muted" id="statFeaturedProducts">— featured solutions</div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-4">
+          <div class="stat-metric-card h-100 cursor-pointer" onclick="switchAdminTab('submissions')" title="Click to review maker submissions">
+            <div class="d-flex align-items-center justify-content-between mb-1">
+              <span class="text-muted small fw-semibold">Maker Submissions Queue</span>
+              <span class="badge bg-warning bg-opacity-15 text-warning border border-warning border-opacity-25 rounded-pill px-2 py-0.5" style="font-size: 0.7rem;">Review ↗</span>
+            </div>
+            <div class="display-6 fw-black text-warning mb-1" id="statPendingSubmissions">—</div>
+            <div class="small text-muted" id="statSubmissionsDesc">Awaiting platform approval</div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-4">
+          <div class="stat-metric-card h-100 cursor-pointer" onclick="switchAdminTab('users')" title="Click to manage users">
+            <div class="d-flex align-items-center justify-content-between mb-1">
+              <span class="text-muted small fw-semibold">Total Registered Users</span>
+              <span class="badge bg-info bg-opacity-10 text-info border border-info border-opacity-25 rounded-pill px-2 py-0.5" style="font-size: 0.7rem;">Directory ↗</span>
+            </div>
+            <div class="display-6 fw-black text-info mb-1" id="statTotalUsers">—</div>
+            <div class="small text-muted" id="statAdminCount">— admins registered</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bento Metrics Grid - Row 2: Security & SMTP -->
+      <div class="row g-3 mb-4">
+        <div class="col-sm-6 col-lg-4">
+          <div class="stat-metric-card h-100">
+            <div class="text-muted small fw-semibold mb-1">Email Verification Status</div>
+            <div class="display-6 fw-black text-success mb-1" id="statVerifiedPercent">—</div>
+            <div class="small text-muted" id="statVerifiedCount">— verified accounts</div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-4">
+          <div class="stat-metric-card h-100">
+            <div class="text-muted small fw-semibold mb-1">Email Verification Rule</div>
+            <div class="h3 fw-bold mb-1" id="statVerifyRule">—</div>
+            <div class="small text-muted" id="statVerifyRuleDesc">Mandatory on registration</div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-4">
+          <div class="stat-metric-card h-100">
+            <div class="text-muted small fw-semibold mb-1">SMTP Delivery Mode</div>
+            <div class="h3 fw-bold mb-1" id="statSmtpMode">—</div>
+            <div class="small text-muted" id="statTotalEmails">— outgoing logs</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Toggles Card -->
+      <div class="admin-card mb-4">
+        <h2 class="h5 fw-bold mb-3">Quick System Controls</h2>
+        <div class="row g-4 align-items-center">
+          <div class="col-md-6">
+            <div class="d-flex align-items-start gap-3 p-3 rounded-3" style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.06);">
+              <div class="form-check form-switch pt-1">
+                <input class="form-check-input" type="checkbox" id="quickToggleVerification" onchange="handleQuickToggle('verification')">
+              </div>
+              <div>
+                <label class="fw-bold mb-1 cursor-pointer" for="quickToggleVerification">Require Email Verification on Registration</label>
+                <p class="text-muted small mb-0">When turned ON, newly signed up users must click a verification link before full access. When OFF, accounts are immediately active.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="d-flex align-items-start gap-3 p-3 rounded-3" style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.06);">
+              <div class="form-check form-switch pt-1">
+                <input class="form-check-input" type="checkbox" id="quickToggleSmtp" onchange="handleQuickToggle('smtp')">
+              </div>
+              <div>
+                <label class="fw-bold mb-1 cursor-pointer" for="quickToggleSmtp">Enable Real SMTP Mail Delivery</label>
+                <p class="text-muted small mb-0">When turned ON, emails dispatch via configured SMTP credentials. When OFF, all links are recorded in the In-App Outbox for local testing.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 2: PRODUCTS CATALOG -->
+    <div id="sectionProducts" class="d-none">
+      <div class="admin-card">
+        <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-4">
+          <div>
+            <h2 class="h5 fw-bold mb-1">Products Catalog Management</h2>
+            <p class="text-muted small mb-0">Create, edit, feature, or remove products and clean up demo records.</p>
+          </div>
+          <div class="d-flex flex-wrap align-items-center gap-2">
+            <input type="text" id="productSearchInput" class="input-box-dark py-1 px-3" style="width: 200px;" placeholder="Search products..." oninput="handleProductSearch()">
+            <select id="productCategoryFilter" class="input-box-dark py-1 px-3" style="width: 170px;" onchange="handleProductSearch()">
+              <option value="all">All Categories</option>
+              <option value="devtools">Developer Tools</option>
+              <option value="ai">AI & ML</option>
+              <option value="fintech">FinTech</option>
+              <option value="cleanenergy">Clean Energy</option>
+              <option value="logistics">Logistics</option>
+              <option value="healthtech">HealthTech</option>
+              <option value="agritech">Agritech</option>
+              <option value="edtech">EdTech</option>
+              <option value="web3">Web3</option>
+              <option value="ecommerce">E-Commerce</option>
+              <option value="media">Media & Creative</option>
+              <option value="saas">Enterprise SaaS</option>
+            </select>
+            <button class="btn btn-sm btn-primary rounded-pill px-3 fw-bold" onclick="openProductModal()">
+              ➕ Add New Product
+            </button>
+            <button class="btn btn-sm btn-outline-danger rounded-pill px-3" onclick="confirmClearDemoProducts()" title="Remove seed/dummy demo products">
+              🧹 Clear Demo Data
+            </button>
+          </div>
+        </div>
+
+        <div class="table-responsive">
+          <table class="table table-dark-custom">
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th>Category</th>
+                <th>Maker & Location</th>
+                <th>Votes</th>
+                <th>Status Flags</th>
+                <th class="text-end">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="productsTableBody">
+              <tr>
+                <td colspan="6" class="text-center py-4 text-muted">
+                  <div class="spinner-border spinner-border-sm me-2"></div> Loading catalog...
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 3: MAKER SUBMISSIONS -->
+    <div id="sectionSubmissions" class="d-none">
+      <div class="admin-card">
+        <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-4">
+          <div>
+            <h2 class="h5 fw-bold mb-1">Maker Submissions Review Queue</h2>
+            <p class="text-muted small mb-0">Review product applications submitted by makers from the public submission wizard.</p>
+          </div>
+          <div class="d-flex gap-2">
+            <select id="submissionStatusFilter" class="input-box-dark py-1 px-3" style="width: 170px;" onchange="loadAdminSubmissions()">
+              <option value="all">All Submissions</option>
+              <option value="pending" selected>Pending Review</option>
+              <option value="approved">Approved & Live</option>
+              <option value="rejected">Rejected</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="table-responsive">
+          <table class="table table-dark-custom">
+            <thead>
+              <tr>
+                <th>Product Proposal</th>
+                <th>Category</th>
+                <th>Maker Contact</th>
+                <th>Pricing & Links</th>
+                <th>Submitted</th>
+                <th>Status</th>
+                <th class="text-end">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="submissionsTableBody">
+              <tr>
+                <td colspan="7" class="text-center py-4 text-muted">
+                  <div class="spinner-border spinner-border-sm me-2"></div> Loading submissions...
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 4: USER DIRECTORY -->
+    <div id="sectionUsers" class="d-none">
+      <div class="admin-card">
+        <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-4">
+          <div>
+            <h2 class="h5 fw-bold mb-1">Registered Users</h2>
+            <p class="text-muted small mb-0">View profiles, verification state, manual overrides, and generate reset links.</p>
+          </div>
+          <div class="d-flex gap-2">
+            <input type="text" id="userSearchInput" class="input-box-dark py-1 px-3" style="width: 220px;" placeholder="Search name or email..." oninput="handleUserSearch()">
+            <select id="userFilterSelect" class="input-box-dark py-1 px-3" style="width: 150px;" onchange="handleUserSearch()">
+              <option value="all">All Users</option>
+              <option value="verified">Verified Only</option>
+              <option value="unverified">Unverified Only</option>
+              <option value="admin">Admins Only</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="table-responsive">
+          <table class="table table-dark-custom">
+            <thead>
+              <tr>
+                <th>User / Email</th>
+                <th>Role</th>
+                <th>Status</th>
+                <th>Registered</th>
+                <th class="text-end">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="usersTableBody">
+              <tr>
+                <td colspan="5" class="text-center py-4 text-muted">
+                  <div class="spinner-border spinner-border-sm me-2"></div> Loading users...
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 3: EMAIL & SMTP SETTINGS -->
+    <div id="sectionSettings" class="d-none">
+      <div class="row g-4">
+        <!-- Main Settings Form -->
+        <div class="col-lg-7">
+          <div class="admin-card">
+            <h2 class="h5 fw-bold mb-3">SMTP & Delivery Configuration</h2>
+            <p class="text-muted small mb-4">Configure outgoing email delivery settings for account verification, password resets, and notifications.</p>
+
+            <form id="smtpSettingsForm" onsubmit="handleSaveSettings(event)">
+              
+              <div class="mb-4 p-3 rounded-3" style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.06);">
+                <div class="form-check form-switch mb-3">
+                  <input class="form-check-input" type="checkbox" id="settingRequireVerification">
+                  <label class="form-check-label fw-bold" for="settingRequireVerification">Require Email Verification on Registration</label>
+                  <div class="text-muted small">New signups will be marked as unverified until they confirm their email.</div>
+                </div>
+
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" id="settingSmtpEnabled">
+                  <label class="form-check-label fw-bold" for="settingSmtpEnabled">Enable Real SMTP Delivery</label>
+                  <div class="text-muted small">Disable to simulate emails and inspect them in the In-App Outbox.</div>
+                </div>
+              </div>
+
+              <div class="row g-3 mb-3">
+                <div class="col-md-8">
+                  <label class="form-input-label d-block mb-1" for="settingSmtpHost">SMTP Host / Server</label>
+                  <input type="text" id="settingSmtpHost" class="input-box-dark" placeholder="e.g. smtp.gmail.com or smtp.mailgun.org">
+                </div>
+                <div class="col-md-4">
+                  <label class="form-input-label d-block mb-1" for="settingSmtpPort">Port</label>
+                  <input type="number" id="settingSmtpPort" class="input-box-dark" placeholder="587 or 465">
+                </div>
+              </div>
+
+              <div class="row g-3 mb-3">
+                <div class="col-md-6">
+                  <label class="form-input-label d-block mb-1" for="settingSmtpUser">SMTP Username / Email</label>
+                  <input type="text" id="settingSmtpUser" class="input-box-dark" placeholder="apikey or user@domain.com">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-input-label d-block mb-1" for="settingSmtpPass">SMTP Password / API Key</label>
+                  <input type="password" id="settingSmtpPass" class="input-box-dark" placeholder="Enter password to update">
+                </div>
+              </div>
+
+              <div class="form-check mb-4">
+                <input class="form-check-input" type="checkbox" id="settingSmtpSecure">
+                <label class="form-check-label small" for="settingSmtpSecure">Use Direct SSL/TLS (required for port 465; leave unchecked for STARTTLS port 587)</label>
+              </div>
+
+              <hr class="border-secondary border-opacity-25 my-4">
+
+              <h3 class="h6 fw-bold mb-3">Sender Identity</h3>
+              <div class="row g-3 mb-4">
+                <div class="col-md-6">
+                  <label class="form-input-label d-block mb-1" for="settingFromEmail">From Email Address</label>
+                  <input type="email" id="settingFromEmail" class="input-box-dark" placeholder="noreply@discova.africa">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-input-label d-block mb-1" for="settingFromName">From Name</label>
+                  <input type="text" id="settingFromName" class="input-box-dark" placeholder="Discova Africa Tech">
+                </div>
+              </div>
+
+              <div class="d-flex align-items-center gap-3">
+                <button type="submit" class="btn btn-primary px-4 py-2 rounded-3 fw-bold" id="saveSettingsBtn">
+                  Save Settings
+                </button>
+                <div id="settingsSaveStatus" class="small text-success d-none fw-semibold">
+                  ✓ Settings saved successfully!
+                </div>
+              </div>
+
+            </form>
+          </div>
+        </div>
+
+        <!-- SMTP Diagnostics / Test Card -->
+        <div class="col-lg-5">
+          <div class="admin-card">
+            <h2 class="h5 fw-bold mb-3">Test SMTP Connectivity</h2>
+            <p class="text-muted small mb-3">Verify your SMTP server credentials and socket handshake before enabling live delivery.</p>
+
+            <form onsubmit="handleTestSmtp(event)">
+              <div class="mb-3">
+                <label class="form-input-label d-block mb-1" for="testTargetEmail">Recipient for Test Message</label>
+                <input type="email" id="testTargetEmail" class="input-box-dark" placeholder="admin@discova.africa" required>
+              </div>
+              <button type="submit" class="btn btn-outline-warning w-100 py-2 rounded-3 fw-bold mb-3" id="testSmtpBtn">
+                ⚡ Send Test Email & Diagnose Handshake
+              </button>
+            </form>
+
+            <div id="testResultBox" class="d-none">
+              <div id="testResultHeader" class="p-3 rounded-3 mb-3 fw-bold small"></div>
+              <div class="small fw-bold mb-1 text-muted">Socket Diagnostic Logs:</div>
+              <pre id="testLogsOutput" class="p-3 rounded-3 small" style="background: rgba(0, 0, 0, 0.4); max-height: 220px; overflow-y: auto; color: #93C5FD; font-family: monospace; font-size: 0.75rem; border: 1px solid rgba(255, 255, 255, 0.08);"></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 4: IN-APP OUTBOX & EMAIL LOGS -->
+    <div id="sectionEmails" class="d-none">
+      <div class="admin-card">
+        <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-4">
+          <div>
+            <h2 class="h5 fw-bold mb-1">In-App Email Outbox & Audit Logs</h2>
+            <p class="text-muted small mb-0">Review dispatched emails, simulated test links, and delivery status.</p>
+          </div>
+          <div class="d-flex gap-2">
+            <select id="emailStatusFilter" class="input-box-dark py-1 px-3" style="width: 160px;" onchange="loadEmailLogs()">
+              <option value="all">All Statuses</option>
+              <option value="simulated">Simulated Only</option>
+              <option value="sent">Sent via SMTP</option>
+              <option value="failed">Failed Delivery</option>
+            </select>
+            <button class="btn btn-sm btn-outline-secondary rounded-pill px-3" onclick="loadEmailLogs()">
+              Refresh Logs
+            </button>
+          </div>
+        </div>
+
+        <div class="table-responsive">
+          <table class="table table-dark-custom">
+            <thead>
+              <tr>
+                <th>Recipient</th>
+                <th>Subject</th>
+                <th>Type</th>
+                <th>Status</th>
+                <th>Sent At</th>
+                <th class="text-end">Action Link</th>
+              </tr>
+            </thead>
+            <tbody id="emailsTableBody">
+              <tr>
+                <td colspan="6" class="text-center py-4 text-muted">Loading email logs...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Manual Reset Link Modal -->
+  <div class="modal fade" id="resetLinkModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" style="max-width: 500px;">
+      <div class="modal-content" style="background: #0F172A; border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 20px; color: #FFFFFF;">
+        <div class="modal-header border-0 pb-0">
+          <h5 class="modal-title fw-bold">Password Reset Link Generated</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body pt-2">
+          <p class="text-muted small mb-3">
+            A password reset token has been generated for <strong id="resetModalEmail">—</strong>. You can copy this link and share it directly with the user:
+          </p>
+          <div class="input-group mb-3">
+            <input type="text" id="resetModalUrlInput" class="form-control input-box-dark font-monospace small" readonly>
+            <button class="btn btn-primary" type="button" onclick="copyResetUrl()">
+              Copy Link
+            </button>
+          </div>
+          <div class="d-flex justify-content-between align-items-center">
+            <a href="#" id="resetModalDirectLink" target="_blank" class="small text-primary text-decoration-none">
+              Open link in new tab ↗
+            </a>
+            <button type="button" class="btn btn-sm btn-secondary rounded-pill px-3" data-bs-dismiss="modal">
+              Done
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Product Create / Edit Modal -->
+  <div class="modal fade" id="productModal" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content" style="background: #0F172A; border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 20px;">
+        <div class="modal-header border-bottom border-secondary border-opacity-15 px-4 py-3">
+          <h5 class="modal-title fw-bold" id="productModalLabel">Add New Product</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form id="productForm" onsubmit="handleSaveProduct(event)">
+          <input type="hidden" id="prodEditId">
+          <div class="modal-body px-4 py-3">
+            <div id="productModalAlert" class="alert d-none mb-3" style="border-radius: 12px; font-size: 0.85rem;"></div>
+
+            <div class="row g-3 mb-3">
+              <div class="col-md-7">
+                <label class="form-input-label d-block mb-1" for="prodName">Product Name *</label>
+                <input type="text" id="prodName" class="input-box-dark" placeholder="e.g. Paystack, YarnGPT" required oninput="handleAutoSlug()">
+              </div>
+              <div class="col-md-5">
+                <label class="form-input-label d-block mb-1" for="prodSlug">URL Slug</label>
+                <input type="text" id="prodSlug" class="input-box-dark" placeholder="e.g. paystack">
+              </div>
+            </div>
+
+            <div class="row g-3 mb-3">
+              <div class="col-md-6">
+                <label class="form-input-label d-block mb-1" for="prodCategory">Category *</label>
+                <select id="prodCategory" class="input-box-dark" required>
+                  <option value="devtools">Developer Tools</option>
+                  <option value="ai">AI & Machine Learning</option>
+                  <option value="fintech">Fintech & Banking</option>
+                  <option value="cleanenergy">Clean Energy & Climate</option>
+                  <option value="logistics">Logistics & Delivery</option>
+                  <option value="healthtech">HealthTech & Biotech</option>
+                  <option value="agritech">Agritech & Food</option>
+                  <option value="edtech">EdTech & Upskilling</option>
+                  <option value="web3">Web3 & Crypto</option>
+                  <option value="ecommerce">E-Commerce & Retail</option>
+                  <option value="media">Media & Entertainment</option>
+                  <option value="saas">Enterprise SaaS</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label class="form-input-label d-block mb-1" for="prodPricing">Pricing Model</label>
+                <select id="prodPricing" class="input-box-dark">
+                  <option value="Free & Open Source">Free & Open Source</option>
+                  <option value="Freemium">Freemium</option>
+                  <option value="Subscription">Subscription</option>
+                  <option value="Usage-based">Usage-based</option>
+                  <option value="Free Trial">Free Trial</option>
+                  <option value="Contact for Pricing">Contact for Pricing</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-input-label d-block mb-1" for="prodTagline">Short Tagline *</label>
+              <input type="text" id="prodTagline" class="input-box-dark" placeholder="A concise 1-sentence value proposition" required>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-input-label d-block mb-1" for="prodDescription">Full Description</label>
+              <textarea id="prodDescription" class="input-box-dark" rows="3" placeholder="Explain what problem this solution solves, target users, and key features."></textarea>
+            </div>
+
+            <div class="row g-3 mb-3">
+              <div class="col-md-6">
+                <label class="form-input-label d-block mb-1" for="prodCity">City</label>
+                <input type="text" id="prodCity" class="input-box-dark" placeholder="e.g. Lagos, Nairobi, Cape Town, Accra">
+              </div>
+              <div class="col-md-6">
+                <label class="form-input-label d-block mb-1" for="prodCountry">Country</label>
+                <input type="text" id="prodCountry" class="input-box-dark" placeholder="e.g. Nigeria, Kenya, South Africa, Ghana">
+              </div>
+            </div>
+
+            <div class="row g-3 mb-3">
+              <div class="col-md-6">
+                <label class="form-input-label d-block mb-1" for="prodMakerName">Maker / Founder Name</label>
+                <input type="text" id="prodMakerName" class="input-box-dark" placeholder="e.g. Shola Akinlade">
+              </div>
+              <div class="col-md-6">
+                <label class="form-input-label d-block mb-1" for="prodMakerRole">Maker Role</label>
+                <input type="text" id="prodMakerRole" class="input-box-dark" placeholder="e.g. Co-Founder & CEO">
+              </div>
+            </div>
+
+            <div class="row g-3 mb-3">
+              <div class="col-md-4">
+                <label class="form-input-label d-block mb-1" for="prodWebsite">Website URL</label>
+                <input type="url" id="prodWebsite" class="input-box-dark" placeholder="https://...">
+              </div>
+              <div class="col-md-4">
+                <label class="form-input-label d-block mb-1" for="prodGithub">GitHub URL</label>
+                <input type="url" id="prodGithub" class="input-box-dark" placeholder="https://github.com/...">
+              </div>
+              <div class="col-md-4">
+                <label class="form-input-label d-block mb-1" for="prodTwitter">Twitter / X URL</label>
+                <input type="url" id="prodTwitter" class="input-box-dark" placeholder="https://twitter.com/...">
+              </div>
+            </div>
+
+            <div class="row g-3 mb-2 pt-2 border-top border-secondary border-opacity-10">
+              <div class="col-md-4">
+                <label class="form-input-label d-block mb-1" for="prodVotes">Initial Votes</label>
+                <input type="number" id="prodVotes" class="input-box-dark" value="1" min="0">
+              </div>
+              <div class="col-md-4 d-flex align-items-center pt-3">
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" id="prodFeatured">
+                  <label class="form-check-label fw-bold cursor-pointer" for="prodFeatured">Featured Solution</label>
+                </div>
+              </div>
+              <div class="col-md-4 d-flex align-items-center pt-3">
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" id="prodTrending" checked>
+                  <label class="form-check-label fw-bold cursor-pointer" for="prodTrending">Trending on Home</label>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="modal-footer border-top border-secondary border-opacity-15 px-4 py-3">
+            <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill px-4" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn btn-sm btn-primary rounded-pill px-4 fw-bold" id="btnSaveProduct">Save Product</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap 5.3 Bundle JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Custom Scripts -->
+  <script src="js/api.js"></script>
+  <script src="js/main.js"></script>
+
+  <!-- Admin Portal JavaScript -->
+  <script>
+    let currentAdminUser = null;
+
+    // Switch between Admin Sections
+    function switchAdminTab(tab) {
+      const tabs = ['overview', 'products', 'submissions', 'users', 'settings', 'emails'];
+      tabs.forEach(t => {
+        const btn = document.getElementById(`tab${t.charAt(0).toUpperCase() + t.slice(1)}Btn`);
+        const section = document.getElementById(`section${t.charAt(0).toUpperCase() + t.slice(1)}`);
+        if (btn) btn.classList.toggle('active', t === tab);
+        if (section) section.classList.toggle('d-none', t !== tab);
+      });
+
+      if (tab === 'overview') loadOverviewStats();
+      if (tab === 'products') loadAdminProducts();
+      if (tab === 'submissions') loadAdminSubmissions();
+      if (tab === 'users') loadUsers();
+      if (tab === 'settings') loadSettings();
+      if (tab === 'emails') loadEmailLogs();
+    }
+
+    // Verify Admin Authorization on Load
+    async function checkAdminAuth() {
+      const user = DiscovaAPI.getCurrentUser();
+      if (!user || !user.is_admin) {
+        document.getElementById('adminAuthBarrier').classList.remove('d-none');
+        document.getElementById('adminMainPortal').classList.add('d-none');
+        document.getElementById('adminUserPill').classList.add('d-none');
+        return;
+      }
+
+      currentAdminUser = user;
+      document.getElementById('adminAuthBarrier').classList.add('d-none');
+      document.getElementById('adminMainPortal').classList.remove('d-none');
+      document.getElementById('adminUserPill').classList.remove('d-none');
+      document.getElementById('adminNameDisplay').textContent = user.name || 'Platform Admin';
+
+      // Load initial overview metrics
+      loadOverviewStats();
+    }
+
+    // Handle Admin Sign In
+    async function handleAdminLogin(e) {
+      e.preventDefault();
+      const email = document.getElementById('adminEmailInput').value.trim();
+      const password = document.getElementById('adminPasswordInput').value;
+      const btn = document.getElementById('adminLoginBtn');
+      const alertEl = document.getElementById('adminLoginAlert');
+
+      btn.disabled = true;
+      btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Authenticating...';
+      alertEl.className = 'alert d-none mb-3 text-start';
+
+      try {
+        const res = await DiscovaAPI.login({ email, password });
+        if (res.success && res.user && res.user.is_admin) {
+          window.location.reload();
+        } else if (res.success && (!res.user || !res.user.is_admin)) {
+          alertEl.className = 'alert alert-danger mb-3 text-start';
+          alertEl.textContent = 'Account authenticated, but does not possess Platform Administrator permissions.';
+          alertEl.classList.remove('d-none');
+          btn.disabled = false;
+          btn.textContent = 'Unlock Admin Portal';
+        } else {
+          alertEl.className = 'alert alert-danger mb-3 text-start';
+          alertEl.textContent = res.error || 'Invalid administrator credentials.';
+          alertEl.classList.remove('d-none');
+          btn.disabled = false;
+          btn.textContent = 'Unlock Admin Portal';
+        }
+      } catch (err) {
+        alertEl.className = 'alert alert-danger mb-3 text-start';
+        alertEl.textContent = 'Network error while attempting to sign in.';
+        alertEl.classList.remove('d-none');
+        btn.disabled = false;
+        btn.textContent = 'Unlock Admin Portal';
+      }
+    }
+
+    function handleAdminSignOut() {
+      DiscovaAPI.logout();
+    }
+
+    // Refresh All Data
+    function refreshAdminData() {
+      loadOverviewStats();
+      loadAdminProducts();
+      loadAdminSubmissions();
+      loadUsers();
+      loadSettings();
+      loadEmailLogs();
+    }
+
+    // 1. Load Overview Stats
+    async function loadOverviewStats() {
+      try {
+        const res = await DiscovaAPI.admin.getStats();
+        if (res.success && res.stats) {
+          const s = res.stats;
+          document.getElementById('statTotalUsers').textContent = s.totalUsers;
+          document.getElementById('statAdminCount').textContent = `${s.unverifiedUsers} unverified, ${s.verifiedUsers} verified`;
+          
+          const verifiedPct = s.totalUsers > 0 ? Math.round((s.verifiedUsers / s.totalUsers) * 100) : 100;
+          document.getElementById('statVerifiedPercent').textContent = `${verifiedPct}%`;
+          document.getElementById('statVerifiedCount').textContent = `${s.verifiedUsers} of ${s.totalUsers} accounts`;
+
+          document.getElementById('statVerifyRule').textContent = s.requireEmailVerification ? 'ON' : 'OFF';
+          document.getElementById('statVerifyRule').className = `h3 fw-bold mb-1 ${s.requireEmailVerification ? 'text-warning' : 'text-muted'}`;
+          document.getElementById('statVerifyRuleDesc').textContent = s.requireEmailVerification ? 'Mandatory confirmation' : 'Auto-verified on signup';
+
+          document.getElementById('statSmtpMode').textContent = s.smtpEnabled ? 'LIVE SMTP' : 'IN-APP';
+          document.getElementById('statSmtpMode').className = `h3 fw-bold mb-1 ${s.smtpEnabled ? 'text-success' : 'text-primary'}`;
+          document.getElementById('statTotalEmails').textContent = `${s.totalEmails} audit logs recorded`;
+
+          if (document.getElementById('statTotalProducts')) {
+            document.getElementById('statTotalProducts').textContent = s.totalProducts || 0;
+          }
+          if (document.getElementById('statFeaturedProducts')) {
+            document.getElementById('statFeaturedProducts').textContent = `${s.featuredProducts || 0} featured solutions`;
+          }
+          if (document.getElementById('statPendingSubmissions')) {
+            document.getElementById('statPendingSubmissions').textContent = s.pendingSubmissions || 0;
+          }
+          if (document.getElementById('badgeProductsCount')) {
+            document.getElementById('badgeProductsCount').textContent = s.totalProducts || 0;
+          }
+          const pendingBadge = document.getElementById('badgePendingSubmissions');
+          if (pendingBadge) {
+            if (s.pendingSubmissions > 0) {
+              pendingBadge.textContent = s.pendingSubmissions;
+              pendingBadge.classList.remove('d-none');
+            } else {
+              pendingBadge.classList.add('d-none');
+            }
+          }
+
+          // Quick toggles
+          const qv = document.getElementById('quickToggleVerification');
+          if (qv) qv.checked = s.requireEmailVerification;
+          const qs = document.getElementById('quickToggleSmtp');
+          if (qs) qs.checked = s.smtpEnabled;
+        }
+      } catch (err) {
+        console.error('Failed to load overview metrics:', err);
+      }
+    }
+
+    // Handle Quick Toggle from Overview
+    async function handleQuickToggle(type) {
+      if (type === 'verification') {
+        const val = document.getElementById('quickToggleVerification').checked;
+        await DiscovaAPI.admin.updateSettings({ require_email_verification: val });
+      } else if (type === 'smtp') {
+        const val = document.getElementById('quickToggleSmtp').checked;
+        await DiscovaAPI.admin.updateSettings({ smtp_enabled: val });
+      }
+      loadOverviewStats();
+    }
+
+    // ==========================================
+    // 2. PRODUCTS CATALOG CONTROLLER
+    // ==========================================
+    let currentAdminProductsList = [];
+
+    async function loadAdminProducts() {
+      const search = document.getElementById('productSearchInput')?.value || '';
+      const category = document.getElementById('productCategoryFilter')?.value || 'all';
+      const tbody = document.getElementById('productsTableBody');
+      if (!tbody) return;
+
+      tbody.innerHTML = '<tr><td colspan="6" class="text-center py-4 text-muted"><div class="spinner-border spinner-border-sm me-2"></div> Loading products catalog...</td></tr>';
+
+      try {
+        const res = await DiscovaAPI.admin.getProducts({ search, category });
+        if (res.success && res.products) {
+          currentAdminProductsList = res.products;
+          renderProductsTable(res.products);
+          const badge = document.getElementById('badgeProductsCount');
+          if (badge) badge.textContent = res.products.length;
+        } else {
+          tbody.innerHTML = '<tr><td colspan="6" class="text-center py-4 text-danger">Failed to load products.</td></tr>';
+        }
+      } catch (err) {
+        tbody.innerHTML = `<tr><td colspan="6" class="text-center py-4 text-danger">Error: ${err.message}</td></tr>`;
+      }
+    }
+
+    function renderProductsTable(products) {
+      const tbody = document.getElementById('productsTableBody');
+      if (!tbody) return;
+
+      if (!products || products.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="6" class="text-center py-5 text-muted">
+              <div class="fs-2 mb-2">🛍️</div>
+              <p class="mb-2 fw-semibold">No products found in catalog.</p>
+              <button class="btn btn-sm btn-primary rounded-pill px-3" onclick="openProductModal()">
+                ➕ Add Your First Product
+              </button>
+            </td>
+          </tr>
+        `;
+        return;
+      }
+
+      tbody.innerHTML = products.map(p => {
+        const catColor = p.category_color || '#3B82F6';
+        const catIcon = p.category_icon || '🚀';
+        const catName = p.category_name || p.category_id;
+        const bannerClass = p.banner_class || 'banner-default';
+        const isFeatured = p.is_featured === 1;
+        const isTrending = p.is_trending === 1;
+
+        return `
+          <tr data-product-id="${p.id}">
+            <td>
+              <div class="d-flex align-items-center gap-3">
+                <div class="launch-card-banner-mini ${bannerClass}" style="width: 40px; height: 40px; min-width: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.85rem;">
+                  ${p.name.substring(0, 2).toUpperCase()}
+                </div>
+                <div>
+                  <div class="fw-bold small text-body">${p.name}</div>
+                  <div class="text-muted text-truncate" style="font-size: 0.75rem; max-width: 260px;">${p.tagline || ''}</div>
+                  <a href="product-details.html?id=${p.slug}" target="_blank" class="small text-decoration-none" style="font-size: 0.7rem; color: #3B82F6;">
+                    /${p.slug} ↗
+                  </a>
+                </div>
+              </div>
+            </td>
+            <td>
+              <span class="badge rounded-pill px-2 py-1" style="background: ${catColor}20; color: ${catColor}; border: 1px solid ${catColor}40; font-size: 0.72rem;">
+                ${catIcon} ${catName}
+              </span>
+            </td>
+            <td>
+              <div class="small fw-semibold text-body">${p.maker_name || 'Maker'}</div>
+              <div class="text-muted" style="font-size: 0.75rem;">${[p.city, p.country].filter(Boolean).join(', ') || 'Africa'}</div>
+            </td>
+            <td>
+              <span class="badge bg-secondary bg-opacity-20 text-body font-monospace px-2 py-1">
+                ▲ ${p.votes_count || 0}
+              </span>
+            </td>
+            <td>
+              <div class="d-flex flex-column gap-1">
+                <button type="button" class="btn btn-sm py-0 px-2 rounded-pill ${isFeatured ? 'btn-success' : 'btn-outline-secondary'}" style="font-size: 0.68rem;" onclick="handleToggleFeatured(${p.id})">
+                  ${isFeatured ? '★ Featured' : '☆ Standard'}
+                </button>
+                <button type="button" class="btn btn-sm py-0 px-2 rounded-pill ${isTrending ? 'btn-primary' : 'btn-outline-secondary'}" style="font-size: 0.68rem;" onclick="handleToggleTrending(${p.id})">
+                  ${isTrending ? '🔥 Trending' : 'Normal'}
+                </button>
+              </div>
+            </td>
+            <td class="text-end">
+              <div class="btn-group btn-group-sm">
+                <button class="btn btn-outline-primary" onclick="openProductModal(${p.id})" title="Edit product details">
+                  Edit
+                </button>
+                <button class="btn btn-outline-danger" onclick="handleDeleteProduct(${p.id}, '${p.name.replace(/'/g, "\\'")}')" title="Delete product">
+                  Delete
+                </button>
+              </div>
+            </td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    function handleProductSearch() {
+      const search = (document.getElementById('productSearchInput')?.value || '').toLowerCase().trim();
+      const cat = document.getElementById('productCategoryFilter')?.value || 'all';
+
+      const filtered = currentAdminProductsList.filter(p => {
+        const matchesSearch = !search ||
+          p.name.toLowerCase().includes(search) ||
+          (p.tagline && p.tagline.toLowerCase().includes(search)) ||
+          (p.maker_name && p.maker_name.toLowerCase().includes(search));
+        const matchesCat = cat === 'all' || p.category_id === cat;
+        return matchesSearch && matchesCat;
+      });
+
+      renderProductsTable(filtered);
+    }
+
+    function handleAutoSlug() {
+      const editId = document.getElementById('prodEditId').value;
+      if (!editId) {
+        const nameVal = document.getElementById('prodName').value;
+        const slugVal = nameVal.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+        document.getElementById('prodSlug').value = slugVal;
+      }
+    }
+
+    async function openProductModal(productId = null) {
+      const form = document.getElementById('productForm');
+      form.reset();
+      document.getElementById('productModalAlert').className = 'alert d-none mb-3';
+      document.getElementById('prodEditId').value = productId || '';
+
+      const modalLabel = document.getElementById('productModalLabel');
+      const saveBtn = document.getElementById('btnSaveProduct');
+
+      if (productId) {
+        modalLabel.textContent = 'Edit Product Details';
+        saveBtn.textContent = 'Update Product';
+
+        try {
+          const res = await DiscovaAPI.admin.getProduct(productId);
+          if (res.success && res.product) {
+            const p = res.product;
+            document.getElementById('prodName').value = p.name || '';
+            document.getElementById('prodSlug').value = p.slug || '';
+            document.getElementById('prodCategory').value = p.category_id || 'devtools';
+            document.getElementById('prodPricing').value = p.pricing_type || 'Free & Open Source';
+            document.getElementById('prodTagline').value = p.tagline || '';
+            document.getElementById('prodDescription').value = p.description || '';
+            document.getElementById('prodCity').value = p.city || '';
+            document.getElementById('prodCountry').value = p.country || '';
+            document.getElementById('prodMakerName').value = p.maker_name || '';
+            document.getElementById('prodMakerRole').value = p.maker_role || '';
+            document.getElementById('prodWebsite').value = p.website_url || '';
+            document.getElementById('prodGithub').value = p.github_url || '';
+            document.getElementById('prodTwitter').value = p.twitter_url || '';
+            document.getElementById('prodVotes').value = p.votes_count || 1;
+            document.getElementById('prodFeatured').checked = p.is_featured === 1;
+            document.getElementById('prodTrending').checked = p.is_trending === 1;
+          }
+        } catch (e) {
+          console.error(e);
+        }
+      } else {
+        modalLabel.textContent = 'Add New Product to Catalog';
+        saveBtn.textContent = 'Create Product';
+        document.getElementById('prodVotes').value = '1';
+        document.getElementById('prodTrending').checked = true;
+      }
+
+      const modal = new bootstrap.Modal(document.getElementById('productModal'));
+      modal.show();
+    }
+
+    async function handleSaveProduct(e) {
+      e.preventDefault();
+      const saveBtn = document.getElementById('btnSaveProduct');
+      const alertEl = document.getElementById('productModalAlert');
+      const editId = document.getElementById('prodEditId').value;
+
+      const data = {
+        name: document.getElementById('prodName').value.trim(),
+        slug: document.getElementById('prodSlug').value.trim(),
+        category_id: document.getElementById('prodCategory').value,
+        pricing_type: document.getElementById('prodPricing').value,
+        tagline: document.getElementById('prodTagline').value.trim(),
+        description: document.getElementById('prodDescription').value.trim(),
+        city: document.getElementById('prodCity').value.trim(),
+        country: document.getElementById('prodCountry').value.trim(),
+        maker_name: document.getElementById('prodMakerName').value.trim(),
+        maker_role: document.getElementById('prodMakerRole').value.trim(),
+        website_url: document.getElementById('prodWebsite').value.trim(),
+        github_url: document.getElementById('prodGithub').value.trim(),
+        twitter_url: document.getElementById('prodTwitter').value.trim(),
+        votes_count: parseInt(document.getElementById('prodVotes').value, 10) || 1,
+        is_featured: document.getElementById('prodFeatured').checked,
+        is_trending: document.getElementById('prodTrending').checked
+      };
+
+      saveBtn.disabled = true;
+      saveBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Saving...';
+      alertEl.className = 'alert d-none mb-3';
+
+      try {
+        let res;
+        if (editId) {
+          res = await DiscovaAPI.admin.updateProduct(editId, data);
+        } else {
+          res = await DiscovaAPI.admin.createProduct(data);
+        }
+
+        if (res.success) {
+          const modalEl = document.getElementById('productModal');
+          const modal = bootstrap.Modal.getInstance(modalEl);
+          if (modal) modal.hide();
+          loadAdminProducts();
+          loadOverviewStats();
+        } else {
+          alertEl.className = 'alert alert-danger mb-3';
+          alertEl.textContent = res.error || 'Failed to save product.';
+        }
+      } catch (err) {
+        alertEl.className = 'alert alert-danger mb-3';
+        alertEl.textContent = err.message || 'Network error.';
+      } finally {
+        saveBtn.disabled = false;
+        saveBtn.textContent = editId ? 'Update Product' : 'Create Product';
+      }
+    }
+
+    async function handleToggleFeatured(productId) {
+      try {
+        const res = await DiscovaAPI.admin.toggleFeaturedProduct(productId);
+        if (res.success) {
+          loadAdminProducts();
+          loadOverviewStats();
+        }
+      } catch (e) {
+        console.error(e);
+      }
+    }
+
+    async function handleToggleTrending(productId) {
+      try {
+        const res = await DiscovaAPI.admin.toggleTrendingProduct(productId);
+        if (res.success) {
+          loadAdminProducts();
+        }
+      } catch (e) {
+        console.error(e);
+      }
+    }
+
+    async function handleDeleteProduct(productId, productName) {
+      if (!confirm(`Are you sure you want to permanently delete "${productName}" from the catalog? This will remove all associated votes and launch records.`)) {
+        return;
+      }
+
+      try {
+        const res = await DiscovaAPI.admin.deleteProduct(productId);
+        if (res.success) {
+          loadAdminProducts();
+          loadOverviewStats();
+        } else {
+          alert(res.error || 'Failed to delete product.');
+        }
+      } catch (e) {
+        alert(e.message || 'Error deleting product.');
+      }
+    }
+
+    async function confirmClearDemoProducts() {
+      if (!confirm('⚠️ WARNING: This will permanently delete all demo/seed products, launches, and votes from the database.\\n\\nCategories and Users will remain safe.\\n\\nAre you sure you want to proceed with a clean catalog?')) {
+        return;
+      }
+
+      try {
+        const res = await DiscovaAPI.admin.clearDemoProducts();
+        if (res.success) {
+          alert(res.message);
+          loadAdminProducts();
+          loadOverviewStats();
+        } else {
+          alert(res.error || 'Failed to clear demo data.');
+        }
+      } catch (e) {
+        alert(e.message || 'Error clearing demo data.');
+      }
+    }
+
+    // ==========================================
+    // 3. MAKER SUBMISSIONS CONTROLLER
+    // ==========================================
+    async function loadAdminSubmissions() {
+      const status = document.getElementById('submissionStatusFilter')?.value || 'all';
+      const tbody = document.getElementById('submissionsTableBody');
+      if (!tbody) return;
+
+      tbody.innerHTML = '<tr><td colspan="7" class="text-center py-4 text-muted"><div class="spinner-border spinner-border-sm me-2"></div> Loading maker submissions...</td></tr>';
+
+      try {
+        const res = await DiscovaAPI.admin.getSubmissions({ status });
+        if (res.success && res.submissions) {
+          renderSubmissionsTable(res.submissions);
+        } else {
+          tbody.innerHTML = '<tr><td colspan="7" class="text-center py-4 text-danger">Failed to load submissions.</td></tr>';
+        }
+      } catch (err) {
+        tbody.innerHTML = `<tr><td colspan="7" class="text-center py-4 text-danger">Error: ${err.message}</td></tr>`;
+      }
+    }
+
+    function renderSubmissionsTable(submissions) {
+      const tbody = document.getElementById('submissionsTableBody');
+      if (!tbody) return;
+
+      if (!submissions || submissions.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="7" class="text-center py-5 text-muted"><div class="fs-2 mb-2">📥</div>No maker submissions matching this status.</td></tr>';
+        return;
+      }
+
+      tbody.innerHTML = submissions.map(s => {
+        let statusBadge = '';
+        if (s.status === 'approved') {
+          statusBadge = '<span class="badge bg-success bg-opacity-15 text-success border border-success border-opacity-25 px-2 py-1 rounded-pill">✓ Approved</span>';
+        } else if (s.status === 'rejected') {
+          statusBadge = '<span class="badge bg-danger bg-opacity-15 text-danger border border-danger border-opacity-25 px-2 py-1 rounded-pill">✕ Rejected</span>';
+        } else {
+          statusBadge = '<span class="badge bg-warning bg-opacity-15 text-warning border border-warning border-opacity-25 px-2 py-1 rounded-pill">⏳ Pending</span>';
+        }
+
+        const isPending = s.status === 'pending';
+
+        return `
+          <tr>
+            <td>
+              <div class="fw-bold small text-body">${s.product_name}</div>
+              <div class="text-muted text-truncate" style="font-size: 0.75rem; max-width: 240px;">${s.tagline}</div>
+            </td>
+            <td><span class="badge bg-secondary bg-opacity-25 text-body">${s.category}</span></td>
+            <td>
+              <div class="small fw-semibold text-body">${s.maker_name}</div>
+              <div class="text-muted" style="font-size: 0.75rem;">${s.maker_email}</div>
+            </td>
+            <td>
+              <div class="small text-muted">${s.pricing_type || 'Free'}</div>
+              ${s.website_url ? `<a href="${s.website_url}" target="_blank" class="small text-decoration-none" style="font-size: 0.7rem; color: #3B82F6;">Website ↗</a>` : ''}
+            </td>
+            <td><span class="small text-muted text-nowrap">${s.created_at || '—'}</span></td>
+            <td>${statusBadge}</td>
+            <td class="text-end">
+              <div class="btn-group btn-group-sm">
+                ${isPending ? `
+                  <button class="btn btn-success" onclick="handleApproveSubmission(${s.id}, '${s.product_name.replace(/'/g, "\\'")}')" title="Approve & Publish live">
+                    Approve
+                  </button>
+                  <button class="btn btn-outline-warning" onclick="handleRejectSubmission(${s.id}, '${s.product_name.replace(/'/g, "\\'")}')" title="Reject submission">
+                    Reject
+                  </button>
+                ` : ''}
+                <button class="btn btn-outline-danger" onclick="handleDeleteSubmission(${s.id})" title="Delete record">
+                  Delete
+                </button>
+              </div>
+            </td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    async function handleApproveSubmission(id, name) {
+      if (!confirm(`Approve "${name}" and publish immediately to the live leaderboard and directory?`)) {
+        return;
+      }
+
+      try {
+        const res = await DiscovaAPI.admin.approveSubmission(id);
+        if (res.success) {
+          alert(`🎉 "${name}" has been approved and published to the live platform!`);
+          loadAdminSubmissions();
+          loadAdminProducts();
+          loadOverviewStats();
+        } else {
+          alert(res.error || 'Failed to approve submission.');
+        }
+      } catch (e) {
+        alert(e.message || 'Error approving submission.');
+      }
+    }
+
+    async function handleRejectSubmission(id, name) {
+      if (!confirm(`Reject submission for "${name}"?`)) {
+        return;
+      }
+
+      try {
+        const res = await DiscovaAPI.admin.rejectSubmission(id);
+        if (res.success) {
+          loadAdminSubmissions();
+          loadOverviewStats();
+        } else {
+          alert(res.error || 'Failed to reject submission.');
+        }
+      } catch (e) {
+        alert(e.message || 'Error rejecting submission.');
+      }
+    }
+
+    async function handleDeleteSubmission(id) {
+      if (!confirm('Permanently delete this submission record?')) {
+        return;
+      }
+
+      try {
+        const res = await DiscovaAPI.admin.deleteSubmission(id);
+        if (res.success) {
+          loadAdminSubmissions();
+          loadOverviewStats();
+        } else {
+          alert(res.error || 'Failed to delete submission.');
+        }
+      } catch (e) {
+        alert(e.message || 'Error deleting submission.');
+      }
+    }
+
+    // 2. Load Users Table
+    async function loadUsers() {
+      const search = document.getElementById('userSearchInput')?.value || '';
+      const filter = document.getElementById('userFilterSelect')?.value || 'all';
+      const tbody = document.getElementById('usersTableBody');
+
+      try {
+        const res = await DiscovaAPI.admin.getUsers({ search, filter });
+        if (res.success && res.users) {
+          if (res.users.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="5" class="text-center py-4 text-muted">No users found matching search criteria.</td></tr>';
+            return;
+          }
+
+          tbody.innerHTML = res.users.map(u => {
+            const isVerified = u.is_verified;
+            const isAdmin = u.is_admin;
+            const badge = isVerified 
+              ? '<span class="badge bg-success bg-opacity-15 text-success border border-success border-opacity-25 px-2 py-1 rounded-pill">✓ Verified</span>'
+              : '<span class="badge bg-warning bg-opacity-15 text-warning border border-warning border-opacity-25 px-2 py-1 rounded-pill">⏳ Unverified</span>';
+            const adminBadge = isAdmin ? '<span class="badge bg-danger bg-opacity-15 text-danger ms-1">Admin</span>' : '';
+            const avatar = u.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(u.name)}&background=4F46E5&color=fff&size=64`;
+
+            return `
+              <tr>
+                <td>
+                  <div class="d-flex align-items-center gap-2">
+                    <img src="${avatar}" class="rounded-circle" width="32" height="32" style="object-fit: cover;" alt="${u.name}">
+                    <div>
+                      <div class="fw-bold small text-body">${u.name} ${adminBadge}</div>
+                      <div class="text-muted" style="font-size: 0.75rem;">${u.email}</div>
+                    </div>
+                  </div>
+                </td>
+                <td><span class="small text-muted">${u.role || 'Builder'}</span></td>
+                <td>${badge}</td>
+                <td><span class="small text-muted">${u.created_at || '—'}</span></td>
+                <td class="text-end">
+                  <div class="btn-group btn-group-sm">
+                    <button class="btn btn-outline-secondary" onclick="toggleUserVerify(${u.id})" title="Toggle verification status">
+                      ${isVerified ? 'Mark Unverified' : 'Mark Verified'}
+                    </button>
+                    <button class="btn btn-outline-primary" onclick="generateUserResetLink(${u.id}, '${u.email}')" title="Generate password reset link">
+                      Reset Link
+                    </button>
+                    ${!isAdmin ? `
+                      <button class="btn btn-outline-danger" onclick="deleteUser(${u.id}, '${u.email}')" title="Delete user">
+                        ✕
+                      </button>
+                    ` : ''}
+                  </div>
+                </td>
+              </tr>
+            `;
+          }).join('');
+        }
+      } catch (err) {
+        tbody.innerHTML = '<tr><td colspan="5" class="text-center py-4 text-danger">Failed to load user directory.</td></tr>';
+      }
+    }
+
+    let searchTimeout = null;
+    function handleUserSearch() {
+      clearTimeout(searchTimeout);
+      searchTimeout = setTimeout(loadUsers, 300);
+    }
+
+    async function toggleUserVerify(userId) {
+      try {
+        const res = await DiscovaAPI.admin.toggleUserVerify(userId);
+        if (res.success) {
+          loadUsers();
+          loadOverviewStats();
+        }
+      } catch (err) {
+        alert('Failed to update verification state');
+      }
+    }
+
+    async function generateUserResetLink(userId, email) {
+      try {
+        const res = await DiscovaAPI.admin.generateResetLink(userId);
+        if (res.success && res.resetUrl) {
+          document.getElementById('resetModalEmail').textContent = email;
+          document.getElementById('resetModalUrlInput').value = res.resetUrl;
+          document.getElementById('resetModalDirectLink').href = res.resetUrl;
+          const modal = bootstrap.Modal.getOrCreateInstance(document.getElementById('resetLinkModal'));
+          modal.show();
+        }
+      } catch (err) {
+        alert('Failed to generate reset link');
+      }
+    }
+
+    function copyResetUrl() {
+      const input = document.getElementById('resetModalUrlInput');
+      input.select();
+      navigator.clipboard.writeText(input.value);
+      alert('Password reset link copied to clipboard!');
+    }
+
+    async function deleteUser(userId, email) {
+      if (!confirm(`Are you sure you want to permanently delete user account ${email}?`)) return;
+      try {
+        const res = await DiscovaAPI.admin.deleteUser(userId);
+        if (res.success) {
+          loadUsers();
+          loadOverviewStats();
+        } else {
+          alert(res.error || 'Failed to delete user');
+        }
+      } catch (err) {
+        alert('Network error while deleting user');
+      }
+    }
+
+    // 3. Load Settings Form
+    async function loadSettings() {
+      try {
+        const res = await DiscovaAPI.admin.getSettings();
+        if (res.success && res.settings) {
+          const s = res.settings;
+          document.getElementById('settingRequireVerification').checked = s.require_email_verification === 'true';
+          document.getElementById('settingSmtpEnabled').checked = s.smtp_enabled === 'true';
+          document.getElementById('settingSmtpHost').value = s.smtp_host || '';
+          document.getElementById('settingSmtpPort').value = s.smtp_port || 587;
+          document.getElementById('settingSmtpSecure').checked = s.smtp_secure === 'true';
+          document.getElementById('settingSmtpUser').value = s.smtp_user || '';
+          document.getElementById('settingSmtpPass').value = s.smtp_pass || '';
+          document.getElementById('settingFromEmail').value = s.smtp_from_email || 'noreply@discova.africa';
+          document.getElementById('settingFromName').value = s.smtp_from_name || 'Discova Africa Tech';
+          
+          const testTarget = document.getElementById('testTargetEmail');
+          if (testTarget && !testTarget.value) {
+            testTarget.value = s.smtp_from_email || 'admin@discova.africa';
+          }
+        }
+      } catch (err) {
+        console.error('Failed to load system settings:', err);
+      }
+    }
+
+    async function handleSaveSettings(e) {
+      e.preventDefault();
+      const btn = document.getElementById('saveSettingsBtn');
+      const statusEl = document.getElementById('settingsSaveStatus');
+
+      btn.disabled = true;
+      btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Saving...';
+
+      const payload = {
+        require_email_verification: document.getElementById('settingRequireVerification').checked,
+        smtp_enabled: document.getElementById('settingSmtpEnabled').checked,
+        smtp_host: document.getElementById('settingSmtpHost').value,
+        smtp_port: document.getElementById('settingSmtpPort').value,
+        smtp_secure: document.getElementById('settingSmtpSecure').checked,
+        smtp_user: document.getElementById('settingSmtpUser').value,
+        smtp_pass: document.getElementById('settingSmtpPass').value,
+        smtp_from_email: document.getElementById('settingFromEmail').value,
+        smtp_from_name: document.getElementById('settingFromName').value
+      };
+
+      try {
+        const res = await DiscovaAPI.admin.updateSettings(payload);
+        btn.disabled = false;
+        btn.textContent = 'Save Settings';
+        if (res.success) {
+          statusEl.classList.remove('d-none');
+          setTimeout(() => statusEl.classList.add('d-none'), 3500);
+          loadOverviewStats();
+        } else {
+          alert(res.error || 'Failed to save settings');
+        }
+      } catch (err) {
+        btn.disabled = false;
+        btn.textContent = 'Save Settings';
+        alert('Network error while saving settings');
+      }
+    }
+
+    // Handle Diagnostic SMTP Test
+    async function handleTestSmtp(e) {
+      e.preventDefault();
+      const btn = document.getElementById('testSmtpBtn');
+      const testRecipient = document.getElementById('testTargetEmail').value.trim();
+      const resultBox = document.getElementById('testResultBox');
+      const resultHeader = document.getElementById('testResultHeader');
+      const logsOutput = document.getElementById('testLogsOutput');
+
+      btn.disabled = true;
+      btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Connecting to SMTP socket...';
+      resultBox.classList.remove('d-none');
+      resultHeader.className = 'p-3 rounded-3 mb-3 small bg-secondary bg-opacity-25 text-body';
+      resultHeader.textContent = 'Testing connection and socket handshake...';
+      logsOutput.textContent = 'Connecting...';
+
+      const config = {
+        host: document.getElementById('settingSmtpHost').value,
+        port: document.getElementById('settingSmtpPort').value,
+        secure: document.getElementById('settingSmtpSecure').checked,
+        user: document.getElementById('settingSmtpUser').value,
+        pass: document.getElementById('settingSmtpPass').value,
+        fromEmail: document.getElementById('settingFromEmail').value,
+        fromName: document.getElementById('settingFromName').value,
+        testRecipient
+      };
+
+      try {
+        const res = await DiscovaAPI.admin.testSmtp(config);
+        btn.disabled = false;
+        btn.innerHTML = '⚡ Send Test Email & Diagnose Handshake';
+
+        if (res.success) {
+          resultHeader.className = 'p-3 rounded-3 mb-3 small bg-success bg-opacity-25 text-success border border-success border-opacity-50';
+          resultHeader.textContent = `✓ SUCCESS: ${res.message}`;
+        } else {
+          resultHeader.className = 'p-3 rounded-3 mb-3 small bg-danger bg-opacity-25 text-danger border border-danger border-opacity-50';
+          resultHeader.textContent = `✕ FAILED: ${res.message || res.error}`;
+        }
+
+        if (res.logs && res.logs.length > 0) {
+          logsOutput.textContent = res.logs.join('\n');
+        } else {
+          logsOutput.textContent = 'No detailed socket logs available.';
+        }
+      } catch (err) {
+        btn.disabled = false;
+        btn.innerHTML = '⚡ Send Test Email & Diagnose Handshake';
+        resultHeader.className = 'p-3 rounded-3 mb-3 small bg-danger bg-opacity-25 text-danger';
+        resultHeader.textContent = `✕ Diagnostic call failed: ${err.message}`;
+      }
+    }
+
+    // 4. Load Email Logs & In-App Outbox
+    async function loadEmailLogs() {
+      const status = document.getElementById('emailStatusFilter')?.value || 'all';
+      const tbody = document.getElementById('emailsTableBody');
+
+      try {
+        const res = await DiscovaAPI.admin.getEmails({ status, limit: 50 });
+        if (res.success && res.emails) {
+          if (res.emails.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="6" class="text-center py-4 text-muted">No email logs found.</td></tr>';
+            return;
+          }
+
+          tbody.innerHTML = res.emails.map(m => {
+            let statusBadge = '';
+            if (m.status === 'sent') {
+              statusBadge = '<span class="badge bg-success bg-opacity-15 text-success border border-success border-opacity-25 px-2 py-1 rounded-pill">✓ Sent (SMTP)</span>';
+            } else if (m.status === 'simulated') {
+              statusBadge = '<span class="badge bg-info bg-opacity-15 text-info border border-info border-opacity-25 px-2 py-1 rounded-pill">📥 In-App Outbox</span>';
+            } else {
+              statusBadge = '<span class="badge bg-danger bg-opacity-15 text-danger border border-danger border-opacity-25 px-2 py-1 rounded-pill" title="' + (m.error_message || '') + '">✕ Failed</span>';
+            }
+
+            const actionBtn = m.action_url 
+              ? `<a href="${m.action_url}" target="_blank" class="btn btn-sm btn-outline-primary rounded-pill px-3 py-1 text-nowrap">Open Link ↗</a>`
+              : `<span class="text-muted small">—</span>`;
+
+            return `
+              <tr>
+                <td><strong class="small text-body">${m.recipient}</strong></td>
+                <td><span class="small text-muted">${m.subject}</span></td>
+                <td><span class="badge bg-secondary bg-opacity-25 text-muted">${m.action_type || 'general'}</span></td>
+                <td>${statusBadge}</td>
+                <td><span class="small text-muted text-nowrap">${m.sent_at}</span></td>
+                <td class="text-end">${actionBtn}</td>
+              </tr>
+            `;
+          }).join('');
+        }
+      } catch (err) {
+        tbody.innerHTML = '<tr><td colspan="6" class="text-center py-4 text-danger">Failed to load outbox logs.</td></tr>';
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', checkAdminAuth);
+  </script>
+</body>
+</html>

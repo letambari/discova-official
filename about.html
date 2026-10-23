@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us — Discova Africa Tech Platform</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap 5.3 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="css/styles.css">
+
+  <!-- Immediate Theme Initializer (prevents flash) -->
+  <script>
+    (function() {
+      var savedTheme = localStorage.getItem('discova_theme') || 'dark';
+      document.documentElement.setAttribute('data-bs-theme', savedTheme);
+      if (savedTheme === 'light') {
+        document.body && document.body.classList.add('light-mode');
+      }
+    })();
+  </script>
+</head>
+<body>
+
+  <!-- ========================================================================
+       1. Header / Navbar
+       ======================================================================== -->
+  <header class="site-navbar">
+    <div class="container-xl d-flex align-items-center justify-content-between">
+      
+      <!-- Brand Logo -->
+      <a href="index.html" class="brand-logo">
+        <span class="brand-logo-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 19L11 5H15L8 19H4Z" fill="#3B82F6"/>
+            <path d="M12 19L19 5H21L14 19H12Z" fill="#60A5FA"/>
+          </svg>
+        </span>
+        <span>discova</span>
+      </a>
+
+      <!-- Center Navigation -->
+      <nav class="d-none d-lg-flex align-items-center gap-1">
+        <a href="products.html" class="nav-link-custom">Products</a>
+        <a href="launches.html" class="nav-link-custom">Launches</a>
+        <a href="stories.html" class="nav-link-custom">Stories</a>
+        <a href="categories.html" class="nav-link-custom">Categories</a>
+        <a href="about.html" class="nav-link-custom active">About</a>
+      </nav>
+
+      <!-- Right Action Controls -->
+      <div class="d-flex align-items-center gap-3">
+        <!-- Theme Toggle Pill -->
+        <button class="theme-toggle-pill" id="themeToggleBtn" onclick="toggleTheme()" title="Toggle light/dark mode" aria-label="Toggle theme">
+          <span class="theme-icon sun-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+          </span>
+          <span class="theme-icon moon-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+          </span>
+        </button>
+
+        <!-- Search Trigger Icon -->
+        <a href="products.html" class="navbar-action-btn" title="Search catalog">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+        </a>
+
+        <!-- User / Sign In -->
+        <a href="login.html" class="d-none d-sm-inline-block text-muted text-decoration-none fw-semibold" style="font-size: 0.875rem;">Sign in</a>
+
+        <!-- Submit CTA Button -->
+        <a href="submit.html" class="btn-pill-white text-decoration-none">
+          <span>Submit your product</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+          </svg>
+        </a>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ========================================================================
+       2. Hero Section
+       ======================================================================== -->
+  <section class="position-relative pt-5 pb-5 overflow-hidden">
+    <div class="hero-glow-bg"></div>
+    <div class="container-xl position-relative">
+      
+      <div class="text-center max-w-800 mx-auto mb-4">
+        <div class="hero-badge-pill mb-3">
+          <span class="pulse-dot"></span>
+          <span>OUR MISSION • CURATING PAN-AFRICAN EXCELLENCE</span>
+        </div>
+        <h1 class="display-4 fw-black tracking-tight text-white mb-3" style="line-height: 1.15;">
+          Africa is building. We help the world <span class="font-serif-italic">see it.</span>
+        </h1>
+        <p class="text-muted fs-6" style="max-width: 680px; margin: 0 auto;">
+          Discova is the premier editorial directory and community dedicated to reviewing, upvoting, and amplifying the highest-caliber software, AI models, and infrastructure emerging across the continent.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       3. "Why We Started" 2-Column Section
+       ======================================================================== -->
+  <section class="py-5">
+    <div class="container-xl">
+      <div class="row g-5 align-items-center">
+        
+        <!-- Left: Office Image with Overlay Quote -->
+        <div class="col-lg-5">
+          <div class="about-hero-image-wrap">
+            <img src="images/about_office.jpg" alt="Discova engineering team at work in Lagos">
+            <div class="about-image-quote">
+              “The talent in Lagos, Nairobi, and Kigali is building for the next billion users — not just cloning Western apps.”
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: The Narrative -->
+        <div class="col-lg-7 ps-lg-4">
+          <span class="badge bg-primary text-white mb-2 px-3 py-1 rounded-pill" style="font-size: 0.75rem;">THE ORIGIN STORY</span>
+          <h2 class="display-6 fw-bold text-white mb-4">Why we started Discova</h2>
+          
+          <p class="about-story-text">
+            For years, African technology narratives were trapped in narrow tropes: either sensationalized poverty alleviation or copy-paste replicas of Silicon Valley giants. But on the ground, builders were solving radically harder engineering problems.
+          </p>
+
+          <p class="about-story-text">
+            Founders were creating zero-fee micro-savings powered by stablecoins to hedge against double-digit inflation. Engineers were training large language models on Pidgin and Yoruba to enable conversational commerce for unbanked shopkeepers. Infrastructure architects were deploying solar-powered satellite mesh nodes across schools with zero grid power.
+          </p>
+
+          <p class="about-story-text">
+            We built Discova to provide the definitive global stage these products deserve. No hype cycles, no pay-to-play rankings — just rigorous product curation, peer upvotes, and unfiltered founder stories told in their own voices.
+          </p>
+
+          <div class="row g-3 pt-2">
+            <div class="col-sm-4">
+              <div class="d-flex align-items-center gap-2">
+                <span class="text-primary fs-5">✓</span>
+                <span class="text-white small fw-bold">100% Editorial Quality</span>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="d-flex align-items-center gap-2">
+                <span class="text-primary fs-5">✓</span>
+                <span class="text-white small fw-bold">Bot-Protected Upvotes</span>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="d-flex align-items-center gap-2">
+                <span class="text-primary fs-5">✓</span>
+                <span class="text-white small fw-bold">54 African Nations</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       4. "What We Believe" 4 Cards
+       ======================================================================== -->
+  <section class="py-5" id="beliefs">
+    <div class="container-xl">
+      
+      <div class="text-center max-w-700 mx-auto mb-5">
+        <span class="badge bg-secondary text-white-50 mb-2 px-3 py-1 rounded-pill" style="font-size: 0.75rem;">CORE PHILOSOPHY</span>
+        <h2 class="display-6 fw-bold text-white mb-2">What we believe</h2>
+        <p class="text-muted small">The foundational tenets that guide how we curate, rank, and celebrate African technology.</p>
+      </div>
+
+      <div class="row g-4">
+        
+        <!-- Belief 1 -->
+        <div class="col-md-6 col-lg-3">
+          <div class="belief-card">
+            <div class="belief-num">01</div>
+            <h3 class="belief-title">Curated, not crowded</h3>
+            <p class="belief-desc">
+              We don't publish everything that applies. Every product undergoes technical verification, functional testing, and security checks before appearing in the directory.
+            </p>
+          </div>
+        </div>
+
+        <!-- Belief 2 -->
+        <div class="col-md-6 col-lg-3">
+          <div class="belief-card">
+            <div class="belief-num">02</div>
+            <h3 class="belief-title">Builders first</h3>
+            <p class="belief-desc">
+              Our platform is designed for the engineers and founders in the trenches. Feedback is actionable, analytics are transparent, and community upvotes are organic.
+            </p>
+          </div>
+        </div>
+
+        <!-- Belief 3 -->
+        <div class="col-md-6 col-lg-3">
+          <div class="belief-card">
+            <div class="belief-num">03</div>
+            <h3 class="belief-title">No clone framing</h3>
+            <p class="belief-desc">
+              We celebrate products designed for local market dynamics and global scale — never dismissing African innovation as mere 'Uber for X' or 'Stripe for Y'.
+            </p>
+          </div>
+        </div>
+
+        <!-- Belief 4 -->
+        <div class="col-md-6 col-lg-3">
+          <div class="belief-card">
+            <div class="belief-num">04</div>
+            <h3 class="belief-title">The whole continent</h3>
+            <p class="belief-desc">
+              From Francophone West Africa to North African hubs and Southern tech clusters, we track innovation across all 54 nations, dismantling regional silos.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       5. Stats Ribbon
+       ======================================================================== -->
+  <section class="container-xl" id="stats">
+    <div class="stats-ribbon-card">
+      <div class="row g-4 text-center">
+        
+        <div class="col-6 col-md-4 col-lg">
+          <div class="stat-ribbon-num" id="aboutStatProducts">—</div>
+          <div class="stat-ribbon-label">PRODUCTS REVIEWED</div>
+        </div>
+
+        <div class="col-6 col-md-4 col-lg">
+          <div class="stat-ribbon-num" id="aboutStatCountries">—</div>
+          <div class="stat-ribbon-label">FOUNDING COUNTRIES</div>
+        </div>
+
+        <div class="col-6 col-md-4 col-lg">
+          <div class="stat-ribbon-num" id="aboutStatStories">—</div>
+          <div class="stat-ribbon-label">BUILDER STORIES</div>
+        </div>
+
+        <div class="col-6 col-md-4 col-lg">
+          <div class="stat-ribbon-num">40+</div>
+          <div class="stat-ribbon-label">VIDEO INTERVIEWS</div>
+        </div>
+
+        <div class="col-12 col-md-4 col-lg">
+          <div class="stat-ribbon-num">12k</div>
+          <div class="stat-ribbon-label">NEWSLETTER READERS</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       6. The Team Grid (6 Members)
+       ======================================================================== -->
+  <section class="py-5" id="team">
+    <div class="container-xl">
+      
+      <div class="text-center max-w-700 mx-auto mb-5">
+        <span class="badge bg-secondary text-white-50 mb-2 px-3 py-1 rounded-pill" style="font-size: 0.75rem;">THE PEOPLE</span>
+        <h2 class="display-6 fw-bold text-white mb-2">The team behind Discova</h2>
+        <p class="text-muted small">Engineers, storytellers, and ecosystem researchers based in Lagos, Nairobi, Cairo, and Johannesburg.</p>
+      </div>
+
+      <div class="row g-4">
+        
+        <!-- Member 1: Ifeoma Nwosu -->
+        <div class="col-6 col-md-4 col-lg-2">
+          <div class="team-member-card">
+            <div class="team-member-thumb">
+              <img src="images/team_ifeoma.jpg" alt="Ifeoma Nwosu">
+            </div>
+            <div class="team-member-name">Ifeoma Nwosu</div>
+            <div class="team-member-role">Co-Founder & Editor</div>
+          </div>
+        </div>
+
+        <!-- Member 2: Tobi Adepemi -->
+        <div class="col-6 col-md-4 col-lg-2">
+          <div class="team-member-card">
+            <div class="team-member-thumb">
+              <img src="images/team_tobi.jpg" alt="Tobi Adepemi">
+            </div>
+            <div class="team-member-name">Tobi Adepemi</div>
+            <div class="team-member-role">Co-Founder & Product</div>
+          </div>
+        </div>
+
+        <!-- Member 3: Kwame Mensah -->
+        <div class="col-6 col-md-4 col-lg-2">
+          <div class="team-member-card">
+            <div class="team-member-thumb">
+              <img src="images/team_kwame.jpg" alt="Kwame Mensah">
+            </div>
+            <div class="team-member-name">Kwame Mensah</div>
+            <div class="team-member-role">Tech Lead & Infra</div>
+          </div>
+        </div>
+
+        <!-- Member 4: Wanjiru Kamau -->
+        <div class="col-6 col-md-4 col-lg-2">
+          <div class="team-member-card">
+            <div class="team-member-thumb">
+              <img src="images/team_wanjiru.jpg" alt="Wanjiru Kamau">
+            </div>
+            <div class="team-member-name">Wanjiru Kamau</div>
+            <div class="team-member-role">Editorial, East Africa</div>
+          </div>
+        </div>
+
+        <!-- Member 5: Youssef Amr -->
+        <div class="col-6 col-md-4 col-lg-2">
+          <div class="team-member-card">
+            <div class="team-member-thumb">
+              <img src="images/team_youssef.jpg" alt="Youssef Amr">
+            </div>
+            <div class="team-member-name">Youssef Amr</div>
+            <div class="team-member-role">Growth, North Africa</div>
+          </div>
+        </div>
+
+        <!-- Member 6: Thandi Zulu -->
+        <div class="col-6 col-md-4 col-lg-2">
+          <div class="team-member-card">
+            <div class="team-member-thumb">
+              <img src="images/team_thandi.jpg" alt="Thandi Zulu">
+            </div>
+            <div class="team-member-name">Thandi Zulu</div>
+            <div class="team-member-role">Community, SADC</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Royal Blue CTA Banner -->
+      <div class="about-cta-blue" id="contact">
+        <h2 class="about-cta-title">
+          Building something? <span class="font-serif-italic">We'd love to see it.</span>
+        </h2>
+        <p class="fs-6 text-white-50 max-w-600 mx-auto mb-4" style="line-height: 1.6;">
+          Join 400+ African founders showcasing their software to investors, early adopters, and global engineering peers.
+        </p>
+        <div class="d-flex align-items-center justify-content-center gap-3 flex-wrap">
+          <a href="submit.html" class="btn-pill-white text-decoration-none">
+            <span>Submit your product</span>
+            <span>→</span>
+          </a>
+          <a href="mailto:hello@discova.africa" class="btn-pill-dark text-decoration-none" style="background: rgba(0,0,0,0.3); border-color: rgba(255,255,255,0.2);">
+            Get in touch
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       7. Site Footer
+       ======================================================================== -->
+  <footer class="site-footer">
+    <div class="container-xl">
+      
+      <div class="row g-5">
+        <!-- Brand Info -->
+        <div class="col-lg-4">
+          <a href="index.html" class="brand-logo mb-2">
+            <span class="brand-logo-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4 19L11 5H15L8 19H4Z" fill="#3B82F6"/>
+                <path d="M12 19L19 5H21L14 19H12Z" fill="#60A5FA"/>
+              </svg>
+            </span>
+            <span>discova</span>
+          </a>
+          <p class="footer-brand-desc">
+            Built to celebrate every founder, engineer, and creator across the African continent. Showcasing global excellence.
+          </p>
+        </div>
+
+        <!-- Col 2: Explore -->
+        <div class="col-6 col-md-3 col-lg-2 offset-lg-2">
+          <div class="footer-col-title">Explore</div>
+          <ul class="footer-links-list">
+            <li><a href="products.html">All Products</a></li>
+            <li><a href="index.html#trending">Top Launches</a></li>
+            <li><a href="categories.html">Categories</a></li>
+            <li><a href="about.html#stats">Ecosystem Stats</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Stories -->
+        <div class="col-6 col-md-3 col-lg-2">
+          <div class="footer-col-title">Stories</div>
+          <ul class="footer-links-list">
+            <li><a href="stories.html">Builder Stories</a></li>
+            <li><a href="stories.html#interviews">Video Interviews</a></li>
+            <li><a href="stories.html#podcasts">Podcasts</a></li>
+            <li><a href="launches.html">Launch Archive</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Company -->
+        <div class="col-6 col-md-3 col-lg-2">
+          <div class="footer-col-title">Company</div>
+          <ul class="footer-links-list">
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="about.html#beliefs">Our Beliefs</a></li>
+            <li><a href="about.html#team">The Team</a></li>
+            <li><a href="submit.html">Submit Product</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Bottom Row -->
+      <div class="footer-bottom-row">
+        <div>© 2026 Discova Inc. All rights reserved.</div>
+        <div>Curated with ❤️ across 54 African nations</div>
+      </div>
+
+      <!-- Huge Watermarked Wordmark -->
+      <div class="footer-watermark">
+        discova
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- Bootstrap 5.3 Bundle JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <!-- Custom JS -->
+  <script src="js/api.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

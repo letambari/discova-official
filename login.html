@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign In — Welcome back to Discova</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap 5.3 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="css/styles.css">
+
+  <!-- Immediate Theme Initializer (prevents flash) -->
+  <script>
+    (function() {
+      var savedTheme = localStorage.getItem('discova_theme') || 'dark';
+      document.documentElement.setAttribute('data-bs-theme', savedTheme);
+      if (savedTheme === 'light') {
+        document.body && document.body.classList.add('light-mode');
+      }
+    })();
+  </script>
+
+  <style>
+    body {
+      background-color: var(--bg-body, #06070B);
+      color: var(--text-main, #FFFFFF);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .auth-page-container {
+      flex-grow: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1.5rem;
+    }
+
+    .auth-split-layout {
+      width: 100%;
+      max-width: 1200px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3.5rem;
+      align-items: center;
+    }
+
+    /* Left Testimonial Card */
+    .auth-testimonial-card {
+      position: relative;
+      border-radius: 28px;
+      overflow: hidden;
+      aspect-ratio: 4/5;
+      max-height: 680px;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .auth-testimonial-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+    }
+
+    .auth-card-top-logo {
+      position: absolute;
+      top: 1.75rem;
+      left: 1.75rem;
+      z-index: 2;
+    }
+
+    .auth-quote-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 2.5rem 2rem 2rem;
+      background: linear-gradient(to top, rgba(6, 7, 11, 0.95) 0%, rgba(6, 7, 11, 0.75) 65%, transparent 100%);
+      z-index: 2;
+    }
+
+    .auth-quote-text {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: clamp(1.15rem, 2vw, 1.45rem);
+      color: #FFFFFF;
+      line-height: 1.35;
+      margin-bottom: 1.25rem;
+    }
+
+    .auth-quote-author {
+      font-weight: 800;
+      color: #FFFFFF;
+      font-size: 0.95rem;
+      margin-bottom: 0.15rem;
+    }
+
+    .auth-quote-role {
+      font-size: 0.75rem;
+      color: #94A3B8;
+    }
+
+    /* Right Form Area */
+    .auth-form-wrap {
+      max-width: 440px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    .social-auth-btn {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      padding: 0.75rem 1rem;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #FFFFFF;
+      font-weight: 600;
+      font-size: 0.875rem;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+
+    .social-auth-btn:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.25);
+      color: #FFFFFF;
+    }
+
+    .auth-divider-row {
+      display: flex;
+      align-items: center;
+      margin: 1.5rem 0;
+      color: #475569;
+      font-size: 0.75rem;
+      text-transform: lowercase;
+    }
+
+    .auth-divider-row::before,
+    .auth-divider-row::after {
+      content: "";
+      flex-grow: 1;
+      height: 1px;
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .auth-divider-row span {
+      padding: 0 1rem;
+    }
+
+    .btn-auth-gradient {
+      width: 100%;
+      padding: 0.85rem;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%);
+      border: none;
+      color: #FFFFFF;
+      font-weight: 700;
+      font-size: 0.9375rem;
+      box-shadow: 0 10px 25px rgba(79, 70, 229, 0.4);
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+
+    .btn-auth-gradient:hover {
+      opacity: 0.95;
+      transform: translateY(-1px);
+      box-shadow: 0 14px 30px rgba(79, 70, 229, 0.55);
+    }
+
+    @media (max-width: 991px) {
+      .auth-split-layout {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+      .auth-testimonial-card {
+        display: none;
+      }
+    }
+
+    /* Light Mode Overrides for Login */
+    [data-bs-theme="light"] .social-auth-btn,
+    body.light-mode .social-auth-btn {
+      background: #FFFFFF !important;
+      border-color: #CBD5E1 !important;
+      color: #0F172A !important;
+      box-shadow: 0 2px 6px rgba(15, 23, 42, 0.05);
+    }
+    [data-bs-theme="light"] .social-auth-btn:hover,
+    body.light-mode .social-auth-btn:hover {
+      background: #F8FAFC !important;
+      border-color: #94A3B8 !important;
+      color: #0F172A !important;
+    }
+    [data-bs-theme="light"] .auth-divider-row::before,
+    [data-bs-theme="light"] .auth-divider-row::after,
+    body.light-mode .auth-divider-row::before,
+    body.light-mode .auth-divider-row::after {
+      background: #E2E8F0 !important;
+    }
+    [data-bs-theme="light"] .auth-testimonial-card,
+    body.light-mode .auth-testimonial-card {
+      box-shadow: 0 20px 50px rgba(15, 23, 42, 0.12) !important;
+      border-color: #E2E8F0 !important;
+    }
+    /* Quote overlay on portrait card retains white text */
+    [data-bs-theme="light"] .auth-quote-overlay *,
+    body.light-mode .auth-quote-overlay * {
+      color: #FFFFFF !important;
+    }
+    [data-bs-theme="light"] .auth-card-top-logo .brand-logo,
+    body.light-mode .auth-card-top-logo .brand-logo {
+      color: #FFFFFF !important;
+    }
+
+    /* Auth Tab Switcher */
+    .auth-tab-switcher {
+      display: flex;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 999px;
+      padding: 4px;
+      margin-bottom: 1.5rem;
+    }
+    .auth-tab-btn {
+      flex: 1;
+      padding: 9px 16px;
+      border-radius: 999px;
+      border: none;
+      background: transparent;
+      color: #94A3B8;
+      font-weight: 700;
+      font-size: 0.875rem;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+    .auth-tab-btn.active {
+      background: #4F46E5;
+      color: #FFFFFF;
+      box-shadow: 0 4px 12px rgba(79, 70, 229, 0.35);
+    }
+    [data-bs-theme="light"] .auth-tab-switcher,
+    body.light-mode .auth-tab-switcher {
+      background: #E2E8F0 !important;
+      border-color: #CBD5E1 !important;
+    }
+    [data-bs-theme="light"] .auth-tab-btn,
+    body.light-mode .auth-tab-btn {
+      color: #475569 !important;
+    }
+    [data-bs-theme="light"] .auth-tab-btn.active,
+    body.light-mode .auth-tab-btn.active {
+      background: #FFFFFF !important;
+      color: #0F172A !important;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========================================================================
+       Top Navigation Utility Bar
+       ======================================================================== -->
+  <header class="py-3 px-4 d-flex align-items-center justify-content-between">
+    <a href="index.html" class="brand-logo text-decoration-none">
+      <span class="brand-logo-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+          <path d="M4 19L11 5H15L8 19H4Z" fill="#3B82F6"/>
+          <path d="M12 19L19 5H21L14 19H12Z" fill="#60A5FA"/>
+        </svg>
+      </span>
+      <span>discova</span>
+    </a>
+
+    <div class="d-flex align-items-center gap-3">
+      <div class="small text-muted" id="authTopToggleText">
+        New to Discova? <a href="javascript:void(0)" onclick="switchAuthTab('signup')" class="text-primary text-decoration-none fw-semibold">Create an account</a>
+      </div>
+      <!-- Theme Toggle Pill -->
+      <button class="theme-toggle-pill" id="themeToggleBtn" onclick="toggleTheme()" title="Toggle light/dark mode" aria-label="Toggle theme">
+        <span class="theme-icon sun-icon">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+        </span>
+        <span class="theme-icon moon-icon">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ========================================================================
+       Split Auth Layout
+       ======================================================================== -->
+  <main class="auth-page-container">
+    <div class="auth-split-layout">
+      
+      <!-- Left: Testimonial Portrait Card -->
+      <div class="auth-testimonial-card">
+        <!-- Brand Logo inside card -->
+        <div class="auth-card-top-logo">
+          <a href="index.html" class="brand-logo text-decoration-none">
+            <span class="brand-logo-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                <path d="M4 19L11 5H15L8 19H4Z" fill="#3B82F6"/>
+                <path d="M12 19L19 5H21L14 19H12Z" fill="#60A5FA"/>
+              </svg>
+            </span>
+            <span>discova</span>
+          </a>
+        </div>
+
+        <img src="images/founder_robinson.jpg" alt="Robinson Honour smiling">
+
+        <div class="auth-quote-overlay">
+          <div class="auth-quote-text">
+            “Discova put Pxxl in front of the developers we were building it for.”
+          </div>
+          <div class="auth-quote-author">Robinson Honour</div>
+          <div class="auth-quote-role">Founder, Pxxl • Lagos</div>
+        </div>
+      </div>
+
+      <!-- Right: Sign-in / Sign-up Forms Area -->
+      <div class="auth-form-wrap">
+        
+        <!-- Auth Tab Switcher -->
+        <div class="auth-tab-switcher" role="tablist">
+          <button type="button" class="auth-tab-btn active" id="tabSignInBtn" onclick="switchAuthTab('signin')" role="tab" aria-selected="true">
+            Sign In
+          </button>
+          <button type="button" class="auth-tab-btn" id="tabSignUpBtn" onclick="switchAuthTab('signup')" role="tab" aria-selected="false">
+            Create Account
+          </button>
+        </div>
+
+        <!-- Dynamic Header -->
+        <div id="authHeaderArea">
+          <h1 class="display-6 fw-black tracking-tight mb-2" id="authTitle">Welcome back</h1>
+          <p class="text-muted small mb-4" id="authSubtitle" style="line-height: 1.5;">
+            Sign in to save products, upvote launches and manage your listings.
+          </p>
+        </div>
+
+        <!-- Live Feedback Alert -->
+        <div id="authAlert" class="alert d-none mb-3" role="alert" style="border-radius: 12px; font-size: 0.875rem;"></div>
+
+        <!-- Social Buttons Grid -->
+        <div class="row g-2 mb-3" id="socialAuthBlock">
+          <div class="col-6">
+            <button class="social-auth-btn" type="button" onclick="handleSocialAuth('Google')">
+              <svg width="18" height="18" viewBox="0 0 24 24">
+                <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.66-5.17 3.66-9.17z"/>
+                <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.25v3.15C3.26 21.36 7.33 24 12 24z"/>
+                <path fill="#FBBC05" d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.25C.45 8.18 0 9.99 0 12s.45 3.82 1.25 5.42l4.03-3.15z"/>
+                <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.33 0 3.26 2.64 1.25 6.58l4.03 3.15c.95-2.83 3.6-4.93 6.72-4.93z"/>
+              </svg>
+              <span>Google</span>
+            </button>
+          </div>
+          <div class="col-6">
+            <button class="social-auth-btn" type="button" onclick="handleSocialAuth('GitHub')">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+              </svg>
+              <span>GitHub</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="auth-divider-row" id="authDivider">
+          <span id="authDividerText">or continue with email</span>
+        </div>
+
+        <!-- 1. SIGN IN FORM -->
+        <form id="signInForm" onsubmit="handleSignInSubmit(event)">
+          <div class="mb-3">
+            <label class="form-input-label d-block mb-1" for="loginEmail">Email Address</label>
+            <div class="position-relative">
+              <span class="position-absolute start-0 top-50 translate-middle-y ps-3 text-muted">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+              </span>
+              <input type="email" id="loginEmail" class="input-box-dark ps-5" value="robinson@pxxl.app" placeholder="name@domain.com" required>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <div class="d-flex justify-content-between mb-1">
+              <label class="form-input-label" for="loginPassword">Password</label>
+              <a href="javascript:void(0)" class="text-primary text-decoration-none small" onclick="openForgotPasswordModal()">Forgot password?</a>
+            </div>
+            <div class="position-relative">
+              <span class="position-absolute start-0 top-50 translate-middle-y ps-3 text-muted">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+              </span>
+              <input type="password" id="loginPassword" class="input-box-dark ps-5 pe-5" value="password123" placeholder="Enter your password" required>
+              <button type="button" class="btn btn-link position-absolute end-0 top-50 translate-middle-y pe-3 text-muted text-decoration-none" onclick="togglePasswordVisibility('loginPassword')">
+                👁️
+              </button>
+            </div>
+          </div>
+
+          <div class="form-check mb-4">
+            <input class="form-check-input" type="checkbox" id="rememberMeCheck" checked>
+            <label class="form-check-label text-muted small" for="rememberMeCheck">
+              Keep me signed in for 30 days
+            </label>
+          </div>
+
+          <button type="submit" class="btn-auth-gradient mb-3" id="signInSubmitBtn">
+            Sign in
+          </button>
+
+          <div class="text-center mb-4">
+            <a href="javascript:void(0)" class="text-muted small text-decoration-none" onclick="alert('Magic sign-in link dispatched to your inbox.')">
+              Prefer no password? <span class="text-primary fw-semibold">Email me a sign-in link</span>
+            </a>
+          </div>
+
+          <div class="text-center text-muted" style="font-size: 0.75rem; line-height: 1.5;">
+            By continuing you agree to Discova's <a href="about.html" class="text-muted text-decoration-underline">Terms of Service</a> and <a href="about.html" class="text-muted text-decoration-underline">Privacy Policy</a>.
+          </div>
+        </form>
+
+        <!-- 2. CREATE ACCOUNT / SIGN UP FORM -->
+        <form id="signUpForm" class="d-none" onsubmit="handleSignUpSubmit(event)">
+          <div class="mb-3">
+            <label class="form-input-label d-block mb-1" for="registerName">Full Name</label>
+            <div class="position-relative">
+              <span class="position-absolute start-0 top-50 translate-middle-y ps-3 text-muted">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+              </span>
+              <input type="text" id="registerName" class="input-box-dark ps-5" placeholder="e.g. Maya Oduya" required>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-input-label d-block mb-1" for="registerEmail">Work or Personal Email</label>
+            <div class="position-relative">
+              <span class="position-absolute start-0 top-50 translate-middle-y ps-3 text-muted">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+              </span>
+              <input type="email" id="registerEmail" class="input-box-dark ps-5" placeholder="maya@startup.africa" required>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-input-label d-block mb-1" for="registerRole">Your Ecosystem Role</label>
+            <select id="registerRole" class="input-box-dark">
+              <option value="Maker & Founder">🚀 Maker & Founder (Building a product)</option>
+              <option value="Software Engineer">💻 Software Engineer / Developer</option>
+              <option value="Product Designer">🎨 Product Designer / UX</option>
+              <option value="Investor / VC">💼 Investor / Angel / VC</option>
+              <option value="Tech Enthusiast">🌟 Tech Enthusiast & Early Adopter</option>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-input-label d-block mb-1" for="registerPassword">Create Password</label>
+            <div class="position-relative">
+              <span class="position-absolute start-0 top-50 translate-middle-y ps-3 text-muted">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+              </span>
+              <input type="password" id="registerPassword" class="input-box-dark ps-5 pe-5" placeholder="At least 6 characters" minlength="6" required>
+              <button type="button" class="btn btn-link position-absolute end-0 top-50 translate-middle-y pe-3 text-muted text-decoration-none" onclick="togglePasswordVisibility('registerPassword')">
+                👁️
+              </button>
+            </div>
+          </div>
+
+          <div class="mb-4">
+            <label class="form-input-label d-block mb-1" for="registerConfirmPassword">Confirm Password</label>
+            <div class="position-relative">
+              <span class="position-absolute start-0 top-50 translate-middle-y ps-3 text-muted">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              </span>
+              <input type="password" id="registerConfirmPassword" class="input-box-dark ps-5 pe-5" placeholder="Repeat your password" minlength="6" required>
+              <button type="button" class="btn btn-link position-absolute end-0 top-50 translate-middle-y pe-3 text-muted text-decoration-none" onclick="togglePasswordVisibility('registerConfirmPassword')">
+                👁️
+              </button>
+            </div>
+          </div>
+
+          <button type="submit" class="btn-auth-gradient mb-3" id="signUpSubmitBtn">
+            Create Account
+          </button>
+
+          <div class="text-center text-muted" style="font-size: 0.75rem; line-height: 1.5;">
+            By creating an account you agree to Discova's <a href="about.html" class="text-muted text-decoration-underline">Community Guidelines</a> and <a href="about.html" class="text-muted text-decoration-underline">Privacy Policy</a>.
+          </div>
+        </form>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Forgot Password Modal -->
+  <div class="modal fade" id="forgotPasswordModal" tabindex="-1" aria-labelledby="forgotPasswordModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" style="max-width: 440px;">
+      <div class="modal-content" style="background: #0F172A; border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 20px; color: #FFFFFF;">
+        <div class="modal-header border-0 pb-0">
+          <h5 class="modal-title fw-bold" id="forgotPasswordModalLabel">Reset Your Password</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body pt-2">
+          <p class="text-muted small mb-3">
+            Enter the email address associated with your Discova account and we’ll send you a secure link to reset your password.
+          </p>
+          <div id="forgotAlert" class="alert d-none mb-3" style="border-radius: 12px; font-size: 0.85rem;"></div>
+          <form id="forgotForm" onsubmit="handleForgotSubmit(event)">
+            <div class="mb-3">
+              <label class="form-input-label d-block mb-1" for="forgotEmail">Email Address</label>
+              <input type="email" id="forgotEmail" class="input-box-dark" placeholder="name@domain.com" required>
+            </div>
+            <button type="submit" class="btn-auth-gradient w-100" id="forgotSubmitBtn">
+              Send Reset Link
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap 5.3 Bundle JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Custom JS -->
+  <script src="js/api.js"></script>
+  <script src="js/main.js"></script>
+
+  <!-- Interactive Auth Client Logic -->
+  <script>
+    // Tab Switching Functionality
+    function switchAuthTab(tab) {
+      const signInTab = document.getElementById('tabSignInBtn');
+      const signUpTab = document.getElementById('tabSignUpBtn');
+      const signInForm = document.getElementById('signInForm');
+      const signUpForm = document.getElementById('signUpForm');
+      const authTitle = document.getElementById('authTitle');
+      const authSubtitle = document.getElementById('authSubtitle');
+      const authAlert = document.getElementById('authAlert');
+      const topToggle = document.getElementById('authTopToggleText');
+
+      authAlert.className = 'alert d-none mb-3';
+      authAlert.innerHTML = '';
+
+      if (tab === 'signup') {
+        signInTab.classList.remove('active');
+        signInTab.setAttribute('aria-selected', 'false');
+        signUpTab.classList.add('active');
+        signUpTab.setAttribute('aria-selected', 'true');
+
+        signInForm.classList.add('d-none');
+        signUpForm.classList.remove('d-none');
+
+        authTitle.textContent = 'Create your account';
+        authSubtitle.textContent = 'Join Africa’s premier product community. Discover, launch and vote.';
+        if (topToggle) {
+          topToggle.innerHTML = 'Already have an account? <a href="javascript:void(0)" onclick="switchAuthTab(\'signin\')" class="text-primary text-decoration-none fw-semibold">Sign in</a>';
+        }
+      } else {
+        signUpTab.classList.remove('active');
+        signUpTab.setAttribute('aria-selected', 'false');
+        signInTab.classList.add('active');
+        signInTab.setAttribute('aria-selected', 'true');
+
+        signUpForm.classList.add('d-none');
+        signInForm.classList.remove('d-none');
+
+        authTitle.textContent = 'Welcome back';
+        authSubtitle.textContent = 'Sign in to save products, upvote launches and manage your listings.';
+        if (topToggle) {
+          topToggle.innerHTML = 'New to Discova? <a href="javascript:void(0)" onclick="switchAuthTab(\'signup\')" class="text-primary text-decoration-none fw-semibold">Create an account</a>';
+        }
+      }
+    }
+
+    // Toggle password plain-text
+    function togglePasswordVisibility(inputId) {
+      const el = document.getElementById(inputId);
+      if (el) {
+        el.type = el.type === 'password' ? 'text' : 'password';
+      }
+    }
+
+    // Social Auth Mock
+    function handleSocialAuth(provider) {
+      alert(`Redirecting to ${provider} secure OAuth authentication...`);
+    }
+
+    // Helper: show feedback alert
+    function showAuthAlert(message, type = 'danger') {
+      const el = document.getElementById('authAlert');
+      if (!el) return;
+      el.className = `alert alert-${type} mb-3`;
+      el.innerHTML = message;
+      el.classList.remove('d-none');
+    }
+
+    // Open Forgot Password Modal
+    function openForgotPasswordModal() {
+      const modalEl = document.getElementById('forgotPasswordModal');
+      const emailInput = document.getElementById('forgotEmail');
+      const loginEmail = document.getElementById('loginEmail');
+      if (emailInput && loginEmail && loginEmail.value) {
+        emailInput.value = loginEmail.value;
+      }
+      const forgotAlert = document.getElementById('forgotAlert');
+      if (forgotAlert) forgotAlert.className = 'alert d-none mb-3';
+      const inst = bootstrap.Modal.getOrCreateInstance(modalEl);
+      inst.show();
+    }
+
+    // Handle Forgot Password Submit
+    async function handleForgotSubmit(e) {
+      e.preventDefault();
+      const email = document.getElementById('forgotEmail').value.trim();
+      const btn = document.getElementById('forgotSubmitBtn');
+      const alertEl = document.getElementById('forgotAlert');
+
+      btn.disabled = true;
+      btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Sending link...';
+      alertEl.className = 'alert d-none mb-3';
+
+      try {
+        const res = await DiscovaAPI.forgotPassword(email);
+        alertEl.className = 'alert alert-success mb-3';
+        alertEl.textContent = res.message || 'Password reset link dispatched if this email is registered.';
+        alertEl.classList.remove('d-none');
+      } catch (err) {
+        alertEl.className = 'alert alert-danger mb-3';
+        alertEl.textContent = 'Failed to request password reset link.';
+        alertEl.classList.remove('d-none');
+      } finally {
+        btn.disabled = false;
+        btn.textContent = 'Send Reset Link';
+      }
+    }
+
+    // Handle Sign In submission
+    async function handleSignInSubmit(e) {
+      e.preventDefault();
+      const submitBtn = document.getElementById('signInSubmitBtn');
+      const email = document.getElementById('loginEmail').value.trim();
+      const password = document.getElementById('loginPassword').value;
+
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Signing in...';
+
+      try {
+        const res = await DiscovaAPI.login({ email, password });
+
+        if (res.requiresVerification) {
+          const verifyUrl = `verify-email.html?email=${encodeURIComponent(email)}`;
+          showAuthAlert(`
+            <div><strong>Email Verification Required</strong></div>
+            <div class="small my-1">Your account must be confirmed before signing in.</div>
+            <a href="${verifyUrl}" class="btn btn-sm btn-outline-warning mt-2 rounded-pill fw-semibold">
+              Complete Verification / Resend Link →
+            </a>
+          `, 'warning');
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Sign in';
+          return;
+        }
+
+        if (res.success && res.user) {
+          showAuthAlert('Signed in successfully! Redirecting...', 'success');
+          setTimeout(() => {
+            const params = new URLSearchParams(window.location.search);
+            const redirectUrl = params.get('redirect') || (res.user.is_admin ? 'admin.html' : 'index.html');
+            window.location.href = redirectUrl;
+          }, 800);
+        } else {
+          showAuthAlert(res.error || 'Invalid email or password. Please try again.', 'danger');
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Sign in';
+        }
+      } catch (err) {
+        showAuthAlert('Network error occurred. Please try again.', 'danger');
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Sign in';
+      }
+    }
+
+    // Handle Sign Up / Registration submission
+    async function handleSignUpSubmit(e) {
+      e.preventDefault();
+      const submitBtn = document.getElementById('signUpSubmitBtn');
+      const name = document.getElementById('registerName').value.trim();
+      const email = document.getElementById('registerEmail').value.trim();
+      const role = document.getElementById('registerRole').value;
+      const password = document.getElementById('registerPassword').value;
+      const confirmPassword = document.getElementById('registerConfirmPassword').value;
+
+      if (password !== confirmPassword) {
+        showAuthAlert('Passwords do not match. Please re-enter your password.', 'danger');
+        return;
+      }
+
+      if (password.length < 6) {
+        showAuthAlert('Password must be at least 6 characters long.', 'danger');
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Creating account...';
+
+      try {
+        const res = await DiscovaAPI.register({ name, email, password, role });
+
+        if (res.requiresVerification) {
+          showAuthAlert(`
+            <div><strong>Account Created! Verification Required</strong></div>
+            <div class="small my-1">${res.message || 'Please check your email to activate your account.'}</div>
+            <a href="verify-email.html?email=${encodeURIComponent(email)}" class="btn btn-sm btn-outline-info mt-2 rounded-pill fw-semibold">
+              Check Verification Status →
+            </a>
+          `, 'info');
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Create Account';
+          return;
+        }
+
+        if (res.success && res.user) {
+          showAuthAlert('Account created successfully! Welcome to Discova. Redirecting...', 'success');
+          setTimeout(() => {
+            const params = new URLSearchParams(window.location.search);
+            const redirectUrl = params.get('redirect') || 'index.html';
+            window.location.href = redirectUrl;
+          }, 900);
+        } else {
+          showAuthAlert(res.error || 'Failed to create account. Please try again.', 'danger');
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Create Account';
+        }
+      } catch (err) {
+        showAuthAlert('Network error occurred. Please try again.', 'danger');
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Create Account';
+      }
+    }
+
+    // Auto-detect tab from URL params (?tab=signup or ?mode=register)
+    document.addEventListener('DOMContentLoaded', () => {
+      const params = new URLSearchParams(window.location.search);
+      const tabParam = params.get('tab') || params.get('mode');
+      if (tabParam === 'signup' || tabParam === 'register') {
+        switchAuthTab('signup');
+      }
+    });
+  </script>
+</body>
+</html>

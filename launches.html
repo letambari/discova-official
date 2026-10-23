@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>This Week's Launches — Discova Africa Tech Leaderboard</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap 5.3 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="css/styles.css">
+
+  <!-- Pre-initialization theme check to prevent flash -->
+  <script>
+    (function() {
+      var saved = localStorage.getItem('discova_theme') || 'dark';
+      document.documentElement.setAttribute('data-bs-theme', saved);
+    })();
+  </script>
+</head>
+<body>
+
+  <!-- ========================================================================
+       1. Header / Navbar
+       ======================================================================== -->
+  <header class="site-navbar">
+    <div class="container-xl d-flex align-items-center justify-content-between">
+      
+      <!-- Brand Logo -->
+      <a href="index.html" class="brand-logo">
+        <span class="brand-logo-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 19L11 5H15L8 19H4Z" fill="#3B82F6"/>
+            <path d="M12 19L19 5H21L14 19H12Z" fill="#60A5FA"/>
+          </svg>
+        </span>
+        <span>discova</span>
+      </a>
+
+      <!-- Center Navigation -->
+      <nav class="d-none d-lg-flex align-items-center gap-1">
+        <a href="products.html" class="nav-link-custom">Products</a>
+        <a href="launches.html" class="nav-link-custom active">Launches</a>
+        <a href="stories.html" class="nav-link-custom">Stories</a>
+        <a href="categories.html" class="nav-link-custom">Categories</a>
+      </nav>
+
+      <!-- Right Action Controls -->
+      <div class="d-flex align-items-center gap-3">
+        <!-- Theme Toggle Pill -->
+        <button class="theme-toggle-pill" id="themeToggleBtn" onclick="toggleTheme()" title="Toggle light/dark mode" aria-label="Toggle theme">
+          <span class="theme-icon sun-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+          </span>
+          <span class="theme-icon moon-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+          </span>
+        </button>
+
+        <!-- Search Trigger Icon -->
+        <button class="navbar-action-btn" onclick="window.location.href='products.html'" title="Search catalog">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+        </button>
+
+        <!-- User / Sign In -->
+        <a href="login.html" class="d-none d-sm-inline-block text-muted text-decoration-none fw-semibold" style="font-size: 0.875rem;">Sign in</a>
+
+        <!-- Submit CTA Button -->
+        <a href="submit.html" class="btn-pill-white text-decoration-none">
+          <span>Submit product</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+          </svg>
+        </a>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ========================================================================
+       2. Hero Section
+       ======================================================================== -->
+  <section class="position-relative pt-5 pb-4 overflow-hidden">
+    <div class="hero-glow-bg"></div>
+    <div class="container-xl position-relative">
+      
+      <div class="d-flex align-items-end justify-content-between flex-wrap gap-3 mb-4">
+        <div>
+          <span class="text-uppercase tracking-wider text-muted fw-bold small" style="font-size: 0.75rem;">LAUNCHES</span>
+          <h1 class="display-5 fw-black tracking-tight text-white mb-2">
+            This week’s <span class="font-serif-italic">launches</span>
+          </h1>
+          <p class="text-muted small mb-0">
+            Week 43 • Oct 19 – Oct 25, 2026 • 24 products launched
+          </p>
+        </div>
+
+        <!-- Timeframe filter pills -->
+        <div class="d-flex align-items-center gap-1 bg-dark p-1 rounded-pill border border-secondary border-opacity-25">
+          <button class="timeframe-tab" data-timeframe="today">Today</button>
+          <button class="timeframe-tab active" data-timeframe="week">This week</button>
+          <button class="timeframe-tab" data-timeframe="month">This month</button>
+          <button class="timeframe-tab" data-timeframe="all">All time</button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       3. Main Launches Leaderboard Grid
+       ======================================================================== -->
+  <main class="pb-5">
+    <div class="container-xl">
+      <div class="row g-4">
+        
+        <!-- Left: Ranked Launches List -->
+        <div class="col-lg-8" id="todayLaunchesList">
+          
+          <!-- Rank 1: Pxxl -->
+          <div class="launch-list-card" style="border-color: rgba(124, 58, 237, 0.4);">
+            <div class="d-flex align-items-center gap-3">
+              <span class="launch-rank-num top-rank">1</span>
+              <div class="launch-avatar-sq" style="background: linear-gradient(135deg, #7C3AED, #A855F7);">P</div>
+              <div>
+                <div class="d-flex align-items-center gap-2 mb-1">
+                  <h3 class="h6 fw-bold text-white mb-0">
+                    <a href="product-details.html" class="text-decoration-none">Pxxl</a>
+                  </h3>
+                  <span class="badge" style="background: rgba(245, 158, 11, 0.2); color: #FBBF24; font-size: 0.65rem;">Product of the week</span>
+                </div>
+                <p class="text-muted small mb-1">Africa-first cloud deployment for developers.</p>
+                <div class="d-flex align-items-center gap-2 text-muted" style="font-size: 0.75rem;">
+                  <span>Hosting</span>
+                  <span>•</span>
+                  <span>Nigeria</span>
+                  <span>•</span>
+                  <span>💬 48</span>
+                </div>
+              </div>
+            </div>
+            <button class="upvote-badge-btn upvoted" onclick="handleUpvote(this, 312)">
+              <span class="upvote-arrow">▲</span>
+              <span class="upvote-count">312</span>
+            </button>
+          </div>
+
+          <!-- Rank 2: SendByte -->
+          <div class="launch-list-card">
+            <div class="d-flex align-items-center gap-3">
+              <span class="launch-rank-num">2</span>
+              <div class="launch-avatar-sq" style="background: #0D9488;">S</div>
+              <div>
+                <h3 class="h6 fw-bold text-white mb-1">SendByte</h3>
+                <p class="text-muted small mb-1">The communications API for Africa.</p>
+                <div class="d-flex align-items-center gap-2 text-muted" style="font-size: 0.75rem;">
+                  <span>Developer Tools</span>
+                  <span>•</span>
+                  <span>Nigeria</span>
+                  <span>•</span>
+                  <span>💬 36</span>
+                </div>
+              </div>
+            </div>
+            <button class="upvote-badge-btn" onclick="handleUpvote(this, 287)">
+              <span class="upvote-arrow">▲</span>
+              <span class="upvote-count">287</span>
+            </button>
+          </div>
+
+          <!-- Rank 3: YarnGPT -->
+          <div class="launch-list-card">
+            <div class="d-flex align-items-center gap-3">
+              <span class="launch-rank-num">3</span>
+              <div class="launch-avatar-sq" style="background: #E11D48;">Y</div>
+              <div>
+                <h3 class="h6 fw-bold text-white mb-1">YarnGPT</h3>
+                <p class="text-muted small mb-1">Text-to-speech for Nigerian languages and accents.</p>
+                <div class="d-flex align-items-center gap-2 text-muted" style="font-size: 0.75rem;">
+                  <span>AI</span>
+                  <span>•</span>
+                  <span>Nigeria</span>
+                  <span>•</span>
+                  <span>💬 41</span>
+                </div>
+              </div>
+            </div>
+            <button class="upvote-badge-btn" onclick="handleUpvote(this, 254)">
+              <span class="upvote-arrow">▲</span>
+              <span class="upvote-count">254</span>
+            </button>
+          </div>
+
+          <!-- Rank 4: Bachs -->
+          <div class="launch-list-card">
+            <div class="d-flex align-items-center gap-3">
+              <span class="launch-rank-num">4</span>
+              <div class="launch-avatar-sq" style="background: #1E293B; border: 1px solid rgba(255,255,255,0.15);">B</div>
+              <div>
+                <h3 class="h6 fw-bold text-white mb-1">Bachs</h3>
+                <p class="text-muted small mb-1">Global billing infrastructure for internet businesses.</p>
+                <div class="d-flex align-items-center gap-2 text-muted" style="font-size: 0.75rem;">
+                  <span>Fintech</span>
+                  <span>•</span>
+                  <span>Nigeria</span>
+                  <span>•</span>
+                  <span>💬 22</span>
+                </div>
+              </div>
+            </div>
+            <button class="upvote-badge-btn" onclick="handleUpvote(this, 198)">
+              <span class="upvote-arrow">▲</span>
+              <span class="upvote-count">198</span>
+            </button>
+          </div>
+
+          <!-- Rank 5: Avnac -->
+          <div class="launch-list-card">
+            <div class="d-flex align-items-center gap-3">
+              <span class="launch-rank-num">5</span>
+              <div class="launch-avatar-sq" style="background: #DC2626;">A</div>
+              <div>
+                <h3 class="h6 fw-bold text-white mb-1">Avnac</h3>
+                <p class="text-muted small mb-1">Open design in the browser.</p>
+                <div class="d-flex align-items-center gap-2 text-muted" style="font-size: 0.75rem;">
+                  <span>Design</span>
+                  <span>•</span>
+                  <span>Nigeria</span>
+                  <span>•</span>
+                  <span>💬 19</span>
+                </div>
+              </div>
+            </div>
+            <button class="upvote-badge-btn" onclick="handleUpvote(this, 176)">
+              <span class="upvote-arrow">▲</span>
+              <span class="upvote-count">176</span>
+            </button>
+          </div>
+
+          <!-- Rank 6: Cencori -->
+          <div class="launch-list-card">
+            <div class="d-flex align-items-center gap-3">
+              <span class="launch-rank-num">6</span>
+              <div class="launch-avatar-sq" style="background: #EA580C;">C</div>
+              <div>
+                <h3 class="h6 fw-bold text-white mb-1">Cencori</h3>
+                <p class="text-muted small mb-1">AI cloud infrastructure for production apps.</p>
+                <div class="d-flex align-items-center gap-2 text-muted" style="font-size: 0.75rem;">
+                  <span>AI</span>
+                  <span>•</span>
+                  <span>Nigeria</span>
+                  <span>•</span>
+                  <span>💬 14</span>
+                </div>
+              </div>
+            </div>
+            <button class="upvote-badge-btn" onclick="handleUpvote(this, 151)">
+              <span class="upvote-arrow">▲</span>
+              <span class="upvote-count">151</span>
+            </button>
+          </div>
+
+          <!-- Rank 7: Brimble -->
+          <div class="launch-list-card">
+            <div class="d-flex align-items-center gap-3">
+              <span class="launch-rank-num">7</span>
+              <div class="launch-avatar-sq" style="background: #2563EB;">B</div>
+              <div>
+                <h3 class="h6 fw-bold text-white mb-1">Brimble</h3>
+                <p class="text-muted small mb-1">Deploy apps, databases, and sandboxes in one place.</p>
+                <div class="d-flex align-items-center gap-2 text-muted" style="font-size: 0.75rem;">
+                  <span>Hosting</span>
+                  <span>•</span>
+                  <span>Nigeria</span>
+                  <span>•</span>
+                  <span>💬 17</span>
+                </div>
+              </div>
+            </div>
+            <button class="upvote-badge-btn" onclick="handleUpvote(this, 133)">
+              <span class="upvote-arrow">▲</span>
+              <span class="upvote-count">133</span>
+            </button>
+          </div>
+
+          <!-- Rank 8: Xara -->
+          <div class="launch-list-card">
+            <div class="d-flex align-items-center gap-3">
+              <span class="launch-rank-num">8</span>
+              <div class="launch-avatar-sq" style="background: #10B981;">X</div>
+              <div>
+                <h3 class="h6 fw-bold text-white mb-1">Xara</h3>
+                <p class="text-muted small mb-1">Your AI personal finance assistant on WhatsApp.</p>
+                <div class="d-flex align-items-center gap-2 text-muted" style="font-size: 0.75rem;">
+                  <span>Fintech</span>
+                  <span>•</span>
+                  <span>Nigeria</span>
+                  <span>•</span>
+                  <span>💬 17</span>
+                </div>
+              </div>
+            </div>
+            <button class="upvote-badge-btn" onclick="handleUpvote(this, 120)">
+              <span class="upvote-arrow">▲</span>
+              <span class="upvote-count">120</span>
+            </button>
+          </div>
+
+          <!-- Show all launches button -->
+          <div class="text-center mt-4">
+            <button class="btn-pill-dark w-100 py-3" onclick="alert('Showing all 24 verified African launches for Week 43.')">
+              Show all 24 launches
+            </button>
+          </div>
+
+        </div>
+
+        <!-- Right: Sidebar Panels -->
+        <div class="col-lg-4">
+          
+          <!-- Countdown Timer Card -->
+          <div class="countdown-timer-card">
+            <div class="small fw-semibold opacity-90">Next launch week starts in</div>
+            
+            <div class="timer-digits-grid">
+              <div class="timer-digit-unit">
+                <div class="timer-big-num" id="cdDays">02</div>
+                <div class="timer-sub-label">DAYS</div>
+              </div>
+              <div class="fs-4 opacity-50">:</div>
+              <div class="timer-digit-unit">
+                <div class="timer-big-num" id="cdHours">14</div>
+                <div class="timer-sub-label">HRS</div>
+              </div>
+              <div class="fs-4 opacity-50">:</div>
+              <div class="timer-digit-unit">
+                <div class="timer-big-num" id="cdMins">36</div>
+                <div class="timer-sub-label">MIN</div>
+              </div>
+              <div class="fs-4 opacity-50">:</div>
+              <div class="timer-digit-unit">
+                <div class="timer-big-num" id="cdSecs">09</div>
+                <div class="timer-sub-label">SEC</div>
+              </div>
+            </div>
+
+            <a href="submit.html" class="btn btn-light w-100 rounded-pill fw-bold text-dark text-decoration-none py-2" style="font-size: 0.85rem;">
+              Schedule your launch →
+            </a>
+          </div>
+
+          <!-- Top Makers this week -->
+          <div class="side-panel-card">
+            <h3 class="h6 fw-bold text-white mb-3">Top makers this week</h3>
+
+            <!-- Maker 1 -->
+            <div class="maker-follow-row">
+              <div class="d-flex align-items-center gap-2">
+                <img src="images/founder_robinson.jpg" alt="Robinson Honour" style="width: 36px; height: 36px; border-radius: 50%; object-fit: cover;">
+                <div>
+                  <div class="fw-bold text-white" style="font-size: 0.85rem;">Robinson Honour</div>
+                  <div class="text-muted" style="font-size: 0.7rem;">Pxxl</div>
+                </div>
+              </div>
+              <button class="btn-follow-outline" onclick="this.textContent = this.textContent === 'Follow' ? 'Following ✓' : 'Follow'">Follow</button>
+            </div>
+
+            <!-- Maker 2 -->
+            <div class="maker-follow-row">
+              <div class="d-flex align-items-center gap-2">
+                <img src="images/story_akinkunmi.jpg" alt="Akinkunmi" style="width: 36px; height: 36px; border-radius: 50%; object-fit: cover;">
+                <div>
+                  <div class="fw-bold text-white" style="font-size: 0.85rem;">Akinkunmi</div>
+                  <div class="text-muted" style="font-size: 0.7rem;">Avnac, Byteship</div>
+                </div>
+              </div>
+              <button class="btn-follow-outline" onclick="this.textContent = this.textContent === 'Follow' ? 'Following ✓' : 'Follow'">Follow</button>
+            </div>
+
+            <!-- Maker 3 -->
+            <div class="maker-follow-row">
+              <div class="d-flex align-items-center gap-2">
+                <img src="images/story_sulaiman.jpg" alt="Sulaiman Adewale" style="width: 36px; height: 36px; border-radius: 50%; object-fit: cover;">
+                <div>
+                  <div class="fw-bold text-white" style="font-size: 0.85rem;">Sulaiman Adewale</div>
+                  <div class="text-muted" style="font-size: 0.7rem;">Xara</div>
+                </div>
+              </div>
+              <button class="btn-follow-outline" onclick="this.textContent = this.textContent === 'Follow' ? 'Following ✓' : 'Follow'">Follow</button>
+            </div>
+
+            <!-- Maker 4 -->
+            <div class="maker-follow-row">
+              <div class="d-flex align-items-center gap-2">
+                <img src="images/story_dara.jpg" alt="Dára Sobaloju" style="width: 36px; height: 36px; border-radius: 50%; object-fit: cover;">
+                <div>
+                  <div class="fw-bold text-white" style="font-size: 0.85rem;">Dára Sobaloju</div>
+                  <div class="text-muted" style="font-size: 0.7rem;">Pewbeam</div>
+                </div>
+              </div>
+              <button class="btn-follow-outline" onclick="this.textContent = this.textContent === 'Follow' ? 'Following ✓' : 'Follow'">Follow</button>
+            </div>
+          </div>
+
+          <!-- How Ranking Works Explainer -->
+          <div class="side-panel-card">
+            <h3 class="h6 fw-bold text-white mb-2">How ranking works</h3>
+            <p class="text-muted small mb-0" style="line-height: 1.6;">
+              Launches are ranked by verified upvotes in their launch week. Every product is reviewed by an editor before it can launch.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- ========================================================================
+       4. Site Footer
+       ======================================================================== -->
+  <footer class="site-footer">
+    <div class="container-xl">
+      
+      <div class="row g-5">
+        <!-- Brand Info -->
+        <div class="col-lg-4">
+          <a href="index.html" class="brand-logo mb-2">
+            <span class="brand-logo-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4 19L11 5H15L8 19H4Z" fill="#3B82F6"/>
+                <path d="M12 19L19 5H21L14 19H12Z" fill="#60A5FA"/>
+              </svg>
+            </span>
+            <span>discova</span>
+          </a>
+          <p class="footer-brand-desc">
+            Editorial discovery for software built in Africa — and the builders behind it.
+          </p>
+        </div>
+
+        <!-- Col 2: Explore -->
+        <div class="col-6 col-md-3 col-lg-2 offset-lg-2">
+          <div class="footer-col-title">Explore</div>
+          <ul class="footer-links-list">
+            <li><a href="products.html">All products</a></li>
+            <li><a href="launches.html">Launches</a></li>
+            <li><a href="categories.html">Categories</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Stories -->
+        <div class="col-6 col-md-3 col-lg-2">
+          <div class="footer-col-title">Stories</div>
+          <ul class="footer-links-list">
+            <li><a href="stories.html">Builder Stories</a></li>
+            <li><a href="stories.html#interviews">Video interviews</a></li>
+            <li><a href="https://youtube.com">YouTube channel</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Company -->
+        <div class="col-6 col-md-3 col-lg-2">
+          <div class="footer-col-title">Company</div>
+          <ul class="footer-links-list">
+            <li><a href="about.html">About</a></li>
+            <li><a href="submit.html">Submit a product</a></li>
+            <li><a href="index.html#newsletter">Newsletter</a></li>
+            <li><a href="about.html#contact">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Bottom Row -->
+      <div class="footer-bottom-row">
+        <div>© 2026 Discova • Home of solutions built in Africa</div>
+        <div class="d-flex align-items-center gap-3">
+          <a href="https://x.com" target="_blank" rel="noopener noreferrer">X</a>
+          <span>•</span>
+          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <span>•</span>
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a>
+          <span>•</span>
+          <a href="https://youtube.com" target="_blank" rel="noopener noreferrer">YouTube</a>
+        </div>
+      </div>
+
+      <!-- Huge Watermarked Wordmark -->
+      <div class="footer-watermark">
+        discova
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- Bootstrap 5.3 Bundle JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <!-- Custom JS -->
+  <script src="js/api.js"></script>
+  <script src="js/main.js"></script>
+  
+  <!-- Real-time Countdown Timer Script -->
+  <script>
+    (function initCountdown() {
+      const daysEl = document.getElementById('cdDays');
+      const hoursEl = document.getElementById('cdHours');
+      const minsEl = document.getElementById('cdMins');
+      const secsEl = document.getElementById('cdSecs');
+      if (!daysEl) return;
+
+      let remainingSecs = 2 * 86400 + 14 * 3600 + 36 * 60 + 9;
+
+      setInterval(() => {
+        if (remainingSecs <= 0) return;
+        remainingSecs--;
+        const d = Math.floor(remainingSecs / 86400);
+        const h = Math.floor((remainingSecs % 86400) / 3600);
+        const m = Math.floor((remainingSecs % 3600) / 60);
+        const s = remainingSecs % 60;
+
+        daysEl.textContent = String(d).padStart(2, '0');
+        hoursEl.textContent = String(h).padStart(2, '0');
+        minsEl.textContent = String(m).padStart(2, '0');
+        secsEl.textContent = String(s).padStart(2, '0');
+      }, 1000);
+    })();
+  </script>
+</body>
+</html>

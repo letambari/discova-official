@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Discova — Discover what Africa is building</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap 5.3 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="css/styles.css">
+
+  <!-- Pre-initialization theme check to prevent flash -->
+  <script>
+    (function() {
+      var saved = localStorage.getItem('discova_theme') || 'dark';
+      document.documentElement.setAttribute('data-bs-theme', saved);
+    })();
+  </script>
+</head>
+<body>
+
+  <!-- ========================================================================
+       1. Sticky Header / Navbar
+       ======================================================================== -->
+  <header class="site-navbar">
+    <div class="container-xl d-flex align-items-center justify-content-between">
+      
+      <!-- Brand Logo -->
+      <a href="index.html" class="brand-logo">
+        <span class="brand-logo-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 19L11 5H15L8 19H4Z" fill="#3B82F6"/>
+            <path d="M12 19L19 5H21L14 19H12Z" fill="#60A5FA"/>
+          </svg>
+        </span>
+        <span>discova</span>
+      </a>
+
+      <!-- Center Navigation -->
+      <nav class="d-none d-lg-flex align-items-center gap-1">
+        <a href="products.html" class="nav-link-custom">Products</a>
+        <a href="launches.html" class="nav-link-custom">Launches</a>
+        <a href="stories.html" class="nav-link-custom">Stories</a>
+        <a href="categories.html" class="nav-link-custom">Categories</a>
+      </nav>
+
+      <!-- Right Action Controls -->
+      <div class="d-flex align-items-center gap-3">
+        <!-- Theme Toggle Pill -->
+        <button class="theme-toggle-pill" id="themeToggleBtn" onclick="toggleTheme()" title="Toggle light/dark mode" aria-label="Toggle theme">
+          <span class="theme-icon sun-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+          </span>
+          <span class="theme-icon moon-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+          </span>
+        </button>
+
+        <!-- Search Trigger Icon -->
+        <button class="navbar-action-btn" onclick="document.getElementById('heroSearchInput')?.focus()" title="Search products">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+        </button>
+
+        <!-- User / Sign In -->
+        <a href="login.html" class="d-none d-sm-inline-block text-muted text-decoration-none fw-semibold" style="font-size: 0.875rem;">Sign in</a>
+
+        <!-- Submit CTA Button -->
+        <a href="submit.html" class="btn-pill-white text-decoration-none">
+          <span>Submit your product</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+          </svg>
+        </a>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ========================================================================
+       2. Hero Section
+       ======================================================================== -->
+  <section class="hero-section">
+    <!-- Atmospheric Radial Glow -->
+    <div class="hero-glow-bg"></div>
+
+    <!-- Floating Badges (Desktop Only) -->
+    <!-- Top-Left Badge: Paystack -->
+    <div class="floating-badge floating-badge-1">
+      <div class="d-flex align-items-center gap-2">
+        <span class="d-flex align-items-center justify-content-center" style="width: 22px; height: 22px; background: #00C3F9; border-radius: 4px; color: #fff; font-weight: 800; font-size: 0.7rem;">P</span>
+        <span>Paystack • Payment gateway</span>
+      </div>
+      <span class="badge bg-light text-dark border px-2 py-1 rounded-pill">▲ 241</span>
+    </div>
+
+    <!-- Top-Right Badge: Techstars Funded -->
+    <div class="floating-badge floating-badge-2">
+      <span style="font-size: 1rem;">⚡</span>
+      <span>Funded with $1.2M • Techstars '24</span>
+    </div>
+
+    <!-- Mid-Left Badge: SaaS AI -->
+    <div class="floating-badge floating-badge-3">
+      <span>SaaS • Developer API</span>
+    </div>
+
+    <!-- Mid-Right Badge: Chowdeck Story -->
+    <div class="floating-badge floating-badge-4">
+      <img src="images/avatar1.jpg" alt="Chowdeck Founder">
+      <span>Chowdeck interviewed • 18:24</span>
+    </div>
+
+    <div class="container-xl position-relative">
+      
+      <!-- Top Announcement Pill -->
+      <div class="hero-badge-pill">
+        <span class="pulse-dot"></span>
+        <span class="fw-semibold">LIVE</span>
+        <span class="text-white-50">|</span>
+        <span>Africa's builders showcase</span>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </div>
+
+      <!-- Main Heading -->
+      <h1 class="hero-title">
+        Discover what<br>
+        Africa <span class="font-serif-italic text-gradient-hero">is building.</span>
+      </h1>
+
+      <!-- Subtitle -->
+      <p class="hero-subtitle">
+        The premier platform for tech built across the continent — showcasing ambitious, world-class products and the teams behind them.
+      </p>
+
+      <!-- Glassmorphic Search Bar -->
+      <div class="hero-search-wrapper">
+        <div class="hero-search-bar">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#64748B" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input type="text" id="heroSearchInput" class="hero-search-input" placeholder="Try searching for 'Fintech in Nairobi' or 'Logistics'..." autocomplete="off">
+          <button type="button" id="heroSearchBtn" class="hero-search-btn">Search</button>
+        </div>
+      </div>
+
+      <!-- Social Proof -->
+      <div class="hero-social-proof">
+        <div class="avatar-stack">
+          <img src="images/avatar1.jpg" alt="Founder 1">
+          <img src="images/avatar2.jpg" alt="Founder 2">
+          <img src="images/avatar3.jpg" alt="Founder 3">
+          <img src="images/avatar4.jpg" alt="Founder 4">
+        </div>
+        <div class="stars-rating">★★★★★</div>
+        <div class="social-proof-text">Trusted by 2,500+ African founders & builders</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       3. Startup Logo Marquee Ticker
+       ======================================================================== -->
+  <section class="ticker-section">
+    <div class="ticker-label">COMPANIES LAUNCHING ON DISCOVA</div>
+    <div class="marquee-container">
+      <div class="marquee-content">
+        <span class="marquee-item">Kuda <span class="marquee-dot"></span></span>
+        <span class="marquee-item">Bucha <span class="marquee-dot"></span></span>
+        <span class="marquee-item">YarnGPT <span class="marquee-dot"></span></span>
+        <span class="marquee-item">SendByte <span class="marquee-dot"></span></span>
+        <span class="marquee-item">Avrae <span class="marquee-dot"></span></span>
+        <span class="marquee-item">Concert <span class="marquee-dot"></span></span>
+        <span class="marquee-item">Brimble <span class="marquee-dot"></span></span>
+        <span class="marquee-item">Xano <span class="marquee-dot"></span></span>
+        <span class="marquee-item">Chowdeck <span class="marquee-dot"></span></span>
+        <span class="marquee-item">Moniepoint <span class="marquee-dot"></span></span>
+        <span class="marquee-item">Paystack <span class="marquee-dot"></span></span>
+        <span class="marquee-item">Flutterwave <span class="marquee-dot"></span></span>
+
+        <!-- Duplicated items for seamless infinite scroll -->
+        <span class="marquee-item">Kuda <span class="marquee-dot"></span></span>
+        <span class="marquee-item">Bucha <span class="marquee-dot"></span></span>
+        <span class="marquee-item">YarnGPT <span class="marquee-dot"></span></span>
+        <span class="marquee-item">SendByte <span class="marquee-dot"></span></span>
+        <span class="marquee-item">Avrae <span class="marquee-dot"></span></span>
+        <span class="marquee-item">Concert <span class="marquee-dot"></span></span>
+        <span class="marquee-item">Brimble <span class="marquee-dot"></span></span>
+        <span class="marquee-item">Xano <span class="marquee-dot"></span></span>
+        <span class="marquee-item">Chowdeck <span class="marquee-dot"></span></span>
+        <span class="marquee-item">Moniepoint <span class="marquee-dot"></span></span>
+        <span class="marquee-item">Paystack <span class="marquee-dot"></span></span>
+        <span class="marquee-item">Flutterwave <span class="marquee-dot"></span></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       4. Bento Grid ("Everything Africa ships, in one place.")
+       ======================================================================== -->
+  <section class="bento-section" id="products">
+    <div class="container-xl">
+      
+      <!-- Bento Header -->
+      <div class="row align-items-end bento-header g-4">
+        <div class="col-lg-7">
+          <h2 class="bento-title mb-0">
+            Everything Africa ships,<br>
+            <span class="font-serif-italic text-gradient-purple">in one place.</span>
+          </h2>
+        </div>
+        <div class="col-lg-5 text-lg-end">
+          <p class="bento-subtext mb-0">
+            Handpicked daily from the fastest growing ecosystems across 54 countries. From seed to scale-up, discover the next generation of giants.
+          </p>
+        </div>
+      </div>
+
+      <!-- Bento Grid Rows -->
+      <div class="row g-4">
+        
+        <!-- CARD 1: Featured Launch of the Day (Col-lg-7) -->
+        <div class="col-lg-7">
+          <div class="bento-card card-featured-purple">
+            <div class="d-flex align-items-center justify-content-between">
+              <div>
+                <span class="card-tag-badge">FEATURED LAUNCH OF THE DAY</span>
+                <div class="fw-bold mt-2 text-white-50" style="font-size: 0.9rem;">Pxxl</div>
+              </div>
+              <a href="product-details.html" class="bento-icon-btn text-decoration-none" title="View details">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <line x1="7" y1="17" x2="17" y2="7"></line>
+                  <polyline points="7 7 17 7 17 17"></polyline>
+                </svg>
+              </a>
+            </div>
+
+            <!-- Big Quote -->
+            <a href="product-details.html" class="text-decoration-none">
+              <div class="card-featured-quote">
+                Deploy in Lagos,<br>not London.
+              </div>
+            </a>
+
+            <!-- Bottom Stats + Animated Sound Bar Chart Graphic -->
+            <div class="d-flex align-items-end justify-content-between flex-wrap gap-3">
+              <div class="featured-stats-row">
+                <div>
+                  <div class="stat-item-num">252</div>
+                  <div class="stat-item-lbl">Upvotes</div>
+                </div>
+                <div>
+                  <div class="stat-item-num">1.8ms</div>
+                  <div class="stat-item-lbl">Latency</div>
+                </div>
+                <div>
+                  <div class="stat-item-num">3</div>
+                  <div class="stat-item-lbl">Regions</div>
+                </div>
+              </div>
+
+              <!-- Animated Audio/Bar Equalizer Graphic -->
+              <div class="equalizer-chart">
+                <div class="eq-bar"></div>
+                <div class="eq-bar"></div>
+                <div class="eq-bar"></div>
+                <div class="eq-bar"></div>
+                <div class="eq-bar"></div>
+                <div class="eq-bar"></div>
+                <div class="eq-bar"></div>
+                <div class="eq-bar"></div>
+                <div class="eq-bar"></div>
+                <div class="eq-bar"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 2: Top Launches (Col-lg-5) -->
+        <div class="col-lg-5">
+          <div class="bento-card card-top-launches">
+            <div class="d-flex align-items-center justify-content-between">
+              <div>
+                <span class="card-tag-badge">LEADERBOARD</span>
+                <h3 class="fw-bold fs-5 text-white mt-1 mb-0">Top launches</h3>
+              </div>
+              <a href="launches.html" class="bento-icon-btn text-decoration-none" title="View full leaderboard">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <line x1="7" y1="17" x2="17" y2="7"></line>
+                  <polyline points="7 7 17 7 17 17"></polyline>
+                </svg>
+              </a>
+            </div>
+
+            <!-- Leaderboard Items -->
+            <div class="leaderboard-list">
+              <a href="product-details.html" class="leaderboard-row text-decoration-none">
+                <div class="d-flex align-items-center gap-2">
+                  <span class="lb-rank">1</span>
+                  <div class="lb-icon" style="background: #10B981;">B</div>
+                  <div>
+                    <div class="lb-name">Brimble</div>
+                  </div>
+                </div>
+                <span class="lb-badge">▲ 287</span>
+              </a>
+
+              <a href="product-details.html" class="leaderboard-row text-decoration-none">
+                <div class="d-flex align-items-center gap-2">
+                  <span class="lb-rank">2</span>
+                  <div class="lb-icon" style="background: #EC4899;">Y</div>
+                  <div>
+                    <div class="lb-name">YarnGPT</div>
+                  </div>
+                </div>
+                <span class="lb-badge">▲ 231</span>
+              </a>
+
+              <a href="product-details.html" class="leaderboard-row text-decoration-none">
+                <div class="d-flex align-items-center gap-2">
+                  <span class="lb-rank">3</span>
+                  <div class="lb-icon" style="background: #8B5CF6;">P</div>
+                  <div>
+                    <div class="lb-name">Pxxl</div>
+                  </div>
+                </div>
+                <span class="lb-badge">▲ 179</span>
+              </a>
+
+              <a href="product-details.html" class="leaderboard-row text-decoration-none">
+                <div class="d-flex align-items-center gap-2">
+                  <span class="lb-rank">4</span>
+                  <div class="lb-icon" style="background: #EF4444;">A</div>
+                  <div>
+                    <div class="lb-name">Avrae</div>
+                  </div>
+                </div>
+                <span class="lb-badge">▲ 142</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 3: Watch Stories (Col-lg-4) -->
+        <div class="col-lg-4">
+          <div class="bento-card card-watch-stories">
+            <div class="d-flex align-items-center justify-content-between">
+              <div>
+                <span class="card-tag-badge">LATEST STORY</span>
+                <h4 class="fw-bold fs-5 text-white mt-1 mb-0">Watch the interviews</h4>
+              </div>
+              <a href="stories.html" class="bento-icon-btn text-decoration-none" title="Watch all">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <line x1="7" y1="17" x2="17" y2="7"></line>
+                  <polyline points="7 7 17 7 17 17"></polyline>
+                </svg>
+              </a>
+            </div>
+
+            <!-- Video Thumbnail Preview -->
+            <div class="video-thumb-preview" data-bs-toggle="modal" data-bs-target="#videoPlayerModal" 
+                 data-video-url="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1"
+                 data-video-title="How Chowdeck grew 10x in Lagos - Founder Story"
+                 data-video-desc="Femi Aluko breaks down how Chowdeck solved food delivery logistics in Lagos.">
+              <img src="images/founder_chowdeck.jpg" alt="Chowdeck Founder">
+              <div class="video-play-overlay-sm">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                  <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                </svg>
+              </div>
+              <div class="video-caption-bar">
+                <span>Discover how Chowdeck scaled to 10k orders in Lagos</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 4: Built Something? Get Listed (Col-lg-4) -->
+        <div class="col-lg-4">
+          <div class="bento-card card-built-orange">
+            <div>
+              <span class="card-tag-badge">FOR FOUNDERS</span>
+              <h3 class="card-built-title">Built something?<br>Get listed.</h3>
+              
+              <ul class="check-benefits-list">
+                <li>
+                  <span class="check-circle">✓</span>
+                  <span>Reach 50k+ monthly builders</span>
+                </li>
+                <li>
+                  <span class="check-circle">✓</span>
+                  <span>Attract early seed investors</span>
+                </li>
+                <li>
+                  <span class="check-circle">✓</span>
+                  <span>Get feedback & hire top talent</span>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <a href="submit.html" class="btn-pill-black text-decoration-none">
+                <span>Submit your product</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 5: Platform Metrics (Col-lg-4) -->
+        <div class="col-lg-4">
+          <div class="bento-card card-metrics-white">
+            <div>
+              <span class="badge bg-primary-subtle text-primary fw-bold px-3 py-1 rounded-pill" style="font-size: 0.7rem; letter-spacing: 0.05em;">BY THE NUMBERS</span>
+            </div>
+
+            <div class="metric-stat-group">
+              <div class="metric-big-num" id="statProductsCount">—</div>
+              <div class="metric-label">products showcased</div>
+
+              <div class="metric-big-num" id="statCountriesCount">—</div>
+              <div class="metric-label">countries represented</div>
+
+              <div class="metric-big-num" id="statStartupsCount">—</div>
+              <div class="metric-label">backed startups</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       5. Category Filter Bar
+       ======================================================================== -->
+  <section class="categories-bar-section" id="categories">
+    <div class="container-xl">
+      <div class="categories-wrapper">
+        <a href="categories.html" class="cat-label-box text-decoration-none" title="Explore all categories in directory">
+          <div>
+            <div class="label-tag">EXPLORE</div>
+            <div class="label-count">12 categories <span style="font-size: 0.9em; margin-left: 2px;">↗</span></div>
+          </div>
+        </a>
+
+        <!-- Interactive Category Pills -->
+        <div class="category-pills-list">
+          <button class="cat-pill active" data-category="all">All</button>
+          <button class="cat-pill" data-category="devtools">Developer Tools</button>
+          <button class="cat-pill" data-category="ai">AI & ML</button>
+          <button class="cat-pill" data-category="fintech">FinTech</button>
+          <button class="cat-pill" data-category="cleanenergy">Clean Energy</button>
+          <button class="cat-pill" data-category="logistics">Logistics</button>
+          <button class="cat-pill" data-category="healthtech">HealthTech</button>
+          <button class="cat-pill" data-category="agritech">Agritech</button>
+          <button class="cat-pill" data-category="edtech">EdTech</button>
+          <button class="cat-pill" data-category="web3">Web3</button>
+          <button class="cat-pill" data-category="ecommerce">E-Commerce</button>
+          <button class="cat-pill" data-category="media">Media & Creative</button>
+          <button class="cat-pill" data-category="saas">Enterprise SaaS</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       6. Trending Section ("Trending right now")
+       ======================================================================== -->
+  <span id="archive" style="display:block; position:relative; top:-80px; visibility:hidden;"></span>
+  <section class="trending-section" id="trending">
+    <div class="container-xl">
+      
+      <!-- Section Header -->
+      <div class="trending-header">
+        <h2 class="trending-title mb-0">
+          Trending <span class="font-serif-italic text-gradient-gold">right now</span>
+        </h2>
+
+        <!-- Timeframe Tabs -->
+        <div class="timeframe-tabs">
+          <button class="timeframe-tab active" data-timeframe="today">Today</button>
+          <button class="timeframe-tab" data-timeframe="week">This week</button>
+          <button class="timeframe-tab" data-timeframe="all">All time</button>
+        </div>
+      </div>
+
+      <!-- 4 Trending Product Cards -->
+      <div class="row g-4" id="trendingGrid">
+        
+        <!-- CARD 1: Doux -->
+        <div class="col-md-6 col-lg-3 trending-card-item" data-category="fintech" data-base-votes="142">
+          <div class="product-card">
+            <div class="product-card-banner banner-doux">
+              <div class="top-badges">
+                <span class="pulse-dot" style="background: #FFFFFF; box-shadow: 0 0 8px #FFFFFF;"></span>
+                <button class="upvote-badge-btn" title="Upvote">
+                  <span>▲</span>
+                  <span class="upvote-count">142</span>
+                </button>
+              </div>
+              <div class="card-product-name">Doux</div>
+            </div>
+
+            <div class="product-card-body">
+              <div>
+                <div class="category-tag-row mb-2">
+                  <div class="cat-mini-icon" style="background: #0284C7;">💳</div>
+                  <span class="cat-mini-name">Fintech</span>
+                </div>
+                <p class="product-desc">
+                  The missing payment gateway for African digital nomads and cross-border businesses.
+                </p>
+              </div>
+
+              <div class="product-card-footer">
+                <span>Lagos, Nigeria</span>
+                <a href="product-details.html" class="visit-link">Visit product ↗</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 2: YarnGPT -->
+        <div class="col-md-6 col-lg-3 trending-card-item" data-category="ai" data-base-votes="128">
+          <div class="product-card">
+            <div class="product-card-banner banner-yarngpt">
+              <div class="top-badges">
+                <span class="badge bg-black bg-opacity-25 text-white rounded-pill px-2 py-1" style="font-size: 0.65rem;">Featured</span>
+                <button class="upvote-badge-btn" title="Upvote">
+                  <span>▲</span>
+                  <span class="upvote-count">128</span>
+                </button>
+              </div>
+              <div class="card-product-name">YarnGPT</div>
+            </div>
+
+            <div class="product-card-body">
+              <div>
+                <div class="category-tag-row mb-2">
+                  <div class="cat-mini-icon" style="background: #BE185D;">🎙️</div>
+                  <span class="cat-mini-name">Generative AI</span>
+                </div>
+                <p class="product-desc">
+                  Text-to-speech AI models fine-tuned on native African accents and multilingual dialects.
+                </p>
+              </div>
+
+              <div class="product-card-footer">
+                <span>Nairobi, Kenya</span>
+                <a href="product-details.html" class="visit-link">Visit product ↗</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 3: Powbeam -->
+        <div class="col-md-6 col-lg-3 trending-card-item" data-category="cleanenergy" data-base-votes="115">
+          <div class="product-card">
+            <div class="product-card-banner banner-powbeam">
+              <div class="top-badges">
+                <span class="pulse-dot" style="background: #FFFFFF; box-shadow: 0 0 8px #FFFFFF;"></span>
+                <button class="upvote-badge-btn" title="Upvote">
+                  <span>▲</span>
+                  <span class="upvote-count">115</span>
+                </button>
+              </div>
+              <div class="card-product-name">Powbeam</div>
+            </div>
+
+            <div class="product-card-body">
+              <div>
+                <div class="category-tag-row mb-2">
+                  <div class="cat-mini-icon" style="background: #C2410C;">⚡</div>
+                  <span class="cat-mini-name">Clean Energy</span>
+                </div>
+                <p class="product-desc">
+                  Off-grid solar power orchestration and smart battery swapping stations across East Africa.
+                </p>
+              </div>
+
+              <div class="product-card-footer">
+                <span>Kigali, Rwanda</span>
+                <a href="product-details.html" class="visit-link">Visit product ↗</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 4: Avrae -->
+        <div class="col-md-6 col-lg-3 trending-card-item" data-category="health" data-base-votes="98">
+          <div class="product-card">
+            <div class="product-card-banner banner-avrae">
+              <div class="top-badges">
+                <span class="badge bg-black bg-opacity-25 text-white rounded-pill px-2 py-1" style="font-size: 0.65rem;">Featured</span>
+                <button class="upvote-badge-btn" title="Upvote">
+                  <span>▲</span>
+                  <span class="upvote-count">98</span>
+                </button>
+              </div>
+              <div class="card-product-name">Avrae</div>
+            </div>
+
+            <div class="product-card-body">
+              <div>
+                <div class="category-tag-row mb-2">
+                  <div class="cat-mini-icon" style="background: #9F1239;">💊</div>
+                  <span class="cat-mini-name">HealthTech</span>
+                </div>
+                <p class="product-desc">
+                  Centralized supply chain and inventory network connecting retail pharmacies in West Africa.
+                </p>
+              </div>
+
+              <div class="product-card-footer">
+                <span>Accra, Ghana</span>
+                <a href="product-details.html" class="visit-link">Visit product ↗</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Bottom Centered Explore All Button -->
+      <div class="text-center mt-5">
+        <a href="products.html" class="btn-pill-dark">
+          <span id="exploreProductsCountText">Explore all products</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       7. "Hear it from the builders." (Light Warm Section)
+       ======================================================================== -->
+  <section class="builders-section" id="stories">
+    <div class="container-xl">
+      
+      <!-- Section Header -->
+      <div class="row align-items-end g-4">
+        <div class="col-lg-7">
+          <div class="builders-badge">
+            <span class="red-live-dot"></span>
+            <span>EXCLUSIVE FOUNDER STORIES</span>
+          </div>
+          <h2 class="builders-title mb-0">
+            Hear it from<br>
+            <span class="font-serif-italic">the builders.</span>
+          </h2>
+        </div>
+        <div class="col-lg-5 text-lg-end">
+          <p class="builders-subtext mb-3">
+            Long-form video interviews with founders navigating hyper-growth, regulation, and cross-border expansion.
+          </p>
+          <a href="https://youtube.com" target="_blank" class="btn-pill-black">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="#FF0000">
+              <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+            </svg>
+            <span>Subscribe on YouTube</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Featured Main Video Container (16:9) -->
+      <div class="main-video-container" data-bs-toggle="modal" data-bs-target="#videoPlayerModal"
+           data-video-url="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1"
+           data-video-title="How Chowdeck grew 10x in 12 months in Lagos, Nigeria - Full Founder Story"
+           data-video-desc="Femi Aluko breaks down the viral playbook, unit economics, and rider fleet infrastructure that made Chowdeck Nigeria's fastest growing on-demand food delivery tech platform.">
+        
+        <!-- Video Header Overlay -->
+        <div class="video-header-overlay">
+          <div class="video-channel-info">
+            <div class="channel-avatar">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+              </svg>
+            </div>
+            <div class="video-title-text">
+              How Chowdeck grew 10x in 12 months in Lagos, Nigeria - Full Founder Story
+            </div>
+          </div>
+          <div class="d-none d-sm-flex align-items-center gap-3" style="font-size: 0.8125rem;">
+            <span>Watch later</span>
+            <span>Share</span>
+          </div>
+        </div>
+
+        <!-- Thumbnail Image -->
+        <img src="images/founder_chowdeck.jpg" alt="Chowdeck Founder Interview">
+
+        <!-- Big Red Play Button -->
+        <div class="main-play-btn" title="Play Video">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="#FFFFFF">
+            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+          </svg>
+        </div>
+
+        <!-- Video Footer Overlay -->
+        <div class="video-footer-overlay">
+          <div class="d-flex align-items-center gap-2">
+            <span class="badge bg-danger rounded-1 px-1 py-0" style="font-size: 0.65rem;">LIVE</span>
+            <span>18:42 / 32:15</span>
+          </div>
+          <div class="d-flex align-items-center gap-2">
+            <span>Watch on</span>
+            <span class="fw-bold" style="color: #FF0000;">YouTube</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Secondary Video Cards (Row of 3) -->
+      <div class="row g-4 mt-2">
+        
+        <!-- Video 1: Folarin Oseni -->
+        <div class="col-md-4">
+          <div class="secondary-video-card" data-bs-toggle="modal" data-bs-target="#videoPlayerModal"
+               data-video-url="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1"
+               data-video-title="Folarin Oseni — How Kuda scaled zero-fee banking to 7M users"
+               data-video-desc="Inside the engineering decisions, licensing journey, and hyper-growth strategies of Africa's leading challenger bank.">
+            <div class="secondary-thumb-box">
+              <img src="images/founder_kuda.jpg" alt="Folarin Oseni">
+              <div class="secondary-play-btn">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="#FFFFFF">
+                  <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                </svg>
+              </div>
+              <div class="time-badge">18:24</div>
+            </div>
+            <h4 class="secondary-founder-name">Folarin Oseni</h4>
+            <p class="secondary-founder-sub">Founder, Kuda (Financial Inclusion)</p>
+          </div>
+        </div>
+
+        <!-- Video 2: Fara Ashiru -->
+        <div class="col-md-4">
+          <div class="secondary-video-card" data-bs-toggle="modal" data-bs-target="#videoPlayerModal"
+               data-video-url="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1"
+               data-video-title="Fara Ashiru — Building Africa's open finance data layer with Okra"
+               data-video-desc="How Okra pioneered financial data infrastructure connecting African banks, fintechs, and millions of retail customers.">
+            <div class="secondary-thumb-box">
+              <img src="images/founder_okra.jpg" alt="Fara Ashiru">
+              <div class="secondary-play-btn">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="#FFFFFF">
+                  <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                </svg>
+              </div>
+              <div class="time-badge">24:12</div>
+            </div>
+            <h4 class="secondary-founder-name">Fara Ashiru</h4>
+            <p class="secondary-founder-sub">CEO & Co-founder, Okra API</p>
+          </div>
+        </div>
+
+        <!-- Video 3: Shola Akinlade -->
+        <div class="col-md-4">
+          <div class="secondary-video-card" data-bs-toggle="modal" data-bs-target="#videoPlayerModal"
+               data-video-url="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1"
+               data-video-title="Shola Akinlade — From Paystack's $200M acquisition to Sporting Lagos"
+               data-video-desc="The foundational lessons from building Paystack, selling to Stripe, and launching a tech-forward football club.">
+            <div class="secondary-thumb-box">
+              <img src="images/founder_paystack.jpg" alt="Shola Akinlade">
+              <div class="secondary-play-btn">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="#FFFFFF">
+                  <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                </svg>
+              </div>
+              <div class="time-badge">16:45</div>
+            </div>
+            <h4 class="secondary-founder-name">Shola Akinlade</h4>
+            <p class="secondary-founder-sub">Co-founder, Paystack & Sporting Lagos</p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       8. Final CTA Section ("Built in Africa. Used everywhere.")
+       ======================================================================== -->
+  <span id="newsletter" style="display:block; position:relative; top:-80px; visibility:hidden;"></span>
+  <section class="final-cta-section" id="community">
+    <!-- Top Glow Effect -->
+    <div class="cta-glow-bg"></div>
+
+    <div class="container-xl position-relative">
+      
+      <!-- Massive Heading -->
+      <h2 class="final-cta-title">
+        Built in Africa.<br>
+        <span class="font-serif-italic text-gradient-cta">Used everywhere.</span>
+      </h2>
+
+      <!-- Subtext -->
+      <p class="final-cta-subtext">
+        JOIN THOUSANDS OF FOUNDERS, INVESTORS, AND BUILDERS DISCOVERING WHAT'S NEXT.
+      </p>
+
+      <!-- Buttons -->
+      <div class="cta-btn-group">
+        <a href="submit.html" class="btn-pill-white text-decoration-none">
+          <span>Submit your product</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </a>
+
+        <a href="#trending" class="btn-pill-dark">
+          <span>Explore trending</span>
+        </a>
+      </div>
+
+      <!-- Newsletter Subscribe Bar -->
+      <div class="cta-newsletter-wrapper">
+        <form class="newsletter-form">
+          <div class="cta-newsletter-bar">
+            <input type="email" class="cta-newsletter-input" placeholder="Get the weekly digest of top African launches" required>
+            <button type="submit" class="cta-newsletter-btn">Sign up</button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       9. Footer
+       ======================================================================== -->
+  <footer class="site-footer">
+    <div class="container-xl">
+      
+      <div class="row g-5">
+        <!-- Brand Info -->
+        <div class="col-lg-4">
+          <a href="index.html" class="brand-logo mb-2">
+            <span class="brand-logo-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4 19L11 5H15L8 19H4Z" fill="#3B82F6"/>
+                <path d="M12 19L19 5H21L14 19H12Z" fill="#60A5FA"/>
+              </svg>
+            </span>
+            <span>discova</span>
+          </a>
+          <p class="footer-brand-desc">
+            Built to celebrate every founder, engineer, and creator across the African continent. Showcasing global excellence.
+          </p>
+        </div>
+
+        <!-- Col 2: Explore -->
+        <div class="col-6 col-md-3 col-lg-2 offset-lg-2">
+          <div class="footer-col-title">Explore</div>
+          <ul class="footer-links-list">
+            <li><a href="products.html">All Products</a></li>
+            <li><a href="index.html#trending">Top Launches</a></li>
+            <li><a href="categories.html">Categories</a></li>
+            <li><a href="about.html#stats">Ecosystem Stats</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Stories -->
+        <div class="col-6 col-md-3 col-lg-2">
+          <div class="footer-col-title">Stories</div>
+          <ul class="footer-links-list">
+            <li><a href="stories.html">Builder Stories</a></li>
+            <li><a href="stories.html#interviews">Video Interviews</a></li>
+            <li><a href="stories.html#podcasts">Podcasts</a></li>
+            <li><a href="launches.html">Launch Archive</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Company -->
+        <div class="col-6 col-md-3 col-lg-2">
+          <div class="footer-col-title">Company</div>
+          <ul class="footer-links-list">
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="about.html#beliefs">Our Beliefs</a></li>
+            <li><a href="about.html#team">The Team</a></li>
+            <li><a href="submit.html">Submit Product</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Bottom Row -->
+      <div class="footer-bottom-row">
+        <div>© 2026 Discova Inc. All rights reserved.</div>
+        <div>Curated with ❤️ across 54 African nations</div>
+      </div>
+
+      <!-- Huge Watermarked Wordmark -->
+      <div class="footer-watermark">
+        discova
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ========================================================================
+       MODAL 1: Video Player Lightbox
+       ======================================================================== -->
+  <div class="modal fade" id="videoPlayerModal" tabindex="-1" aria-labelledby="videoModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content modal-content-dark">
+        <div class="modal-header modal-header-dark">
+          <div>
+            <h5 class="modal-title fw-bold text-white fs-6" id="videoModalTitle">Founder Interview</h5>
+            <div class="text-muted" id="videoModalDesc" style="font-size: 0.8125rem;"></div>
+          </div>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body p-0">
+          <div class="ratio ratio-16x9">
+            <iframe id="videoPlayerIframe" src="" title="Video Player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       MODAL 2: Submit Product Modal
+       ======================================================================== -->
+  <div class="modal fade" id="submitProductModal" tabindex="-1" aria-labelledby="submitModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content modal-content-dark">
+        <div class="modal-header modal-header-dark">
+          <h5 class="modal-title fw-bold text-white fs-5" id="submitModalTitle">Submit your product</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form id="submitProductForm">
+          <div class="modal-body p-4">
+            <div class="mb-3">
+              <label class="form-label text-white-50" style="font-size: 0.85rem;">Product Name</label>
+              <input type="text" class="form-control form-control-dark" placeholder="e.g. Chowdeck, Pezid" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label text-white-50" style="font-size: 0.85rem;">One-line Tagline</label>
+              <input type="text" class="form-control form-control-dark" placeholder="e.g. Deploy in Lagos, not London" required>
+            </div>
+            <div class="row g-3 mb-3">
+              <div class="col-md-6">
+                <label class="form-label text-white-50" style="font-size: 0.85rem;">Category</label>
+                <select class="form-control form-control-dark" required>
+                  <option value="" disabled selected>Select category</option>
+                  <option value="fintech">FinTech</option>
+                  <option value="devtools">Developer Tools</option>
+                  <option value="ai">AI & ML</option>
+                  <option value="health">HealthTech</option>
+                  <option value="logistics">Logistics</option>
+                  <option value="cleanenergy">Clean Energy</option>
+                  <option value="ecommerce">E-commerce</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label text-white-50" style="font-size: 0.85rem;">Country Headquarters</label>
+                <input type="text" class="form-control form-control-dark" placeholder="e.g. Nigeria, Kenya, Rwanda" required>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label class="form-label text-white-50" style="font-size: 0.85rem;">Website / App Store URL</label>
+              <input type="url" class="form-control form-control-dark" placeholder="https://yourproduct.com" required>
+            </div>
+          </div>
+          <div class="modal-footer modal-footer-dark">
+            <button type="button" class="btn-pill-dark" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn-pill-white">Submit for review →</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification for Submission Success -->
+  <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 2000;">
+    <div id="submissionToast" class="toast align-items-center text-bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="d-flex">
+        <div class="toast-body fw-semibold">
+          🎉 Product submitted successfully! Our editorial team will review it shortly.
+        </div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap 5.3 Bundle JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <!-- Custom JS -->
+  <script src="js/api.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

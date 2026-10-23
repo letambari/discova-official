@@ -1,0 +1,28 @@
+---
+# ========================================================
+# cPanel Git™ Version Control Automated Deployment Recipe
+# ========================================================
+# This file is executed automatically whenever cPanel pulls
+# new commits from GitHub (manually or via GitHub Webhook).
+
+deployment:
+  tasks:
+    # 1. Target deployment path (adjust if your app is in a subfolder or public_html)
+    - export DEPLOYPATH=${DEPLOYPATH:-$HOME/public_html}
+    - /bin/mkdir -p $DEPLOYPATH
+
+    # 2. Copy code files into the active application directory
+    - /bin/cp -R * $DEPLOYPATH/
+
+    # 3. Ensure persistent database and backup directories exist
+    # (These live outside $DEPLOYPATH so git pulls NEVER touch the database)
+    - /bin/mkdir -p $HOME/discova_data
+    - /bin/mkdir -p $HOME/backups
+
+    # 4. Install production dependencies
+    - cd $DEPLOYPATH && npm install --omit=dev --no-audit --no-fund
+
+    # 5. Signal Phusion Passenger to reload Node.js gracefully
+    - /bin/mkdir -p $DEPLOYPATH/tmp
+    - /bin/touch $DEPLOYPATH/tmp/restart.txt
+    - echo "Discova Africa Tech deployed successfully at $(date)"

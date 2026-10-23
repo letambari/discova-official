@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Builder Stories — Discova Founder Interviews</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap 5.3 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="css/styles.css">
+
+  <!-- Pre-initialization theme check to prevent flash -->
+  <script>
+    (function() {
+      var saved = localStorage.getItem('discova_theme') || 'dark';
+      document.documentElement.setAttribute('data-bs-theme', saved);
+    })();
+  </script>
+</head>
+<body>
+
+  <!-- ========================================================================
+       1. Header / Navbar
+       ======================================================================== -->
+  <header class="site-navbar">
+    <div class="container-xl d-flex align-items-center justify-content-between">
+      
+      <!-- Brand Logo -->
+      <a href="index.html" class="brand-logo">
+        <span class="brand-logo-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 19L11 5H15L8 19H4Z" fill="#3B82F6"/>
+            <path d="M12 19L19 5H21L14 19H12Z" fill="#60A5FA"/>
+          </svg>
+        </span>
+        <span>discova</span>
+      </a>
+
+      <!-- Center Navigation -->
+      <nav class="d-none d-lg-flex align-items-center gap-1">
+        <a href="products.html" class="nav-link-custom">Products</a>
+        <a href="launches.html" class="nav-link-custom">Launches</a>
+        <a href="stories.html" class="nav-link-custom active">Stories</a>
+        <a href="categories.html" class="nav-link-custom">Categories</a>
+      </nav>
+
+      <!-- Right Action Controls -->
+      <div class="d-flex align-items-center gap-3">
+        <!-- Theme Toggle Pill -->
+        <button class="theme-toggle-pill" id="themeToggleBtn" onclick="toggleTheme()" title="Toggle light/dark mode" aria-label="Toggle theme">
+          <span class="theme-icon sun-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+          </span>
+          <span class="theme-icon moon-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+          </span>
+        </button>
+
+        <!-- Search Trigger Icon -->
+        <a href="products.html" class="navbar-action-btn" title="Search catalog">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+        </a>
+
+        <!-- User / Sign In -->
+        <a href="login.html" class="d-none d-sm-inline-block text-muted text-decoration-none fw-semibold" style="font-size: 0.875rem;">Sign in</a>
+
+        <!-- Submit CTA Button -->
+        <a href="submit.html" class="btn-pill-white text-decoration-none">
+          <span>Submit your product</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+          </svg>
+        </a>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ========================================================================
+       2. Hero Section & Filter Pills
+       ======================================================================== -->
+  <section class="position-relative pt-5 pb-4 overflow-hidden">
+    <div class="hero-glow-bg"></div>
+    <div class="container-xl position-relative">
+      
+      <div class="text-center max-w-700 mx-auto mb-4">
+        <div class="hero-badge-pill mb-3">
+          <span class="pulse-dot"></span>
+          <span id="storiesBadgeText">DISCOVA ORIGINALS • FOUNDER STORIES</span>
+        </div>
+        <h1 class="display-5 fw-black tracking-tight text-white mb-3">
+          The people behind the <span class="font-serif-italic">products</span>
+        </h1>
+        <p class="text-muted fs-6 mb-4">
+          Unfiltered conversations, engineering breakthroughs, and founder journeys from the pioneers architecting Africa's digital economy.
+        </p>
+
+        <!-- Story Category Filter Pills -->
+        <div class="d-flex align-items-center justify-content-center gap-2 flex-wrap" id="storiesFilterNav">
+          <button class="tab-btn-pill active" data-story-filter="all">All stories</button>
+          <button class="tab-btn-pill" data-story-filter="video">▶ Video interviews</button>
+          <button class="tab-btn-pill" data-story-filter="podcast">🎙 Podcasts</button>
+          <button class="tab-btn-pill" data-story-filter="fintech">Fintech</button>
+          <button class="tab-btn-pill" data-story-filter="ai">AI & ML</button>
+          <button class="tab-btn-pill" data-story-filter="devtools">Developer Tools</button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       3. Main Content: Featured Video Hero + Stories Grid
+       ======================================================================== -->
+  <main class="pb-5">
+    <div class="container-xl">
+      
+      <!-- Featured Story Hero Card -->
+      <div class="featured-story-hero" id="interviews">
+        <div class="row g-0 align-items-stretch">
+          
+          <!-- Left: 16:9 Video Preview Thumbnail -->
+          <div class="col-lg-7 featured-story-video-col" onclick="openStoryVideo('Akinkunmi — Creator of Byteship, OutRay & Avnac', 'Building resilient African infrastructure with 150k monthly API calls', 'https://www.youtube.com/embed/dQw4w9WgXcQ')">
+            <img src="images/story_akinkunmi.jpg" alt="Akinkunmi interviewed by Discova">
+            
+            <!-- Video Play Button Overlay -->
+            <div class="main-play-btn">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor">
+                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+              </svg>
+            </div>
+
+            <!-- Video duration pill -->
+            <span class="badge bg-dark text-white position-absolute bottom-3 end-3 px-3 py-2 rounded-pill" style="background: rgba(0,0,0,0.75) !important; font-size: 0.75rem;">
+              ▶ 24:18 • Lagos, Nigeria
+            </span>
+          </div>
+
+          <!-- Right: Narrative Details -->
+          <div class="col-lg-5 featured-story-info-col">
+            <div class="d-flex align-items-center gap-2 mb-3">
+              <span class="badge bg-primary text-white px-2 py-1 rounded-pill" style="font-size: 0.7rem;">FEATURED INTERVIEW</span>
+              <span class="text-muted small">Episode #42</span>
+            </div>
+
+            <h2 class="h3 fw-bold text-white mb-2">
+              Akinkunmi — Creator of Byteship, OutRay & Avnac
+            </h2>
+
+            <blockquote class="font-serif-italic fs-5 text-white-50 my-3 ps-3 border-start border-primary border-3" style="line-height: 1.4;">
+              “We stopped optimizing for Silicon Valley aesthetics and started building resilient software for intermittent power and unstable connectivity.”
+            </blockquote>
+
+            <p class="text-muted small mb-4">
+              How a 22-year-old self-taught engineer in Lagos shipped 3 consecutive top-ranking products on Discova with over 150,000 monthly active API calls.
+            </p>
+
+            <div class="d-flex align-items-center gap-3">
+              <button class="btn-pill-white" onclick="openStoryVideo('Akinkunmi — Creator of Byteship, OutRay & Avnac', 'Building resilient African infrastructure with 150k monthly API calls', 'https://www.youtube.com/embed/dQw4w9WgXcQ')">
+                <span>Watch interview (24m)</span>
+                <span>▶</span>
+              </button>
+              <a href="story-details.html" class="btn-pill-dark text-decoration-none">
+                Read full story →
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- 8-Card Stories Grid -->
+      <span id="podcasts" style="display:block; position:relative; top:-90px; visibility:hidden;"></span>
+      <div class="row g-4" id="storiesGrid">
+        
+        <!-- Story 1: Robinson Honour -->
+        <div class="col-md-6 col-lg-3 story-grid-item" data-category="devtools" data-type="video">
+          <div class="story-card-item">
+            <div class="story-card-thumb" onclick="openStoryVideo('Robinson Honour — Founder of Brimble', 'Edge hosting infrastructure engineered for African developers', 'https://www.youtube.com/embed/dQw4w9WgXcQ')">
+              <img src="images/founder_robinson.jpg" alt="Robinson Honour">
+              <div class="video-play-btn" style="width: 44px; height: 44px;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+              </div>
+            </div>
+            <div class="story-card-body">
+              <div class="story-time-meta">18:40 • Dev Tools • Lagos</div>
+              <h3 class="story-founder-heading">Robinson Honour</h3>
+              <div class="story-founder-role">Founder, Brimble</div>
+              <p class="story-founder-blurb">
+                Building an edge hosting platform that serves static assets from African internet exchange points for sub-10ms TTFB.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Story 2: Odun Eweniyi -->
+        <div class="col-md-6 col-lg-3 story-grid-item" data-category="fintech" data-type="video">
+          <div class="story-card-item">
+            <div class="story-card-thumb" onclick="openStoryVideo('Odun Eweniyi — Co-Founder & COO, PiggyVest', 'Cultivating savings discipline for millions of youth amid inflation', 'https://www.youtube.com/embed/dQw4w9WgXcQ')">
+              <img src="images/story_odun.jpg" alt="Odun Eweniyi">
+              <div class="video-play-btn" style="width: 44px; height: 44px;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+              </div>
+            </div>
+            <div class="story-card-body">
+              <div class="story-time-meta">28:15 • FinTech • Lagos</div>
+              <h3 class="story-founder-heading">Odun Eweniyi</h3>
+              <div class="story-founder-role">Co-Founder & COO, PiggyVest</div>
+              <p class="story-founder-blurb">
+                How PiggyVest helped millions of young Nigerians cultivate savings discipline amid record inflation and currency shifts.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Story 3: Fara Ashiru -->
+        <div class="col-md-6 col-lg-3 story-grid-item" data-category="fintech" data-type="video">
+          <div class="story-card-item">
+            <div class="story-card-thumb" onclick="openStoryVideo('Fara Ashiru — Founder & CEO, Okra', 'Unlocking open finance across 15 African commercial banks', 'https://www.youtube.com/embed/dQw4w9WgXcQ')">
+              <img src="images/founder_okra.jpg" alt="Fara Ashiru">
+              <div class="video-play-btn" style="width: 44px; height: 44px;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+              </div>
+            </div>
+            <div class="story-card-body">
+              <div class="story-time-meta">21:05 • Open Finance • Lagos</div>
+              <h3 class="story-founder-heading">Fara Ashiru</h3>
+              <div class="story-founder-role">Founder & CEO, Okra</div>
+              <p class="story-founder-blurb">
+                Reverse-engineering fragmented African banking protocols to unlock open-finance infrastructure and instant credit scoring.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Story 4: Sulaiman Adewale -->
+        <div class="col-md-6 col-lg-3 story-grid-item" data-category="ai" data-type="video">
+          <div class="story-card-item">
+            <div class="story-card-thumb" onclick="openStoryVideo('Sulaiman Adewale — Lead AI Engineer, YarnGPT', 'Tokenizing 30+ African languages and dialects into generative LLMs', 'https://www.youtube.com/embed/dQw4w9WgXcQ')">
+              <img src="images/story_sulaiman.jpg" alt="Sulaiman Adewale">
+              <div class="video-play-btn" style="width: 44px; height: 44px;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+              </div>
+            </div>
+            <div class="story-card-body">
+              <div class="story-time-meta">16:50 • AI & Speech • Ibadan</div>
+              <h3 class="story-founder-heading">Sulaiman Adewale</h3>
+              <div class="story-founder-role">Lead AI Engineer, YarnGPT</div>
+              <p class="story-founder-blurb">
+                Tokenizing Yoruba and Pidgin nuances into high-performing generative transformer models for multilingual conversational bots.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Story 5: Dára Sobaloju -->
+        <div class="col-md-6 col-lg-3 story-grid-item" data-category="design" data-type="video">
+          <div class="story-card-item">
+            <div class="story-card-thumb" onclick="openStoryVideo('Dára Sobaloju — Head of Design, Pxxl', 'Designing vector engines that render 60fps on budget devices', 'https://www.youtube.com/embed/dQw4w9WgXcQ')">
+              <img src="images/story_dara.jpg" alt="Dára Sobaloju">
+              <div class="video-play-btn" style="width: 44px; height: 44px;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+              </div>
+            </div>
+            <div class="story-card-body">
+              <div class="story-time-meta">19:30 • Product Design • Cape Town</div>
+              <h3 class="story-founder-heading">Dára Sobaloju</h3>
+              <div class="story-founder-role">Head of Design, Pxxl</div>
+              <p class="story-founder-blurb">
+                Designing high-performance vector rendering engines that perform smoothly on budget Android devices and 3G networks.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Story 6: Oluwatosin Olaseinde -->
+        <div class="col-md-6 col-lg-3 story-grid-item" data-category="fintech" data-type="article">
+          <div class="story-card-item">
+            <div class="story-card-thumb" onclick="openStoryVideo('Oluwatosin Olaseinde — Founder, Money Africa', 'Financial literacy and retail wealth building across West Africa', 'https://www.youtube.com/embed/dQw4w9WgXcQ')">
+              <img src="images/founder_chowdeck.jpg" alt="Oluwatosin Olaseinde">
+              <div class="video-play-btn" style="width: 44px; height: 44px;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+              </div>
+            </div>
+            <div class="story-card-body">
+              <div class="story-time-meta">22:10 • EdTech & Wealth • Lagos</div>
+              <h3 class="story-founder-heading">Oluwatosin Olaseinde</h3>
+              <div class="story-founder-role">Founder, Money Africa</div>
+              <p class="story-founder-blurb">
+                Democratizing financial literacy and equity investing for 400,000+ retail African investors through bite-sized curriculum.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Story 7: Sultan Akintunde -->
+        <div class="col-md-6 col-lg-3 story-grid-item" data-category="devtools" data-type="video">
+          <div class="story-card-item">
+            <div class="story-card-thumb" onclick="openStoryVideo('Sultan Akintunde — Founder, AltSchool Africa', 'Training 50,000 engineers and creators across the continent', 'https://www.youtube.com/embed/dQw4w9WgXcQ')">
+              <img src="images/founder_paystack.jpg" alt="Sultan Akintunde">
+              <div class="video-play-btn" style="width: 44px; height: 44px;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+              </div>
+            </div>
+            <div class="story-card-body">
+              <div class="story-time-meta">31:45 • Developer Ed • Lagos</div>
+              <h3 class="story-founder-heading">Sultan Akintunde</h3>
+              <div class="story-founder-role">Founder, AltSchool Africa</div>
+              <p class="story-founder-blurb">
+                Training 50,000 next-generation African software engineers with world-class curriculum and remote employer pipelines.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Story 8: David Herbert -->
+        <div class="col-md-6 col-lg-3 story-grid-item" data-category="devtools" data-type="video">
+          <div class="story-card-item">
+            <div class="story-card-thumb" onclick="openStoryVideo('David Herbert — Co-Founder, Pewbeam', 'Low-cost satellite mesh networking for rural East African schools', 'https://www.youtube.com/embed/dQw4w9WgXcQ')">
+              <img src="images/story_david.jpg" alt="David Herbert">
+              <div class="video-play-btn" style="width: 44px; height: 44px;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+              </div>
+            </div>
+            <div class="story-card-body">
+              <div class="story-time-meta">17:20 • Telecoms • Nairobi</div>
+              <h3 class="story-founder-heading">David Herbert</h3>
+              <div class="story-founder-role">Co-Founder, Pewbeam</div>
+              <p class="story-founder-blurb">
+                Beaming low-cost mesh internet to rural Kenyan classrooms using solar-powered transmitters and edge caching nodes.
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Load More Button -->
+      <div class="text-center mt-5">
+        <a href="submit.html" class="btn-pill-dark px-4 py-2 text-decoration-none">
+          Submit your product or founder story →
+        </a>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ========================================================================
+       MODAL: Video Player Lightbox
+       ======================================================================== -->
+  <div class="modal fade" id="videoPlayerModal" tabindex="-1" aria-labelledby="videoModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content modal-content-dark">
+        <div class="modal-header modal-header-dark">
+          <div>
+            <h5 class="modal-title fw-bold text-white fs-6" id="videoModalTitle">Founder Interview</h5>
+            <div class="text-muted" id="videoModalDesc" style="font-size: 0.8125rem;"></div>
+          </div>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body p-0">
+          <div class="ratio ratio-16x9">
+            <iframe id="videoPlayerIframe" src="" title="Video Player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       4. Site Footer
+       ======================================================================== -->
+  <footer class="site-footer">
+    <div class="container-xl">
+      
+      <div class="row g-5">
+        <!-- Brand Info -->
+        <div class="col-lg-4">
+          <a href="index.html" class="brand-logo mb-2">
+            <span class="brand-logo-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4 19L11 5H15L8 19H4Z" fill="#3B82F6"/>
+                <path d="M12 19L19 5H21L14 19H12Z" fill="#60A5FA"/>
+              </svg>
+            </span>
+            <span>discova</span>
+          </a>
+          <p class="footer-brand-desc">
+            Built to celebrate every founder, engineer, and creator across the African continent. Showcasing global excellence.
+          </p>
+        </div>
+
+        <!-- Col 2: Explore -->
+        <div class="col-6 col-md-3 col-lg-2 offset-lg-2">
+          <div class="footer-col-title">Explore</div>
+          <ul class="footer-links-list">
+            <li><a href="products.html">All Products</a></li>
+            <li><a href="index.html#trending">Top Launches</a></li>
+            <li><a href="categories.html">Categories</a></li>
+            <li><a href="about.html#stats">Ecosystem Stats</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Stories -->
+        <div class="col-6 col-md-3 col-lg-2">
+          <div class="footer-col-title">Stories</div>
+          <ul class="footer-links-list">
+            <li><a href="stories.html">Builder Stories</a></li>
+            <li><a href="stories.html#interviews">Video Interviews</a></li>
+            <li><a href="stories.html#podcasts">Podcasts</a></li>
+            <li><a href="launches.html">Launch Archive</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Company -->
+        <div class="col-6 col-md-3 col-lg-2">
+          <div class="footer-col-title">Company</div>
+          <ul class="footer-links-list">
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="about.html#beliefs">Our Beliefs</a></li>
+            <li><a href="about.html#team">The Team</a></li>
+            <li><a href="submit.html">Submit Product</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Bottom Row -->
+      <div class="footer-bottom-row">
+        <div>© 2026 Discova Inc. All rights reserved.</div>
+        <div>Curated with ❤️ across 54 African nations</div>
+      </div>
+
+      <!-- Huge Watermarked Wordmark -->
+      <div class="footer-watermark">
+        discova
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- Bootstrap 5.3 Bundle JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <!-- Custom JS -->
+  <script src="js/api.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
