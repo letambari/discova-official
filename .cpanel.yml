@@ -7,12 +7,13 @@ deployment:
     - /bin/mkdir -p /home2/budracad/godiscova.com
     - /bin/mkdir -p /home2/budracad/discova_data
     - /bin/mkdir -p /home2/budracad/backups
-    - /bin/cp -a /home2/budracad/repositories/discova-official/. /home2/budracad/godiscova.com/
-    - /bin/touch /home2/budracad/godiscova.com/.htaccess
+    - /bin/cp -R /home2/budracad/repositories/discova-official/* /home2/budracad/godiscova.com/
     - /bin/chmod 755 /home2/budracad/godiscova.com
-    - /bin/chmod 644 /home2/budracad/godiscova.com/.htaccess
+    - /bin/chmod 644 /home2/budracad/godiscova.com/*.html /home2/budracad/godiscova.com/*.json /home2/budracad/godiscova.com/app.js 2>/dev/null || true
+    - /bin/chmod 644 /home2/budracad/godiscova.com/.htaccess 2>/dev/null || true
     - /bin/mkdir -p /home2/budracad/godiscova.com/tmp
     - /bin/touch /home2/budracad/godiscova.com/tmp/restart.txt
+
 
 
 
