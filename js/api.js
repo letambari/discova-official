@@ -7,9 +7,9 @@
 (function (window) {
   'use strict';
 
-  // Base API configuration (auto-detects origin or defaults to port 3000)
-  const isLocalHost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-  const API_BASE = (isLocalHost || window.location.port === '3000') ? '/api' : 'http://localhost:3000/api';
+  // Base API configuration (relative path works universally in development and production)
+  const API_BASE = '/api';
+
 
   // Persistent Voter Token for Unique Upvoting
   function getVoterToken() {
