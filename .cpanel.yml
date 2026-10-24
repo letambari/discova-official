@@ -9,8 +9,11 @@ deployment:
     - /bin/mkdir -p /home2/budracad/backups
     - /bin/cp -a /home2/budracad/repositories/discova-official/. /home2/budracad/godiscova.com/
     - /bin/touch /home2/budracad/godiscova.com/.htaccess
+    - /bin/chmod 755 /home2/budracad/godiscova.com
+    - /bin/chmod 644 /home2/budracad/godiscova.com/.htaccess
     - /bin/mkdir -p /home2/budracad/godiscova.com/tmp
     - /bin/touch /home2/budracad/godiscova.com/tmp/restart.txt
+
 
 
 
